@@ -5,10 +5,19 @@ using UnityEngine;
 public class FruitSpawner : MonoBehaviour {
 
     public GameObject fruitPrefab;
-    public float minRandomRotation = 25, maxRandomRotation = 270;
+
+    [Header("Normal Random Rotation")]
+    public float minRandomRotation = 70;
+    public float maxRandomRotation = 180;
+
+    [Header("Small Random Rotation")]
+    public float minRandomRotationSmall = 5;
+    public float maxRandomRotationSmall = 50;
+    public int increaseDifficultyFrequency = 5;
 
     private GameObject fruitGameobject;
     private Fruit fruit;
+    private int collectedFruit = 0;
 
     private void Start() {
         Vector3 fruitRotation = new Vector3();
@@ -23,19 +32,25 @@ public class FruitSpawner : MonoBehaviour {
         } else {
             int randomDirection = Random.Range(0, 2);
             float randomRotation = Random.Range(minRandomRotation, maxRandomRotation);
-            //TODO: Add random, smaller deviation to the x/z axis so that it does not always spawn right in front of the player
+            float randomRotationSmall = Random.Range(minRandomRotationSmall, maxRandomRotationSmall);
             switch ( randomDirection ) {
                 case 0:
                     fruitGameobject.transform.Rotate(randomRotation, 0, 0);
-                    Debug.Log("Rotation gain [x]: " + randomRotation.ToString());
+                    fruitGameobject.transform.Rotate(0, 0, randomRotationSmall);
                     break;
                 case 1:
                     fruitGameobject.transform.Rotate(0, 0, randomRotation);
-                    Debug.Log("Rotation gain [z]: " + randomRotation.ToString());
+                    fruitGameobject.transform.Rotate(randomRotationSmall, 0, 0);
                     break;
             }
-        }
 
+            collectedFruit++;
+
+            if ( collectedFruit % increaseDifficultyFrequency == 0 ) {
+                //TODO: increase minRandomRotation and maxRandomRotation until clamped value
+            }
+        }
+        
         fruit.Respawn(correction);
     }
 }

@@ -1552,6 +1552,9 @@ MonoBehaviour:
     type: 3}
   minRandomRotation: 70
   maxRandomRotation: 180
+  minRandomRotationSmall: -70
+  maxRandomRotationSmall: 70
+  increaseDifficultyFrequency: 5
 --- !u!4 &1490296314
 Transform:
   m_ObjectHideFlags: 0
