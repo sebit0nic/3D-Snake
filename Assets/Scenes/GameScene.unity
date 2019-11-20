@@ -1550,11 +1550,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fruitPrefab: {fileID: 3088722311205478133, guid: d45e6c9ca884bae46a8bbf9bd6661139,
     type: 3}
-  minRandomRotation: 70
-  maxRandomRotation: 180
-  minRandomRotationSmall: -70
-  maxRandomRotationSmall: 70
+  minRandomRotation: 50
+  maxRandomRotation: 120
+  minRandomRotationClamp: 90
+  maxRandomRotationClamp: 180
+  minRandomRotationSmall: -40
+  maxRandomRotationSmall: 40
+  minRandomRotationSmallClamp: -80
+  maxRandomRotationSmallClamp: 80
   increaseDifficultyFrequency: 5
+  increaseDifficultyRate: 10
 --- !u!4 &1490296314
 Transform:
   m_ObjectHideFlags: 0

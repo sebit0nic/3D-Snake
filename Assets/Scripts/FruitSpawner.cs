@@ -7,17 +7,24 @@ public class FruitSpawner : MonoBehaviour {
     public GameObject fruitPrefab;
 
     [Header("Normal Random Rotation")]
-    public float minRandomRotation = 70;
-    public float maxRandomRotation = 180;
+    public float minRandomRotation;
+    public float maxRandomRotation;
+    public float minRandomRotationClamp;
+    public float maxRandomRotationClamp;
 
     [Header("Small Random Rotation")]
-    public float minRandomRotationSmall = 5;
-    public float maxRandomRotationSmall = 50;
-    public int increaseDifficultyFrequency = 5;
+    public float minRandomRotationSmall;
+    public float maxRandomRotationSmall;
+    public float minRandomRotationSmallClamp;
+    public float maxRandomRotationSmallClamp;
+
+    [Header("Difficulty")]
+    public int increaseDifficultyFrequency;
+    public float increaseDifficultyRate;
 
     private GameObject fruitGameobject;
     private Fruit fruit;
-    private int collectedFruit = 0;
+    private int collectedFruit;
 
     private void Start() {
         Vector3 fruitRotation = new Vector3();
@@ -47,7 +54,15 @@ public class FruitSpawner : MonoBehaviour {
             collectedFruit++;
 
             if ( collectedFruit % increaseDifficultyFrequency == 0 ) {
-                //TODO: increase minRandomRotation and maxRandomRotation until clamped value
+                minRandomRotation += increaseDifficultyRate;
+                maxRandomRotation += increaseDifficultyRate;
+                minRandomRotationSmall -= increaseDifficultyRate;
+                maxRandomRotationSmall += increaseDifficultyRate;
+
+                minRandomRotation = Mathf.Clamp(minRandomRotation, 0, minRandomRotationClamp);
+                maxRandomRotation = Mathf.Clamp(maxRandomRotation, 0, maxRandomRotationClamp);
+                minRandomRotationSmall = Mathf.Clamp(minRandomRotationSmall, minRandomRotationSmallClamp, 0);
+                maxRandomRotationSmall = Mathf.Clamp(maxRandomRotationSmall, 0, maxRandomRotationSmallClamp);
             }
         }
         
