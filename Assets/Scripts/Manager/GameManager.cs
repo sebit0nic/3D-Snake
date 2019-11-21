@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     private FruitSpawner fruitSpawner;
     private ScoreManager scoreManager;
     private GuiManager guiManager;
+    private PowerupSpawner powerupSpawner;
 
     private bool paused;
 
@@ -23,11 +24,13 @@ public class GameManager : MonoBehaviour {
         fruitSpawner = GetComponentInChildren<FruitSpawner>();
         scoreManager = GetComponentInChildren<ScoreManager>();
         guiManager = GetComponentInChildren<GuiManager>();
+        powerupSpawner = GetComponentInChildren<PowerupSpawner>();
     }
 
     public void PlayerCollectedFruit() {
         fruitSpawner.SpawnNewFruit(false);
         scoreManager.IncreaseScore();
+        powerupSpawner.CheckSpawnConditions(scoreManager.GetCurrentScore());
     }
 
     public void FruitSpawnedInPlayer() {
