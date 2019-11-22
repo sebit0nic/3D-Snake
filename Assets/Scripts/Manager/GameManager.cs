@@ -37,6 +37,14 @@ public class GameManager : MonoBehaviour {
         fruitSpawner.SpawnNewFruit(true);
     }
 
+    public Powerup.PowerupType PlayerCollectedPowerup() {
+        return powerupSpawner.CollectPowerup();
+    }
+
+    public void PowerupSpawnedInPlayer() {
+        powerupSpawner.CorrectPowerupPosition();
+    }
+
     public void PlayerTouchedTail() {
         Time.timeScale = 0;
         guiManager.ShowGameOverScreen();

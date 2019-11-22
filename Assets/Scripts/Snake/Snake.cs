@@ -31,4 +31,15 @@ public class Snake : MonoBehaviour {
             GameManager.instance.PlayerTouchedTail();
         }
     }
+
+    public void NotifyPowerupCollected() {
+        switch ( GameManager.instance.PlayerCollectedPowerup() ) {
+            case Powerup.PowerupType.INVINCIBILTY:
+                break;
+            case Powerup.PowerupType.MAGNET:
+                break;
+            case Powerup.PowerupType.THIN:
+                break;
+        }
+    }
 }

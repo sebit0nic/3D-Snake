@@ -18,6 +18,10 @@ public class FruitSpawner : MonoBehaviour {
     public float minRandomRotationSmallClamp;
     public float maxRandomRotationSmallClamp;
 
+    [Header("Correction Random Rotation")]
+    public float minRandomRotationCorrection;
+    public float maxRandomRotationCorrection;
+
     [Header("Difficulty")]
     public int increaseDifficultyFrequency;
     public float increaseDifficultyRate;
@@ -35,7 +39,7 @@ public class FruitSpawner : MonoBehaviour {
 
     public void SpawnNewFruit(bool correction) {
         if (correction) {
-            fruitGameobject.transform.Rotate(Random.Range(5, 10), 0, Random.Range(5, 10));
+            fruitGameobject.transform.Rotate(Random.Range(minRandomRotationCorrection, maxRandomRotationCorrection), 0, Random.Range(minRandomRotationCorrection, maxRandomRotationCorrection));
         } else {
             int randomDirection = Random.Range(0, 2);
             float randomRotation = Random.Range(minRandomRotation, maxRandomRotation);

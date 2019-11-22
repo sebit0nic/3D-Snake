@@ -20,5 +20,9 @@ public class SnakeCollision : MonoBehaviour {
         if (other.gameObject.tag.Equals("Snake Tail")) {
             snake.NotifyTailTouched();
         }
+
+        if (other.gameObject.tag.Equals("Powerup")) {
+            snake.NotifyPowerupCollected();
+        }
     }
 }

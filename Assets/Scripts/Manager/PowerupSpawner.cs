@@ -9,7 +9,14 @@ public class PowerupSpawner : MonoBehaviour {
     public AnimationCurve spawnProbabilityCurve;
 
     private int fruitCounter;
-    private bool canSpawn = true;
+    private GameObject powerupGameObject;
+    private Powerup powerup;
+
+    private void Start() {
+        powerupGameObject = Instantiate(powerupPrefab, Vector3.zero, Quaternion.identity);
+        powerup = powerupGameObject.GetComponent<Powerup>();
+        powerupGameObject.SetActive(false);
+    }
 
     public void CheckSpawnConditions(int actualCollectedFruit) {
         if (actualCollectedFruit >= minimumCollectedFruitToSpawn ) {
@@ -19,11 +26,20 @@ public class PowerupSpawner : MonoBehaviour {
             float randomValue = Random.Range(1f, 100f);
 
             if ( randomValue < spawnProbability ) {
-                Debug.Log("###New powerup spawned; Probability <" + spawnProbability + "> RandomValue <" + randomValue + "> FruitCounter <" + fruitCounter + ">");
+                powerupGameObject.SetActive(true);
+                powerup.Respawn(false, Powerup.PowerupType.INVINCIBILTY);
+                //TODO: adjust powerup position according to current fruit position
                 fruitCounter = 0;
-            } else {
-                Debug.Log("No powerup spawned; Probability <" + spawnProbability + "> RandomValue <" + randomValue + "> FruitCounter <" + fruitCounter + ">");
             }
         }
+    }
+
+    public void CorrectPowerupPosition() {
+        powerupGameObject.transform.Rotate(Random.Range(5, 10), 0, Random.Range(5, 10));
+        powerup.Respawn(true);
+    }
+
+    public Powerup.PowerupType CollectPowerup() {
+        return powerup.CollectPowerup();
     }
 }

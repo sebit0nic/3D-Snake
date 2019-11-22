@@ -9,6 +9,7 @@ TagManager:
   - Fruit
   - Spawn Checker
   - Planet
+  - Powerup
   layers:
   - Default
   - TransparentFX

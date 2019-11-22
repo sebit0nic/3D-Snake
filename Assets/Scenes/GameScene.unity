@@ -658,7 +658,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0039ac312703e534ebb2ca9554594741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupPrefab: {fileID: 0}
+  powerupPrefab: {fileID: 4785664562357847164, guid: 84b58a9c46e29ad45ae75f52728c6468,
+    type: 3}
   minimumCollectedFruitToSpawn: 5
   spawnProbabilityCurve:
     serializedVersion: 2
@@ -1637,6 +1638,8 @@ MonoBehaviour:
   maxRandomRotationSmall: 40
   minRandomRotationSmallClamp: -80
   maxRandomRotationSmallClamp: 80
+  minRandomRotationCorrection: 5
+  maxRandomRotationCorrection: 10
   increaseDifficultyFrequency: 5
   increaseDifficultyRate: 10
 --- !u!4 &1490296314
