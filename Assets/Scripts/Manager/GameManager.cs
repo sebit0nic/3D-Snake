@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
     public void PlayerCollectedFruit() {
         fruitSpawner.SpawnNewFruit(false);
         scoreManager.IncreaseScore();
-        powerupSpawner.CheckSpawnConditions(scoreManager.GetCurrentScore());
+        powerupSpawner.CheckSpawnConditions(scoreManager.GetCurrentScore(), fruitSpawner.GetCurrentFruitPosition());
     }
 
     public void FruitSpawnedInPlayer() {

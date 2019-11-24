@@ -35,10 +35,13 @@ public class Snake : MonoBehaviour {
     public void NotifyPowerupCollected() {
         switch ( GameManager.instance.PlayerCollectedPowerup() ) {
             case Powerup.PowerupType.INVINCIBILTY:
+                Debug.Log("Collected INVINCIBILITY");
                 break;
             case Powerup.PowerupType.MAGNET:
+                Debug.Log("Collected MAGNET");
                 break;
             case Powerup.PowerupType.THIN:
+                Debug.Log("Collected THIN");
                 break;
         }
     }

@@ -9,6 +9,11 @@ public class Powerup : MonoBehaviour {
     public enum PowerupType {INVINCIBILTY, MAGNET, THIN}
 
     private PowerupType currentType;
+    private PowerupSpawner powerupSpawner;
+
+    public void Init(PowerupSpawner powerupSpawner) {
+        this.powerupSpawner = powerupSpawner;
+    }
 
     private void OnTriggerStay(Collider other) {
         if (other.gameObject.tag.Equals("Snake Tail")) {
@@ -19,19 +24,12 @@ public class Powerup : MonoBehaviour {
     public void Respawn(bool correction) {
         if (!correction) {
             StartCoroutine(WaitForShowDelay());
+            int randomPowerup = Random.Range(0, 1);
+            currentType = (PowerupType) randomPowerup;
         }
     }
 
-    public void Respawn(bool correction, PowerupType newType) {
-        if (!correction) {
-            StartCoroutine(WaitForShowDelay());
-            currentType = newType;
-            //TODO: add timer to unspawn the powerup after some time
-        }
-    }
-
-    public PowerupType CollectPowerup() {
-        //TODO: set gameobject inactive
+    public PowerupType Collect() {
         return currentType;
     }
 

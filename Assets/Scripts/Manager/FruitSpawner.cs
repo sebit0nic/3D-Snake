@@ -46,12 +46,10 @@ public class FruitSpawner : MonoBehaviour {
             float randomRotationSmall = Random.Range(minRandomRotationSmall, maxRandomRotationSmall);
             switch ( randomDirection ) {
                 case 0:
-                    fruitGameobject.transform.Rotate(randomRotation, 0, 0);
-                    fruitGameobject.transform.Rotate(0, 0, randomRotationSmall);
+                    fruitGameobject.transform.Rotate(randomRotation, 0, randomRotationSmall);
                     break;
                 case 1:
-                    fruitGameobject.transform.Rotate(0, 0, randomRotation);
-                    fruitGameobject.transform.Rotate(randomRotationSmall, 0, 0);
+                    fruitGameobject.transform.Rotate(randomRotationSmall, 0, randomRotation);
                     break;
             }
 
@@ -71,5 +69,9 @@ public class FruitSpawner : MonoBehaviour {
         }
         
         fruit.Respawn(correction);
+    }
+
+    public Transform GetCurrentFruitPosition() {
+        return fruitGameobject.transform;
     }
 }
