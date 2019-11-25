@@ -6,7 +6,6 @@ public class Powerup : MonoBehaviour {
 
     public float rendererShowDelay = 0.25f;
     public GameObject powerupRenderer;
-    public enum PowerupType {INVINCIBILTY, MAGNET, THIN}
 
     private PowerupType currentType;
     private PowerupSpawner powerupSpawner;
@@ -23,19 +22,12 @@ public class Powerup : MonoBehaviour {
 
     public void Respawn(bool correction) {
         if (!correction) {
-            StartCoroutine(WaitForShowDelay());
             int randomPowerup = Random.Range(0, 1);
             currentType = (PowerupType) randomPowerup;
         }
     }
 
-    public PowerupType Collect() {
+    public PowerupType GetCurrentType() {
         return currentType;
-    }
-
-    private IEnumerator WaitForShowDelay() {
-        powerupRenderer.SetActive(false);
-        yield return new WaitForSeconds(rendererShowDelay);
-        powerupRenderer.SetActive(true);
     }
 }

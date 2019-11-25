@@ -70,8 +70,4 @@ public class FruitSpawner : MonoBehaviour {
         
         fruit.Respawn(correction);
     }
-
-    public Transform GetCurrentFruitPosition() {
-        return fruitGameobject.transform;
-    }
 }

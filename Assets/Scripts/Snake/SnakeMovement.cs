@@ -90,4 +90,8 @@ public class SnakeMovement : MonoBehaviour {
             rightDown = false;
         } 
     }
+
+    public Transform GetCurrentPosition() {
+        return gameObject.transform;
+    }
 }

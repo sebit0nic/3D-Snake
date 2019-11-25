@@ -660,8 +660,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupPrefab: {fileID: 4785664562357847164, guid: 84b58a9c46e29ad45ae75f52728c6468,
     type: 3}
-  minimumCollectedFruitToSpawn: 5
-  unspawnDelay: 12
+  minimumCollectedFruitToSpawn: 1
+  minSpawnDelay: 5
+  maxSpawnDelay: 10
+  unspawnDelay: 15
   spawnProbabilityCurve:
     serializedVersion: 2
     m_Curve:
@@ -695,7 +697,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  debugSpawnerActive: 1
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0

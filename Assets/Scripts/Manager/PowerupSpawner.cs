@@ -6,16 +6,12 @@ public class PowerupSpawner : MonoBehaviour {
 
     public GameObject powerupPrefab;
     public int minimumCollectedFruitToSpawn;
-    public float unspawnDelay;
+    public float minSpawnDelay, maxSpawnDelay, unspawnDelay;
     public AnimationCurve spawnProbabilityCurve;
-
-    private int fruitCounter;
-    private bool canSpawn = true;
+    
     private GameObject powerupGameObject;
     private Powerup powerup;
-
-    [Header("DEBUG")]
-    public bool debugSpawnerActive = false;
+    private Transform currentSnakePosition;
 
     private void Start() {
         powerupGameObject = Instantiate(powerupPrefab, Vector3.zero, Quaternion.identity);
@@ -24,21 +20,12 @@ public class PowerupSpawner : MonoBehaviour {
         powerupGameObject.SetActive(false);
     }
 
-    public void CheckSpawnConditions(int actualCollectedFruit, Transform currentFruitPosition) {
-        if (!debugSpawnerActive) {
-            if ( actualCollectedFruit >= minimumCollectedFruitToSpawn && canSpawn ) {
-                fruitCounter++;
-
-                float spawnProbability = spawnProbabilityCurve.Evaluate(fruitCounter);
-                float randomValue = Random.Range(1f, 100f);
-
-                if ( randomValue < spawnProbability ) {
-                    SpawnNewPowerup(currentFruitPosition);
-                }
-            }
-        } else {
-            SpawnNewPowerup(currentFruitPosition);
+    public void UpdateSpawnConditions(int actualCollectedFruit, Transform currentSnakePosition) {
+        if (actualCollectedFruit == minimumCollectedFruitToSpawn) {
+            StartCoroutine(WaitForSpawnDelay());
         }
+
+        this.currentSnakePosition = currentSnakePosition;
     }
 
     public void CorrectPowerupPosition() {
@@ -46,31 +33,34 @@ public class PowerupSpawner : MonoBehaviour {
         powerup.Respawn(true);
     }
 
-    public Powerup.PowerupType CollectPowerup() {
-        Powerup.PowerupType currentType = powerup.Collect();
+    public PowerupType CollectPowerup() {
+        PowerupType currentType = powerup.GetCurrentType();
         powerupGameObject.SetActive(false);
-        canSpawn = true;
-        return powerup.Collect();
+        StartCoroutine(WaitForSpawnDelay());
+        return currentType;
     }
 
-    private void SpawnNewPowerup(Transform currentFruitPosition) {
-        powerupGameObject.transform.rotation = currentFruitPosition.transform.rotation;
-        int randomDirection = Random.Range(0, 2);
-        if ( randomDirection == 0 ) {
-            powerupGameObject.transform.Rotate(0, 0, Random.Range(-90, -20));
-        } else {
-            powerupGameObject.transform.Rotate(0, 0, Random.Range(20, 90));
-        }
+    private void SpawnNewPowerup() {
+        powerupGameObject.transform.rotation = currentSnakePosition.transform.rotation;
+        powerupGameObject.transform.Rotate(180, 0, 0);
 
         powerupGameObject.SetActive(true);
         powerup.Respawn(false);
-        fruitCounter = 0;
-        canSpawn = false;
+        StartCoroutine(WaitForUnspawnDelay());
+    }
+
+    private IEnumerator WaitForSpawnDelay() {
+        yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
+        Debug.Log("Spawned at: " + Time.time);
+        SpawnNewPowerup();
     }
 
     private IEnumerator WaitForUnspawnDelay() {
+        //TODO: if powerup is collected before unspawned automatically, the next time the powerup shows up
+        //a shorter amount of time
         yield return new WaitForSeconds(unspawnDelay);
+        Debug.Log("Unspawned at: " + Time.time);
         powerupGameObject.SetActive(false);
-        canSpawn = true;
+        StartCoroutine(WaitForSpawnDelay());
     }
 }

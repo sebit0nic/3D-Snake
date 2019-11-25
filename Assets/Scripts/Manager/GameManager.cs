@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
     private ScoreManager scoreManager;
     private GuiManager guiManager;
     private PowerupSpawner powerupSpawner;
+    private Snake snake;
 
     private bool paused;
 
@@ -25,19 +26,20 @@ public class GameManager : MonoBehaviour {
         scoreManager = GetComponentInChildren<ScoreManager>();
         guiManager = GetComponentInChildren<GuiManager>();
         powerupSpawner = GetComponentInChildren<PowerupSpawner>();
+        snake = GameObject.Find("Snake").GetComponent<Snake>();
     }
 
     public void PlayerCollectedFruit() {
         fruitSpawner.SpawnNewFruit(false);
         scoreManager.IncreaseScore();
-        powerupSpawner.CheckSpawnConditions(scoreManager.GetCurrentScore(), fruitSpawner.GetCurrentFruitPosition());
+        powerupSpawner.UpdateSpawnConditions(scoreManager.GetCurrentScore(), snake.GetCurrentSnakePosition());
     }
 
     public void FruitSpawnedInPlayer() {
         fruitSpawner.SpawnNewFruit(true);
     }
 
-    public Powerup.PowerupType PlayerCollectedPowerup() {
+    public PowerupType PlayerCollectedPowerup() {
         return powerupSpawner.CollectPowerup();
     }
 

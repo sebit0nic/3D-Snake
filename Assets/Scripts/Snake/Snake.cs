@@ -34,15 +34,19 @@ public class Snake : MonoBehaviour {
 
     public void NotifyPowerupCollected() {
         switch ( GameManager.instance.PlayerCollectedPowerup() ) {
-            case Powerup.PowerupType.INVINCIBILTY:
+            case PowerupType.INVINCIBILTY:
                 Debug.Log("Collected INVINCIBILITY");
                 break;
-            case Powerup.PowerupType.MAGNET:
+            case PowerupType.MAGNET:
                 Debug.Log("Collected MAGNET");
                 break;
-            case Powerup.PowerupType.THIN:
+            case PowerupType.THIN:
                 Debug.Log("Collected THIN");
                 break;
         }
+    }
+
+    public Transform GetCurrentSnakePosition() {
+        return snakeMovement.GetCurrentPosition();
     }
 }
