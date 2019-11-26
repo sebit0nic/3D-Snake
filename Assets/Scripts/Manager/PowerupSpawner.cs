@@ -11,21 +11,21 @@ public class PowerupSpawner : MonoBehaviour {
     
     private GameObject powerupGameObject;
     private Powerup powerup;
-    private Transform currentSnakePosition;
 
     private void Start() {
         powerupGameObject = Instantiate(powerupPrefab, Vector3.zero, Quaternion.identity);
         powerup = powerupGameObject.GetComponent<Powerup>();
-        powerup.Init(this);
         powerupGameObject.SetActive(false);
     }
 
-    public void UpdateSpawnConditions(int actualCollectedFruit, Transform currentSnakePosition) {
+    public void UpdateActualCollectedFruit(int actualCollectedFruit) {
         if (actualCollectedFruit == minimumCollectedFruitToSpawn) {
-            StartCoroutine(WaitForSpawnDelay());
+            ResumeSpawning();
         }
+    }
 
-        this.currentSnakePosition = currentSnakePosition;
+    public void ResumeSpawning() {
+        StartCoroutine("WaitForSpawnDelay");
     }
 
     public void CorrectPowerupPosition() {
@@ -36,31 +36,28 @@ public class PowerupSpawner : MonoBehaviour {
     public PowerupType CollectPowerup() {
         PowerupType currentType = powerup.GetCurrentType();
         powerupGameObject.SetActive(false);
-        StartCoroutine(WaitForSpawnDelay());
+        StopAllCoroutines();
         return currentType;
     }
 
-    private void SpawnNewPowerup() {
-        powerupGameObject.transform.rotation = currentSnakePosition.transform.rotation;
-        powerupGameObject.transform.Rotate(180, 0, 0);
-
-        powerupGameObject.SetActive(true);
-        powerup.Respawn(false);
-        StartCoroutine(WaitForUnspawnDelay());
+    public float GetPowerupDuration() {
+        return powerup.GetDuration();
     }
 
     private IEnumerator WaitForSpawnDelay() {
         yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
-        Debug.Log("Spawned at: " + Time.time);
-        SpawnNewPowerup();
+        powerupGameObject.transform.rotation = GameManager.instance.GetCurrentSnakePosition().rotation;
+        powerupGameObject.transform.Rotate(180, 0, 0);
+
+        powerupGameObject.SetActive(true);
+        powerup.Respawn(false);
+        StopAllCoroutines();
+        StartCoroutine("WaitForUnspawnDelay");
     }
 
     private IEnumerator WaitForUnspawnDelay() {
-        //TODO: if powerup is collected before unspawned automatically, the next time the powerup shows up
-        //a shorter amount of time
         yield return new WaitForSeconds(unspawnDelay);
-        Debug.Log("Unspawned at: " + Time.time);
         powerupGameObject.SetActive(false);
-        StartCoroutine(WaitForSpawnDelay());
+        StartCoroutine("WaitForSpawnDelay");
     }
 }

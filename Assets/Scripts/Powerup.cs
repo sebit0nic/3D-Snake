@@ -5,14 +5,10 @@ using UnityEngine;
 public class Powerup : MonoBehaviour {
 
     public float rendererShowDelay = 0.25f;
+    public float duration = 10f;
     public GameObject powerupRenderer;
 
     private PowerupType currentType;
-    private PowerupSpawner powerupSpawner;
-
-    public void Init(PowerupSpawner powerupSpawner) {
-        this.powerupSpawner = powerupSpawner;
-    }
 
     private void OnTriggerStay(Collider other) {
         if (other.gameObject.tag.Equals("Snake Tail")) {
@@ -29,5 +25,9 @@ public class Powerup : MonoBehaviour {
 
     public PowerupType GetCurrentType() {
         return currentType;
+    }
+
+    public float GetDuration() {
+        return duration;
     }
 }

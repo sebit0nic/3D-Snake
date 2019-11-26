@@ -32,19 +32,28 @@ public class GameManager : MonoBehaviour {
     public void PlayerCollectedFruit() {
         fruitSpawner.SpawnNewFruit(false);
         scoreManager.IncreaseScore();
-        powerupSpawner.UpdateSpawnConditions(scoreManager.GetCurrentScore(), snake.GetCurrentSnakePosition());
+        powerupSpawner.UpdateActualCollectedFruit(scoreManager.GetCurrentScore());
     }
 
     public void FruitSpawnedInPlayer() {
+        //TODO: let fruit object directly communicate with fruitspawner
         fruitSpawner.SpawnNewFruit(true);
     }
 
     public PowerupType PlayerCollectedPowerup() {
-        return powerupSpawner.CollectPowerup();
+        PowerupType collectedType = powerupSpawner.CollectPowerup();
+        guiManager.ShowPowerupText(collectedType);
+        return collectedType;
     }
 
     public void PowerupSpawnedInPlayer() {
+        //TODO: let powerup object directly communicate with powerupspawner
         powerupSpawner.CorrectPowerupPosition();
+    }
+
+    public void PowerupWoreOff() {
+        guiManager.HidePowerupText();
+        powerupSpawner.ResumeSpawning();
     }
 
     public void PlayerTouchedTail() {
@@ -64,5 +73,13 @@ public class GameManager : MonoBehaviour {
     public void GameRetry() {
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
+    }
+
+    public Transform GetCurrentSnakePosition() {
+        return snake.GetCurrentPosition();
+    }
+
+    public float GetPowerupDuration() {
+        return powerupSpawner.GetPowerupDuration();
     }
 }
