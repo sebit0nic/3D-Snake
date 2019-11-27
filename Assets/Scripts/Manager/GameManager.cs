@@ -35,20 +35,11 @@ public class GameManager : MonoBehaviour {
         powerupSpawner.UpdateActualCollectedFruit(scoreManager.GetCurrentScore());
     }
 
-    public void FruitSpawnedInPlayer() {
-        //TODO: let fruit object directly communicate with fruitspawner
-        fruitSpawner.SpawnNewFruit(true);
-    }
-
     public PowerupType PlayerCollectedPowerup() {
         PowerupType collectedType = powerupSpawner.CollectPowerup();
         guiManager.ShowPowerupText(collectedType);
+        guiManager.SetPowerupDuration(powerupSpawner.GetPowerupDuration());
         return collectedType;
-    }
-
-    public void PowerupSpawnedInPlayer() {
-        //TODO: let powerup object directly communicate with powerupspawner
-        powerupSpawner.CorrectPowerupPosition();
     }
 
     public void PowerupWoreOff() {

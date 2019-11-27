@@ -7,6 +7,22 @@ public class GuiManager : MonoBehaviour {
 
     public GameObject retryButton, gameoverText; 
     public Text powerupText;
+    public Image powerupDurationImage;
+
+    private float powerupDuration, currentPowerupDuration;
+
+    private void Start() {
+        powerupText.text = " ";
+        powerupDurationImage.fillAmount = 0f;
+    }
+
+    private void Update() {
+        if (powerupDuration != 0 && currentPowerupDuration != 0) {
+            currentPowerupDuration -= Time.deltaTime;
+            currentPowerupDuration = Mathf.Clamp(currentPowerupDuration, 0, 100);
+            powerupDurationImage.fillAmount = currentPowerupDuration / powerupDuration;
+        }
+    }
 
     public void ShowGameOverScreen() {
         retryButton.SetActive(true);
@@ -25,6 +41,11 @@ public class GuiManager : MonoBehaviour {
                 powerupText.text = "THIN";
                 break;
         }
+    }
+
+    public void SetPowerupDuration(float powerupDuration) {
+        this.powerupDuration = powerupDuration;
+        currentPowerupDuration = powerupDuration;
     }
 
     public void HidePowerupText() {

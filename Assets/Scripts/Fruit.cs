@@ -6,10 +6,16 @@ public class Fruit : MonoBehaviour {
 
     public float rendererShowDelay = 0.25f;
     public GameObject fruitRenderer;
-    
+
+    private FruitSpawner fruitSpawner;
+
+    private void Awake() {
+        fruitSpawner = GameObject.Find("Game Manager").GetComponentInChildren<FruitSpawner>();
+    }
+
     private void OnTriggerStay(Collider other) {
         if (other.gameObject.tag.Equals("Snake Tail")) {
-            GameManager.instance.FruitSpawnedInPlayer();
+            fruitSpawner.SpawnNewFruit(true);
         }
     }
 

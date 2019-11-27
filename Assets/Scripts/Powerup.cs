@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Powerup : MonoBehaviour {
-
+    
     public float rendererShowDelay = 0.25f;
     public float duration = 10f;
     public GameObject powerupRenderer;
 
     private PowerupType currentType;
+    private PowerupSpawner powerupSpawner;
+
+    private void Awake() {
+        powerupSpawner = GameObject.Find("Game Manager").GetComponentInChildren<PowerupSpawner>();
+    }
 
     private void OnTriggerStay(Collider other) {
         if (other.gameObject.tag.Equals("Snake Tail")) {
-            GameManager.instance.PowerupSpawnedInPlayer();
+            powerupSpawner.CorrectPowerupPosition();
         }
     }
 
