@@ -41,7 +41,7 @@ public class Snake : MonoBehaviour {
                 Debug.Log("Collected MAGNET");
                 break;
             case PowerupType.THIN:
-                Debug.Log("Collected THIN");
+                snakeTailSpawner.ThinPowerupActive(GameManager.instance.GetPowerupDuration());
                 break;
         }
     }

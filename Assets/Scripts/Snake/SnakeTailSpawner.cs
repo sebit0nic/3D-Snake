@@ -11,6 +11,7 @@ public class SnakeTailSpawner : MonoBehaviour {
     private Snake snake;
     private float lifespan = 0.1f;
     private List<GameObject> snakeTailList;
+    private bool thinPowerupEnabled = false;
 
     public void Init(Snake snake) {
         this.snake = snake;
@@ -18,6 +19,23 @@ public class SnakeTailSpawner : MonoBehaviour {
 
         InvokeRepeating("SpawnCollider", tailRepeatFactor, tailRepeatFactor);
         InvokeRepeating("PopTail", startLength, lifespan);
+    }
+
+    public void ThinPowerupActive(float duration) {
+        StartCoroutine(WaitForThinPowerupDuration(duration));
+    }
+
+    public void IncreaseSnakeLength() {
+        CancelInvoke("PopTail");
+        if (thinPowerupEnabled) {
+            InvokeRepeating("PopTail", lengthIncreaseFactor, lifespan / 2);
+        } else {
+            InvokeRepeating("PopTail", lengthIncreaseFactor, lifespan);
+        }
+    }
+
+    public bool IsThinPowerupEnabled() {
+        return thinPowerupEnabled;
     }
 
     private void SpawnCollider() {
@@ -33,8 +51,20 @@ public class SnakeTailSpawner : MonoBehaviour {
         snakeTailList.RemoveAt(0);
     }
 
-    public void IncreaseSnakeLength() {
+    private IEnumerator WaitForThinPowerupDuration(float duration) {
+        thinPowerupEnabled = true;
+        CancelInvoke("SpawnCollider");
         CancelInvoke("PopTail");
-        InvokeRepeating("PopTail", lengthIncreaseFactor, lifespan);
+        InvokeRepeating("SpawnCollider", 0, tailRepeatFactor / 2);
+        InvokeRepeating("PopTail", 0, lifespan / 2);
+
+        yield return new WaitForSeconds(duration);
+
+        CancelInvoke("SpawnCollider");
+        CancelInvoke("PopTail");
+        InvokeRepeating("SpawnCollider", 0, tailRepeatFactor);
+        InvokeRepeating("PopTail", 0, lifespan);
+        thinPowerupEnabled = false;
+        snake.NotifyPowerupWoreOff();
     }
 }

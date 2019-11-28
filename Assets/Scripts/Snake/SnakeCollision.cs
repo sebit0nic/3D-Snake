@@ -12,7 +12,7 @@ public class SnakeCollision : MonoBehaviour {
     }
 
     public void InvincibilityPowerupActive(float duration) {
-        StartCoroutine(WaitForPowerupDuration(duration));
+        StartCoroutine(WaitForInvincibilityPowerupDuration(duration));
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -29,7 +29,7 @@ public class SnakeCollision : MonoBehaviour {
         }
     }
 
-    private IEnumerator WaitForPowerupDuration(float duration) {
+    private IEnumerator WaitForInvincibilityPowerupDuration(float duration) {
         invincible = true;
         yield return new WaitForSeconds(duration);
         invincible = false;

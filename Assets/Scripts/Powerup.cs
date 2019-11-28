@@ -23,7 +23,7 @@ public class Powerup : MonoBehaviour {
 
     public void Respawn(bool correction) {
         if (!correction) {
-            int randomPowerup = Random.Range(0, 1);
+            int randomPowerup = Random.Range(2, 3);
             currentType = (PowerupType) randomPowerup;
         }
     }
