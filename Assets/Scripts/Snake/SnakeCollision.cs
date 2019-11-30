@@ -15,17 +15,21 @@ public class SnakeCollision : MonoBehaviour {
         StartCoroutine(WaitForInvincibilityPowerupDuration(duration));
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag.Equals("Fruit")) {
-            snake.NotifyFruitEaten();
-        }
-
-        if (other.gameObject.tag.Equals("Snake Tail") && !invincible) {
-            snake.NotifyTailTouched();
-        }
-
-        if (other.gameObject.tag.Equals("Powerup")) {
-            snake.NotifyPowerupCollected();
+    public void Collide(Collider other, SnakeColliderType snakeColliderType) {
+        switch ( snakeColliderType ) {
+            case SnakeColliderType.COLLECTIBLE:
+                if ( other.gameObject.tag.Equals("Fruit") ) {
+                    snake.NotifyFruitEaten();
+                }
+                if ( other.gameObject.tag.Equals("Powerup") ) {
+                    snake.NotifyPowerupCollected();
+                }
+                break;
+            case SnakeColliderType.TAIL:
+                if ( other.gameObject.tag.Equals("Snake Tail") && !invincible ) {
+                    snake.NotifyTailTouched();
+                }
+                break;
         }
     }
 

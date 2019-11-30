@@ -7,3 +7,8 @@ public enum PowerupType {
     MAGNET,
     THIN
 }
+
+public enum SnakeColliderType {
+    COLLECTIBLE,
+    TAIL
+}
