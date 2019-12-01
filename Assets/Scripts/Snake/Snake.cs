@@ -38,7 +38,7 @@ public class Snake : MonoBehaviour {
                 snakeCollision.InvincibilityPowerupActive(GameManager.instance.GetPowerupDuration());
                 break;
             case PowerupType.MAGNET:
-                Debug.Log("Collected MAGNET");
+                snakeCollision.MagnetPowerupActive(GameManager.instance.GetPowerupDuration());
                 break;
             case PowerupType.THIN:
                 snakeTailSpawner.ThinPowerupActive(GameManager.instance.GetPowerupDuration());
