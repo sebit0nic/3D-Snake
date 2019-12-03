@@ -5,6 +5,7 @@ using UnityEngine;
 public class FruitSpawner : MonoBehaviour {
 
     public GameObject fruitPrefab;
+    public float moveTowardsPlayerSpeed;
 
     [Header("Normal Random Rotation")]
     public float minRandomRotation;
@@ -29,12 +30,19 @@ public class FruitSpawner : MonoBehaviour {
     private GameObject fruitGameobject;
     private Fruit fruit;
     private int collectedFruit;
+    private bool moveFruitTowardsPlayer = false;
 
     private void Start() {
         Vector3 fruitRotation = new Vector3();
         fruitRotation.Set(Random.Range(minRandomRotation, maxRandomRotation), Random.Range(minRandomRotation, maxRandomRotation), Random.Range(minRandomRotation, maxRandomRotation));
         fruitGameobject = Instantiate(fruitPrefab, Vector3.zero, Quaternion.Euler(fruitRotation));
         fruit = fruitGameobject.GetComponent<Fruit>();
+    }
+
+    private void Update() {
+        if (moveFruitTowardsPlayer) {
+            fruitGameobject.transform.rotation = Quaternion.Lerp(fruitGameobject.transform.rotation, GameManager.instance.GetCurrentSnakePosition().rotation, Time.deltaTime * moveTowardsPlayerSpeed);
+        }
     }
 
     public void SpawnNewFruit(bool correction) {
@@ -69,5 +77,10 @@ public class FruitSpawner : MonoBehaviour {
         }
         
         fruit.Respawn(correction);
+    }
+
+    public void SetMoveFruitTowardsPlayer(bool value) {
+        moveFruitTowardsPlayer = value;
+        fruit.SetIgnoreSnakeTailCollision(value);
     }
 }

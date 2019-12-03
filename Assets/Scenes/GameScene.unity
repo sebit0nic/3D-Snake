@@ -1691,8 +1691,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderType: 1
-  originalColliderRadius: 0
-  powerupColliderRadius: 0
 --- !u!1 &1287205386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,6 +1844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fruitPrefab: {fileID: 3088722311205478133, guid: d45e6c9ca884bae46a8bbf9bd6661139,
     type: 3}
+  moveTowardsPlayerSpeed: 14
   minRandomRotation: 50
   maxRandomRotation: 120
   minRandomRotationClamp: 90
@@ -2235,8 +2234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderType: 0
-  originalColliderRadius: 0.5
-  powerupColliderRadius: 5
 --- !u!135 &1997799645
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2249,6 +2246,64 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2018087072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018087073}
+  - component: {fileID: 2018087075}
+  - component: {fileID: 2018087074}
+  m_Layer: 0
+  m_Name: Magnet Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2018087073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018087072}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2094974984}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2018087074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018087072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4616622bcdf061641b6064894f9aa0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderType: 2
+--- !u!135 &2018087075
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018087072}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2021505951
 GameObject:
@@ -2464,6 +2519,7 @@ Transform:
   - {fileID: 77684755}
   - {fileID: 1997799643}
   - {fileID: 1167819989}
+  - {fileID: 2018087073}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

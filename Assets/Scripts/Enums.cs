@@ -10,5 +10,6 @@ public enum PowerupType {
 
 public enum SnakeColliderType {
     COLLECTIBLE,
-    TAIL
+    TAIL,
+    MAGNET
 }

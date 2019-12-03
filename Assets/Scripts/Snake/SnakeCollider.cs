@@ -5,7 +5,6 @@ using UnityEngine;
 public class SnakeCollider : MonoBehaviour {
 
     public SnakeColliderType colliderType;
-    public float originalColliderRadius, powerupColliderRadius;
 
     private SnakeCollision snakeCollision;
     private SphereCollider sphereCollider;
@@ -13,6 +12,10 @@ public class SnakeCollider : MonoBehaviour {
     private void Start() {
         snakeCollision = GetComponentInParent<SnakeCollision>();
         sphereCollider = GetComponent<SphereCollider>();
+
+        if ( colliderType == SnakeColliderType.MAGNET ) {
+            sphereCollider.enabled = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -20,11 +23,15 @@ public class SnakeCollider : MonoBehaviour {
     }
 
     public void OnMagnetPowerupStart() {
-        sphereCollider.radius = powerupColliderRadius;
+        if (colliderType == SnakeColliderType.MAGNET) {
+            sphereCollider.enabled = true;
+        }
     }
 
     public void OnMagnetPowerupEnd() {
-        sphereCollider.radius = originalColliderRadius;
+        if ( colliderType == SnakeColliderType.MAGNET ) {
+            sphereCollider.enabled = false;
+        }
     }
 
     public SnakeColliderType GetColliderType() {

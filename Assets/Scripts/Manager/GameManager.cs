@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour {
         fruitSpawner.SpawnNewFruit(false);
         scoreManager.IncreaseScore();
         powerupSpawner.UpdateActualCollectedFruit(scoreManager.GetCurrentScore());
+        fruitSpawner.SetMoveFruitTowardsPlayer(false);
     }
 
     public PowerupType PlayerCollectedPowerup() {
@@ -42,9 +43,14 @@ public class GameManager : MonoBehaviour {
         return collectedType;
     }
 
+    public void PlayerMagnetTouchedFruit() {
+        fruitSpawner.SetMoveFruitTowardsPlayer(true);
+    }
+
     public void PowerupWoreOff() {
         guiManager.HidePowerupText();
         powerupSpawner.ResumeSpawning();
+        fruitSpawner.SetMoveFruitTowardsPlayer(false);
     }
 
     public void PlayerTouchedTail() {

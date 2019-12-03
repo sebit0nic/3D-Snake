@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SnakeCollision : MonoBehaviour {
 
-    private SnakeCollider collectibleCollider;
+    private SnakeCollider magnetCollider;
     private Snake snake;
     private bool invincible = false;
 
@@ -13,8 +13,8 @@ public class SnakeCollision : MonoBehaviour {
 
         SnakeCollider[] colliderList = GetComponentsInChildren<SnakeCollider>();
         foreach(SnakeCollider col in colliderList) {
-            if (col.GetColliderType() == SnakeColliderType.COLLECTIBLE) {
-                collectibleCollider = col;
+            if (col.GetColliderType() == SnakeColliderType.MAGNET) {
+                magnetCollider = col;
                 break;
             }
         }
@@ -32,7 +32,6 @@ public class SnakeCollision : MonoBehaviour {
         switch ( snakeColliderType ) {
             case SnakeColliderType.COLLECTIBLE:
                 if ( other.gameObject.tag.Equals("Fruit") ) {
-                    //TODO: let fruit move gradually towards player, not immediately collected
                     snake.NotifyFruitEaten();
                 }
                 if ( other.gameObject.tag.Equals("Powerup") ) {
@@ -42,6 +41,11 @@ public class SnakeCollision : MonoBehaviour {
             case SnakeColliderType.TAIL:
                 if ( other.gameObject.tag.Equals("Snake Tail") && !invincible ) {
                     snake.NotifyTailTouched();
+                }
+                break;
+            case SnakeColliderType.MAGNET:
+                if ( other.gameObject.tag.Equals("Fruit") ) {
+                    snake.NotifyFruitTouchedByMagnet();
                 }
                 break;
         }
@@ -55,9 +59,9 @@ public class SnakeCollision : MonoBehaviour {
     }
 
     private IEnumerator WaitForMagnetPowerupDuration(float duration) {
-        collectibleCollider.OnMagnetPowerupStart();
+        magnetCollider.OnMagnetPowerupStart();
         yield return new WaitForSeconds(duration);
-        collectibleCollider.OnMagnetPowerupEnd();
+        magnetCollider.OnMagnetPowerupEnd();
         snake.NotifyPowerupWoreOff();
     }
 }

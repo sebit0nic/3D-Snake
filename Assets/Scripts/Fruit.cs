@@ -8,13 +8,14 @@ public class Fruit : MonoBehaviour {
     public GameObject fruitRenderer;
 
     private FruitSpawner fruitSpawner;
+    private bool ignoreSnakeTailCollision = false;
 
     private void Awake() {
         fruitSpawner = GameObject.Find("Game Manager").GetComponentInChildren<FruitSpawner>();
     }
 
     private void OnTriggerStay(Collider other) {
-        if (other.gameObject.tag.Equals("Snake Tail")) {
+        if (other.gameObject.tag.Equals("Snake Tail") && !ignoreSnakeTailCollision) {
             fruitSpawner.SpawnNewFruit(true);
         }
     }
@@ -30,4 +31,8 @@ public class Fruit : MonoBehaviour {
         yield return new WaitForSeconds(rendererShowDelay);
         fruitRenderer.SetActive(true);
     }
+
+    public void SetIgnoreSnakeTailCollision(bool value) {
+        ignoreSnakeTailCollision = value;
+    } 
 }

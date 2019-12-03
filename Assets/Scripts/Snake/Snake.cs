@@ -46,6 +46,10 @@ public class Snake : MonoBehaviour {
         }
     }
 
+    public void NotifyFruitTouchedByMagnet() {
+        GameManager.instance.PlayerMagnetTouchedFruit();
+    }
+
     public void NotifyPowerupWoreOff() {
         GameManager.instance.PowerupWoreOff();
     }
