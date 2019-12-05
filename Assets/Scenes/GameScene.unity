@@ -464,7 +464,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -660,43 +660,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupPrefab: {fileID: 4785664562357847164, guid: 84b58a9c46e29ad45ae75f52728c6468,
     type: 3}
-  minimumCollectedFruitToSpawn: 1
-  minSpawnDelay: 5
-  maxSpawnDelay: 10
+  minimumCollectedFruitToSpawn: 5
+  minSpawnDelay: 10
+  maxSpawnDelay: 25
   unspawnDelay: 10
-  spawnProbabilityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 13
-      value: 19.979488
-      inSlope: 4.573516
-      outSlope: 8.838567
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.04815938
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 15.035278
-      value: 98
-      inSlope: 14.675137
-      outSlope: 14.675137
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.059063222
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &464931421
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,6 +755,7 @@ GameObject:
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
   - component: {fileID: 534669906}
+  - component: {fileID: 534669907}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -853,7 +821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 25, z: 0}
+  m_LocalPosition: {x: 0, y: 22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2021505952}
@@ -873,10 +841,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2094974984}
   planet: {fileID: 618410609}
-  upDistance: 15
+  upDistance: 13
   backDistance: 0
   trackingSpeed: 12
   rotationSpeed: 10
+--- !u!114 &534669907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4a598ba975773449bf7bcac06fc935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 99dde9a743e00d245ad68efcfdedc09e, type: 2}
+  pixelDensity: 300
 --- !u!1 &583453424
 GameObject:
   m_ObjectHideFlags: 0

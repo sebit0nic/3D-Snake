@@ -7,7 +7,6 @@ public class PowerupSpawner : MonoBehaviour {
     public GameObject powerupPrefab;
     public int minimumCollectedFruitToSpawn;
     public float minSpawnDelay, maxSpawnDelay, unspawnDelay;
-    public AnimationCurve spawnProbabilityCurve;
     
     private GameObject powerupGameObject;
     private Powerup powerup;
