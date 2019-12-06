@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Green
-  m_Shader: {fileID: 4800000, guid: 7ded1431590900a4abefce99e5c80528, type: 3}
+  m_Name: Fruit
+  m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -61,14 +61,14 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 4.62
+    - _Glossiness: 3.7
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimAmount: 0
-    - _RimThreshold: 0
+    - _RimAmount: 1
+    - _RimThreshold: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -76,12 +76,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.102710955, g: 0.764151, b: 0.09011213, a: 1}
-    - _Color_0: {r: 0.094, g: 0.188, b: 0.188, a: 1}
-    - _Color_1: {r: 0.314, g: 0.471, b: 0.408, a: 1}
-    - _Color_2: {r: 0.659, g: 0.753, b: 0.69, a: 1}
-    - _Color_3: {r: 0.878, g: 0.941, b: 0.91, a: 1}
+    - _Color: {r: 0.48235294, g: 0.7764706, b: 0.48235294, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Sizes: {r: 1, g: 4, b: 1024, a: 768}
-    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor: {r: 1, g: 0.4198113, b: 0.4198113, a: 1}
