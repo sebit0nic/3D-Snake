@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 813b813208703d74eb30d804e65a432f, type: 2}
-  pixelDensity: 250
+  pixelDensity: 375
 --- !u!1 &583453424
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Planet
-  m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c326f2b11a6e4194ebfda45bbdef6439, type: 3}
+        m_Texture: {fileID: 2800000, guid: fce55c663f78eaf458ac80f05d83bca2, type: 3}
         m_Scale: {x: 1.75, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -101,7 +101,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 0.70980394, a: 1}
+    - _Color: {r: 0.93333334, g: 1, b: 0.8, a: 1}
     - _Color_0: {r: 0.094, g: 0.188, b: 0.188, a: 1}
     - _Color_1: {r: 0.314, g: 0.471, b: 0.408, a: 1}
     - _Color_2: {r: 0.659, g: 0.753, b: 0.69, a: 1}
