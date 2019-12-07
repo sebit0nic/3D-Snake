@@ -79,6 +79,10 @@ public class FruitSpawner : MonoBehaviour {
         fruit.Respawn(correction);
     }
 
+    public void Stop() {
+
+    }
+
     public void SetMoveFruitTowardsPlayer(bool value) {
         moveFruitTowardsPlayer = value;
         fruit.SetIgnoreSnakeTailCollision(value);

@@ -54,6 +54,10 @@ public class Snake : MonoBehaviour {
         GameManager.instance.PowerupWoreOff();
     }
 
+    public void Stop() {
+
+    }
+
     public Transform GetCurrentPosition() {
         return snakeMovement.GetCurrentPosition();
     }

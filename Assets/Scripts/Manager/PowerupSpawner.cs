@@ -39,6 +39,10 @@ public class PowerupSpawner : MonoBehaviour {
         return currentType;
     }
 
+    public void Stop() {
+
+    }
+
     public float GetPowerupDuration() {
         return powerup.GetDuration();
     }

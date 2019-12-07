@@ -55,6 +55,10 @@ public class GameManager : MonoBehaviour {
 
     public void PlayerTouchedTail() {
         Time.timeScale = 0;
+        //TODO: implement all stop functions instead of stopping time
+        fruitSpawner.Stop();
+        powerupSpawner.Stop();
+        snake.Stop();
         guiManager.ShowGameOverScreen();
     }
 
