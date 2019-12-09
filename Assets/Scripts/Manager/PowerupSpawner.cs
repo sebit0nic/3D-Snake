@@ -40,7 +40,7 @@ public class PowerupSpawner : MonoBehaviour {
     }
 
     public void Stop() {
-
+        StopAllCoroutines();
     }
 
     public float GetPowerupDuration() {

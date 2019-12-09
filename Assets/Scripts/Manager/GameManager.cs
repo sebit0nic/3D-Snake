@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     private GuiManager guiManager;
     private PowerupSpawner powerupSpawner;
     private Snake snake;
+    private CameraController cameraController;
 
     private bool paused;
 
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour {
         guiManager = GetComponentInChildren<GuiManager>();
         powerupSpawner = GetComponentInChildren<PowerupSpawner>();
         snake = GameObject.Find("Snake").GetComponent<Snake>();
+        cameraController = GameObject.Find("Environment").GetComponentInChildren<CameraController>();
     }
 
     public void PlayerCollectedFruit() {
@@ -54,12 +56,16 @@ public class GameManager : MonoBehaviour {
     }
 
     public void PlayerTouchedTail() {
-        Time.timeScale = 0;
-        //TODO: implement all stop functions instead of stopping time
         fruitSpawner.Stop();
         powerupSpawner.Stop();
         snake.Stop();
+        guiManager.HideHUD();
+        cameraController.Stop();
+    }
+
+    public void SnakeTailGameOverAnimationEnded() {
         guiManager.ShowGameOverScreen();
+        cameraController.OnGameOverAnimation();
     }
 
     public void GamePaused() {

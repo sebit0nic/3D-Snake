@@ -7,6 +7,7 @@ public class SnakeCollision : MonoBehaviour {
     private SnakeCollider magnetCollider;
     private Snake snake;
     private bool invincible = false;
+    private bool stopped = false;
 
     public void Init(Snake snake) {
         this.snake = snake;
@@ -29,26 +30,33 @@ public class SnakeCollision : MonoBehaviour {
     }
 
     public void Collide(Collider other, SnakeColliderType snakeColliderType) {
-        switch ( snakeColliderType ) {
-            case SnakeColliderType.COLLECTIBLE:
-                if ( other.gameObject.tag.Equals("Fruit") ) {
-                    snake.NotifyFruitEaten();
-                }
-                if ( other.gameObject.tag.Equals("Powerup") ) {
-                    snake.NotifyPowerupCollected();
-                }
-                break;
-            case SnakeColliderType.TAIL:
-                if ( other.gameObject.tag.Equals("Snake Tail") && !invincible ) {
-                    snake.NotifyTailTouched();
-                }
-                break;
-            case SnakeColliderType.MAGNET:
-                if ( other.gameObject.tag.Equals("Fruit") ) {
-                    snake.NotifyFruitTouchedByMagnet();
-                }
-                break;
+        if (!stopped) {
+            switch ( snakeColliderType ) {
+                case SnakeColliderType.COLLECTIBLE:
+                    if ( other.gameObject.tag.Equals("Fruit") ) {
+                        snake.NotifyFruitEaten();
+                    }
+                    if ( other.gameObject.tag.Equals("Powerup") ) {
+                        snake.NotifyPowerupCollected();
+                    }
+                    break;
+                case SnakeColliderType.TAIL:
+                    if ( other.gameObject.tag.Equals("Snake Tail") && !invincible ) {
+                        snake.NotifyTailTouched();
+                    }
+                    break;
+                case SnakeColliderType.MAGNET:
+                    if ( other.gameObject.tag.Equals("Fruit") ) {
+                        snake.NotifyFruitTouchedByMagnet();
+                    }
+                    break;
+            }
         }
+    }
+
+    public void Stop() {
+        stopped = true;
+        StopAllCoroutines();
     }
 
     private IEnumerator WaitForInvincibilityPowerupDuration(float duration) {

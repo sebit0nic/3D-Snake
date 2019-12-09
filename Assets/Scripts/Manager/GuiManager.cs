@@ -25,13 +25,16 @@ public class GuiManager : MonoBehaviour {
         }
     }
 
-    public void ShowGameOverScreen() {
-        retryButton.SetActive(true);
-        gameoverText.SetActive(true);
+    public void HideHUD() {
         pauseButton.SetActive(false);
         scoreText.SetActive(false);
         steerRightButton.SetActive(false);
         steerLeftButton.SetActive(false);
+    }
+
+    public void ShowGameOverScreen() {
+        retryButton.SetActive(true);
+        gameoverText.SetActive(true);
     }
 
     public void ShowPowerupText(PowerupType collectedType) {

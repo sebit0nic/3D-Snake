@@ -14,56 +14,59 @@ public class SnakeMovement : MonoBehaviour {
     private Rigidbody thisRigidbody;
     private float steerMultiplier;
     private bool leftDown, rightDown;
+    private bool stopped = false;
 
     public void Init(Snake snake) {
         this.snake = snake;
         thisRigidbody = GetComponent<Rigidbody>();
     }
 
-    public void FixedUpdate() {
-        float distance = Vector3.Distance(planet.transform.position, transform.position);
-        Vector3 surfaceNorm = Vector3.zero;
+    private void FixedUpdate() {
+        if (!stopped) {
+            float distance = Vector3.Distance(planet.transform.position, transform.position);
+            Vector3 surfaceNorm = Vector3.zero;
 
-        RaycastHit hit;
-        if ( Physics.Raycast(transform.position, -transform.up, out hit, distance) ) {
-            surfaceNorm = hit.normal;
-        }
-
-        transform.localRotation = Quaternion.FromToRotation(transform.up, surfaceNorm) * thisRigidbody.rotation;
-        transform.localPosition = surfaceNorm * ((planet.transform.localScale.x / 2) + playerHoverOffset);
-        thisRigidbody.velocity = thisRigidbody.transform.forward * playerVelocity;
-
-        //Keyboard Input
-        //--------------
-        float evaluatedInput = 0;
-        if ( Input.GetAxisRaw("Horizontal") != 0 ) {
-            if ( Input.GetAxis("Horizontal") < 0 ) {
-                evaluatedInput = steeringCurve.Evaluate(-Input.GetAxis("Horizontal"));
-                transform.Rotate(0, -evaluatedInput * Time.deltaTime * playerTurnVelocity, 0);
-            } else {
-                evaluatedInput = steeringCurve.Evaluate(Input.GetAxis("Horizontal"));
-                transform.Rotate(0, evaluatedInput * Time.deltaTime * playerTurnVelocity, 0);
+            RaycastHit hit;
+            if ( Physics.Raycast(transform.position, -transform.up, out hit, distance) ) {
+                surfaceNorm = hit.normal;
             }
-        } else {
-            transform.Rotate(0, 0, 0);
-        }
 
-        //Touch Input
-        //-----------
-        if ( steerMultiplier != 0 ) {
-            if ( steerMultiplier < 0 ) {
-                evaluatedInput = steeringCurve.Evaluate(-steerMultiplier);
-                transform.Rotate(0, -evaluatedInput * Time.deltaTime * playerTurnVelocity, 0);
+            transform.localRotation = Quaternion.FromToRotation(transform.up, surfaceNorm) * thisRigidbody.rotation;
+            transform.localPosition = surfaceNorm * ( ( planet.transform.localScale.x / 2 ) + playerHoverOffset );
+            thisRigidbody.velocity = thisRigidbody.transform.forward * playerVelocity;
+
+            //Keyboard Input
+            //--------------
+            float evaluatedInput = 0;
+            if ( Input.GetAxisRaw("Horizontal") != 0 ) {
+                if ( Input.GetAxis("Horizontal") < 0 ) {
+                    evaluatedInput = steeringCurve.Evaluate(-Input.GetAxis("Horizontal"));
+                    transform.Rotate(0, -evaluatedInput * Time.deltaTime * playerTurnVelocity, 0);
+                } else {
+                    evaluatedInput = steeringCurve.Evaluate(Input.GetAxis("Horizontal"));
+                    transform.Rotate(0, evaluatedInput * Time.deltaTime * playerTurnVelocity, 0);
+                }
             } else {
-                evaluatedInput = steeringCurve.Evaluate(steerMultiplier);
-                transform.Rotate(0, evaluatedInput * Time.deltaTime * playerTurnVelocity, 0);
+                transform.Rotate(Vector3.zero);
             }
-        } else {
-            transform.Rotate(0, 0, 0);
+
+            //Touch Input
+            //-----------
+            if ( steerMultiplier != 0 ) {
+                if ( steerMultiplier < 0 ) {
+                    evaluatedInput = steeringCurve.Evaluate(-steerMultiplier);
+                    transform.Rotate(0, -evaluatedInput * Time.deltaTime * playerTurnVelocity, 0);
+                } else {
+                    evaluatedInput = steeringCurve.Evaluate(steerMultiplier);
+                    transform.Rotate(0, evaluatedInput * Time.deltaTime * playerTurnVelocity, 0);
+                }
+            } else {
+                transform.Rotate(Vector3.zero);
+            }
         }
     }
 
-    public void Update() {
+    private void Update() {
         if (rightDown) {
             steerMultiplier += Time.deltaTime;
             steerMultiplier = Mathf.Clamp(steerMultiplier, 0, 1);
@@ -73,6 +76,12 @@ public class SnakeMovement : MonoBehaviour {
         } else {
             steerMultiplier = 0;
         }
+    }
+
+    public void Stop() {
+        stopped = true;
+        StopAllCoroutines();
+        thisRigidbody.velocity = Vector3.zero;
     }
 
     public void MoveRight() {

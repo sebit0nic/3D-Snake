@@ -10,12 +10,12 @@ public class SnakeTailSpawner : MonoBehaviour {
 
     private Snake snake;
     private float lifespan = 0.1f;
-    private List<GameObject> snakeTailList;
+    private List<SnakeTail> snakeTailList;
     private bool thinPowerupEnabled = false;
 
     public void Init(Snake snake) {
         this.snake = snake;
-        snakeTailList = new List<GameObject>();
+        snakeTailList = new List<SnakeTail>();
 
         InvokeRepeating("SpawnCollider", tailRepeatFactor, tailRepeatFactor);
         InvokeRepeating("PopTail", startLength, lifespan);
@@ -34,21 +34,39 @@ public class SnakeTailSpawner : MonoBehaviour {
         }
     }
 
+    public void Stop() {
+        StartTailGameOverAnimation();
+        CancelInvoke("SpawnCollider");
+        CancelInvoke("PopTail");
+        StopAllCoroutines();
+    }
+
+    public void TailGameOverAnimationDone() {
+        snake.NotifySnakeTailGameOverAnimationDone();
+    }
+
     public bool IsThinPowerupEnabled() {
         return thinPowerupEnabled;
     }
 
     private void SpawnCollider() {
-        GameObject newSnakeTail = ObjectPool.sharedInstance.GetPooledObject();
+        //TODO: could be improved somehow by not using GetComponent
+        SnakeTail newSnakeTail = ObjectPool.sharedInstance.GetPooledObject().GetComponent<SnakeTail>();
         newSnakeTail.transform.position = transform.position;
         newSnakeTail.transform.rotation = transform.rotation;
-        newSnakeTail.SetActive(true);
+        newSnakeTail.gameObject.SetActive(true);
         snakeTailList.Add(newSnakeTail);
     }
 
     private void PopTail() {
-        snakeTailList[0].SetActive(false);
+        snakeTailList[0].gameObject.SetActive(false);
         snakeTailList.RemoveAt(0);
+    }
+
+    private void StartTailGameOverAnimation() {
+        foreach (SnakeTail snakeTail in snakeTailList) {
+            snakeTail.StartGameOverAnimation();
+        }
     }
 
     private IEnumerator WaitForThinPowerupDuration(float duration) {

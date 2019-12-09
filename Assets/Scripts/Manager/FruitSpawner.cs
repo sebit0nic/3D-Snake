@@ -31,6 +31,7 @@ public class FruitSpawner : MonoBehaviour {
     private Fruit fruit;
     private int collectedFruit;
     private bool moveFruitTowardsPlayer = false;
+    private bool stopped = false;
 
     private void Start() {
         Vector3 fruitRotation = new Vector3();
@@ -40,47 +41,52 @@ public class FruitSpawner : MonoBehaviour {
     }
 
     private void Update() {
-        if (moveFruitTowardsPlayer) {
-            fruitGameobject.transform.rotation = Quaternion.Lerp(fruitGameobject.transform.rotation, GameManager.instance.GetCurrentSnakePosition().rotation, Time.deltaTime * moveTowardsPlayerSpeed);
+        if (!stopped) {
+            if ( moveFruitTowardsPlayer ) {
+                fruitGameobject.transform.rotation = Quaternion.Lerp(fruitGameobject.transform.rotation, GameManager.instance.GetCurrentSnakePosition().rotation, Time.deltaTime * moveTowardsPlayerSpeed);
+            }
         }
     }
 
     public void SpawnNewFruit(bool correction) {
-        if (correction) {
-            fruitGameobject.transform.Rotate(Random.Range(minRandomRotationCorrection, maxRandomRotationCorrection), 0, Random.Range(minRandomRotationCorrection, maxRandomRotationCorrection));
-        } else {
-            int randomDirection = Random.Range(0, 2);
-            float randomRotation = Random.Range(minRandomRotation, maxRandomRotation);
-            float randomRotationSmall = Random.Range(minRandomRotationSmall, maxRandomRotationSmall);
-            switch ( randomDirection ) {
-                case 0:
-                    fruitGameobject.transform.Rotate(randomRotation, 0, randomRotationSmall);
-                    break;
-                case 1:
-                    fruitGameobject.transform.Rotate(randomRotationSmall, 0, randomRotation);
-                    break;
+        if (!stopped) {
+            if ( correction ) {
+                fruitGameobject.transform.Rotate(Random.Range(minRandomRotationCorrection, maxRandomRotationCorrection), 0, Random.Range(minRandomRotationCorrection, maxRandomRotationCorrection));
+            } else {
+                int randomDirection = Random.Range(0, 2);
+                float randomRotation = Random.Range(minRandomRotation, maxRandomRotation);
+                float randomRotationSmall = Random.Range(minRandomRotationSmall, maxRandomRotationSmall);
+                switch ( randomDirection ) {
+                    case 0:
+                        fruitGameobject.transform.Rotate(randomRotation, 0, randomRotationSmall);
+                        break;
+                    case 1:
+                        fruitGameobject.transform.Rotate(randomRotationSmall, 0, randomRotation);
+                        break;
+                }
+
+                collectedFruit++;
+
+                if ( collectedFruit % increaseDifficultyFrequency == 0 ) {
+                    minRandomRotation += increaseDifficultyRate;
+                    maxRandomRotation += increaseDifficultyRate;
+                    minRandomRotationSmall -= increaseDifficultyRate;
+                    maxRandomRotationSmall += increaseDifficultyRate;
+
+                    minRandomRotation = Mathf.Clamp(minRandomRotation, 0, minRandomRotationClamp);
+                    maxRandomRotation = Mathf.Clamp(maxRandomRotation, 0, maxRandomRotationClamp);
+                    minRandomRotationSmall = Mathf.Clamp(minRandomRotationSmall, minRandomRotationSmallClamp, 0);
+                    maxRandomRotationSmall = Mathf.Clamp(maxRandomRotationSmall, 0, maxRandomRotationSmallClamp);
+                }
             }
 
-            collectedFruit++;
-
-            if ( collectedFruit % increaseDifficultyFrequency == 0 ) {
-                minRandomRotation += increaseDifficultyRate;
-                maxRandomRotation += increaseDifficultyRate;
-                minRandomRotationSmall -= increaseDifficultyRate;
-                maxRandomRotationSmall += increaseDifficultyRate;
-
-                minRandomRotation = Mathf.Clamp(minRandomRotation, 0, minRandomRotationClamp);
-                maxRandomRotation = Mathf.Clamp(maxRandomRotation, 0, maxRandomRotationClamp);
-                minRandomRotationSmall = Mathf.Clamp(minRandomRotationSmall, minRandomRotationSmallClamp, 0);
-                maxRandomRotationSmall = Mathf.Clamp(maxRandomRotationSmall, 0, maxRandomRotationSmallClamp);
-            }
+            fruit.Respawn(correction);
         }
-        
-        fruit.Respawn(correction);
     }
 
     public void Stop() {
-
+        stopped = true;
+        StopAllCoroutines();
     }
 
     public void SetMoveFruitTowardsPlayer(bool value) {
