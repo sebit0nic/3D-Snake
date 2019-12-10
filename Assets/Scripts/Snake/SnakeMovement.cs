@@ -6,7 +6,7 @@ public class SnakeMovement : MonoBehaviour {
 
     public float playerVelocity, playerTurnVelocity;
     public float playerHoverOffset = 0.5f;
-    public GameObject planet;
+    public Planet planet;
     public SnakeTail snakeTailPrefab;
     public AnimationCurve steeringCurve;
 
@@ -15,10 +15,12 @@ public class SnakeMovement : MonoBehaviour {
     private float steerMultiplier;
     private bool leftDown, rightDown;
     private bool stopped = false;
+    private GameObject instantiatedObjects;
 
     public void Init(Snake snake) {
         this.snake = snake;
         thisRigidbody = GetComponent<Rigidbody>();
+        instantiatedObjects = GameObject.Find("Instantiated Objects");
     }
 
     private void FixedUpdate() {
@@ -67,7 +69,9 @@ public class SnakeMovement : MonoBehaviour {
     }
 
     private void Update() {
-        if (rightDown) {
+        if (leftDown && rightDown) {
+            steerMultiplier = 0;
+        } if (rightDown) {
             steerMultiplier += Time.deltaTime;
             steerMultiplier = Mathf.Clamp(steerMultiplier, 0, 1);
         } else if (leftDown) {
@@ -82,6 +86,9 @@ public class SnakeMovement : MonoBehaviour {
         stopped = true;
         StopAllCoroutines();
         thisRigidbody.velocity = Vector3.zero;
+        transform.parent = planet.transform;
+        instantiatedObjects.transform.parent = planet.transform;
+        planet.SetRotating(true);
     }
 
     public void MoveRight() {

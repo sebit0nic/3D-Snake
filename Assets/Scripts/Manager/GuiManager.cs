@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class GuiManager : MonoBehaviour {
 
-    public GameObject retryButton, gameoverText, pauseButton, scoreText;
+    public GameObject pauseButton, scoreText;
     public GameObject steerRightButton, steerLeftButton;
+    public GameObject gameOverScreen;
     public Text powerupText;
     public Image powerupDurationImage;
 
@@ -30,11 +31,11 @@ public class GuiManager : MonoBehaviour {
         scoreText.SetActive(false);
         steerRightButton.SetActive(false);
         steerLeftButton.SetActive(false);
+        ShowGameOverScreen();
     }
 
     public void ShowGameOverScreen() {
-        retryButton.SetActive(true);
-        gameoverText.SetActive(true);
+        gameOverScreen.SetActive(true);
     }
 
     public void ShowPowerupText(PowerupType collectedType) {

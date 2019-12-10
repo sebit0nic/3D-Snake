@@ -7,15 +7,18 @@ public class SnakeTailSpawner : MonoBehaviour {
     public float tailRepeatFactor = 0.1f;
     public float startLength = 0.8f;
     public float lengthIncreaseFactor = 0.4f;
+    public Color gameOverColor;
 
     private Snake snake;
     private float lifespan = 0.1f;
     private List<SnakeTail> snakeTailList;
     private bool thinPowerupEnabled = false;
+    private MeshRenderer thisMeshRenderer;
 
     public void Init(Snake snake) {
         this.snake = snake;
         snakeTailList = new List<SnakeTail>();
+        thisMeshRenderer = GetComponent<MeshRenderer>();
 
         InvokeRepeating("SpawnCollider", tailRepeatFactor, tailRepeatFactor);
         InvokeRepeating("PopTail", startLength, lifespan);
@@ -35,14 +38,10 @@ public class SnakeTailSpawner : MonoBehaviour {
     }
 
     public void Stop() {
-        StartTailGameOverAnimation();
+        StartGameOverAnimation();
         CancelInvoke("SpawnCollider");
         CancelInvoke("PopTail");
         StopAllCoroutines();
-    }
-
-    public void TailGameOverAnimationDone() {
-        snake.NotifySnakeTailGameOverAnimationDone();
     }
 
     public bool IsThinPowerupEnabled() {
@@ -63,9 +62,10 @@ public class SnakeTailSpawner : MonoBehaviour {
         snakeTailList.RemoveAt(0);
     }
 
-    private void StartTailGameOverAnimation() {
+    private void StartGameOverAnimation() {
+        thisMeshRenderer.material.color = gameOverColor;
         foreach (SnakeTail snakeTail in snakeTailList) {
-            snakeTail.StartGameOverAnimation();
+            snakeTail.StartGameOverAnimation(gameOverColor);
         }
     }
 

@@ -63,11 +63,6 @@ public class GameManager : MonoBehaviour {
         cameraController.Stop();
     }
 
-    public void SnakeTailGameOverAnimationEnded() {
-        guiManager.ShowGameOverScreen();
-        cameraController.OnGameOverAnimation();
-    }
-
     public void GamePaused() {
         paused = !paused;
         if (paused) {

@@ -54,10 +54,6 @@ public class Snake : MonoBehaviour {
         GameManager.instance.PowerupWoreOff();
     }
 
-    public void NotifySnakeTailGameOverAnimationDone() {
-        GameManager.instance.SnakeTailGameOverAnimationEnded();
-    }
-
     public void Stop() {
         snakeMovement.Stop();
         snakeCollision.Stop();

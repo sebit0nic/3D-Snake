@@ -8,15 +8,13 @@ public class SnakeTail : MonoBehaviour {
     private SphereCollider thisCollider;
     private SnakeTailSpawner snakeTailSpawner;
     private Vector3 thinPowerupScale;
-    private ParticleSystem thisParticleSystem;
-    private Animator thisAnimator;
+    private MeshRenderer thisRenderer;
 
     private void Awake() {
         thisCollider = GetComponent<SphereCollider>();
         snakeTailSpawner = GameObject.Find("Snake").GetComponent<SnakeTailSpawner>();
         thinPowerupScale = new Vector3(0.5f, 0.5f, 0.5f);
-        thisParticleSystem = GetComponentInChildren<ParticleSystem>();
-        thisAnimator = GetComponent<Animator>();
+        thisRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
     private void OnEnable() {
@@ -34,16 +32,9 @@ public class SnakeTail : MonoBehaviour {
         StopCoroutine(WaitSafetyRoutine());
     }
 
-    public void StartGameOverAnimation() {
-        thisAnimator.SetTrigger("OnBlink");
-    }
-
-    public void GameOverAnimationEnded() {
-        snakeTailSpawner.TailGameOverAnimationDone();
-    }
-
-    public void StartParticleSystem() {
-        thisParticleSystem.Play();
+    public void StartGameOverAnimation(Color gameOverColor) {
+        //thisAnimator.SetTrigger("OnBlink");
+        thisRenderer.material.color = gameOverColor;
     }
 
     public IEnumerator WaitSafetyRoutine() {

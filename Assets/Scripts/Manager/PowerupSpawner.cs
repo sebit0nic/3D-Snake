@@ -41,6 +41,7 @@ public class PowerupSpawner : MonoBehaviour {
 
     public void Stop() {
         StopAllCoroutines();
+        powerupGameObject.SetActive(false);
     }
 
     public float GetPowerupDuration() {
