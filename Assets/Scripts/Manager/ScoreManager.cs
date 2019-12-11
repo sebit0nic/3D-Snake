@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour
-{
-    public Text scoreText;
+public class ScoreManager : MonoBehaviour {
+
+    public Text finalScoreText;
 
     private int score = 0;
 
-    private void Start() {
-        scoreText.text = "0";
-    }
-
     public void IncreaseScore() {
         score++;
-        scoreText.text = score.ToString();
+    }
+
+    public void SetFinalScoreText() {
+        string finalScoreString = score.ToString();
+        finalScoreText.text = finalScoreString.PadLeft(3, '0');
     }
 
     public int GetCurrentScore() {
