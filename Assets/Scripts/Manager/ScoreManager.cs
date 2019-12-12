@@ -5,20 +5,23 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
-    public Text finalScoreText;
+    private int finalScore = 0;
+    private int totalScore = 0;
 
-    private int score = 0;
-
-    public void IncreaseScore() {
-        score++;
+    private void Start() {
+        //TODO: get totalScore from saved score
     }
 
-    public void SetFinalScoreText() {
-        string finalScoreString = score.ToString();
-        finalScoreText.text = finalScoreString.PadLeft(3, '0');
+    public void IncreaseScore() {
+        finalScore++;
+        totalScore++;
     }
 
     public int GetCurrentScore() {
-        return score;
+        return finalScore;
+    }
+
+    public int GetTotalScore() {
+        return totalScore;
     }
 }

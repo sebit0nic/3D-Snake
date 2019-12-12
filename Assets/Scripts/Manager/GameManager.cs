@@ -60,8 +60,7 @@ public class GameManager : MonoBehaviour {
         powerupSpawner.Stop();
         snake.Stop();
         guiManager.HideHUD();
-        guiManager.ShowGameOverScreen();
-        scoreManager.SetFinalScoreText();
+        guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore());
         cameraController.Stop();
     }
 

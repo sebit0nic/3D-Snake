@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class GuiManager : MonoBehaviour {
 
-    public GameObject pauseButton, scoreText;
+    public GameObject pauseButton;
     public GameObject steerRightButton, steerLeftButton;
     public GameObject gameOverScreen;
+    public Text finalScoreText, totalScoreText;
     public Text powerupText;
     public Image powerupDurationImage;
 
     private float powerupDuration, currentPowerupDuration;
+    private string finalScoreString, totalScoreString;
 
     private void Start() {
         powerupText.text = " ";
@@ -32,8 +34,12 @@ public class GuiManager : MonoBehaviour {
         steerLeftButton.SetActive(false);
     }
 
-    public void ShowGameOverScreen() {
+    public void ShowGameOverScreen(int finalScore, int totalScore) {
         gameOverScreen.SetActive(true);
+        finalScoreString = finalScore.ToString();
+        totalScoreString = totalScore.ToString();
+        finalScoreText.text = finalScoreString.PadLeft(3, '0');
+        totalScoreText.text = totalScoreString.PadLeft(6, '0');
     }
 
     public void ShowPowerupText(PowerupType collectedType) {
