@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -64,6 +63,19 @@ public class GameManager : MonoBehaviour {
         cameraController.Stop();
     }
 
+    public void SwitchScreen(ScreenType screenType) {
+        switch ( screenType ) {
+            case ScreenType.GAME:
+                guiManager.ShowScreenTransition(0);
+                break;
+            case ScreenType.MAIN_MENU:
+                break;
+            case ScreenType.SHOP_MENU:
+                guiManager.ShowScreenTransition(0);
+                break;
+        }
+    }
+
     public void GamePaused() {
         paused = !paused;
         if (paused) {
@@ -71,11 +83,6 @@ public class GameManager : MonoBehaviour {
         } else {
             Time.timeScale = 1;
         }
-    }
-
-    public void GameRetry() {
-        SceneManager.LoadScene(0);
-        Time.timeScale = 1f;
     }
 
     public Transform GetCurrentSnakePosition() {

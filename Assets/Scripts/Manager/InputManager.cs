@@ -14,8 +14,20 @@ public class InputManager : MonoBehaviour {
         GameManager.instance.GamePaused();
     }
 
-    public void OnRetryButtonClicked() {
-        GameManager.instance.GameRetry();
+    public void OnRetryButtonPressed() {
+        GameManager.instance.SwitchScreen(ScreenType.GAME);
+    }
+
+    public void OnShopButtonPressed() {
+        GameManager.instance.SwitchScreen(ScreenType.SHOP_MENU);
+    }
+
+    public void OnHighScoreButtonPressed() {
+        //TODO: implement highscore boards
+    }
+
+    public void OnShareButtonPressed() {
+        //TODO: implement share button
     }
 
     public void OnSteerRightButtonPressed() {

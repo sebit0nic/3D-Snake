@@ -13,3 +13,9 @@ public enum SnakeColliderType {
     TAIL,
     MAGNET
 }
+
+public enum ScreenType {
+    MAIN_MENU,
+    GAME,
+    SHOP_MENU
+}

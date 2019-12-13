@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GuiManager : MonoBehaviour {
 
     public GameObject pauseButton;
     public GameObject steerRightButton, steerLeftButton;
     public GameObject gameOverScreen;
+    public Animator screenTransitionAnimator;
     public Text finalScoreText, totalScoreText;
     public Text powerupText;
     public Image powerupDurationImage;
@@ -42,6 +44,11 @@ public class GuiManager : MonoBehaviour {
         totalScoreText.text = totalScoreString.PadLeft(6, '0');
     }
 
+    public void ShowScreenTransition(int sceneID) {
+        screenTransitionAnimator.SetTrigger("OnTransition");
+        StartCoroutine(WaitForScreenTransition(sceneID));
+    }
+
     public void ShowPowerupText(PowerupType collectedType) {
         switch ( collectedType ) {
             case PowerupType.INVINCIBILTY:
@@ -63,5 +70,10 @@ public class GuiManager : MonoBehaviour {
 
     public void HidePowerupText() {
         powerupText.text = " ";
+    }
+
+    private IEnumerator WaitForScreenTransition(int sceneID) {
+        yield return new WaitForSeconds(1.75f);
+        SceneManager.LoadScene(sceneID);
     }
 }
