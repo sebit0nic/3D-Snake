@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GuiManager : MonoBehaviour {
 
     public GameObject pauseButton;
     public GameObject steerRightButton, steerLeftButton;
     public GameObject gameOverScreen;
-    public Animator screenTransitionAnimator;
+    public ScreenTransition screenTransition;
     public Text finalScoreText, totalScoreText;
     public Text powerupText;
     public Image powerupDurationImage;
@@ -45,8 +44,7 @@ public class GuiManager : MonoBehaviour {
     }
 
     public void ShowScreenTransition(int sceneID) {
-        screenTransitionAnimator.SetTrigger("OnTransition");
-        StartCoroutine(WaitForScreenTransition(sceneID));
+        screenTransition.StartScreenTransition(sceneID);
     }
 
     public void ShowPowerupText(PowerupType collectedType) {
@@ -70,10 +68,5 @@ public class GuiManager : MonoBehaviour {
 
     public void HidePowerupText() {
         powerupText.text = " ";
-    }
-
-    private IEnumerator WaitForScreenTransition(int sceneID) {
-        yield return new WaitForSeconds(1.75f);
-        SceneManager.LoadScene(sceneID);
     }
 }
