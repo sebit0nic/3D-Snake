@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GuiManager : MonoBehaviour {
 
-    public GameObject pauseButton;
+    public GameObject pauseButton, pauseMenu;
     public GameObject steerRightButton, steerLeftButton;
     public GameObject gameOverScreen;
     public ScreenTransition screenTransition;
@@ -27,6 +27,10 @@ public class GuiManager : MonoBehaviour {
             currentPowerupDuration = Mathf.Clamp(currentPowerupDuration, 0, 100);
             powerupDurationImage.fillAmount = currentPowerupDuration / powerupDuration;
         }
+    }
+
+    public void TogglePauseMenu(bool value) {
+        pauseMenu.SetActive(value);
     }
 
     public void HideHUD() {

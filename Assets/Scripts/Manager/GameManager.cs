@@ -80,8 +80,10 @@ public class GameManager : MonoBehaviour {
         paused = !paused;
         if (paused) {
             Time.timeScale = 0;
+            guiManager.TogglePauseMenu(true);
         } else {
             Time.timeScale = 1;
+            guiManager.TogglePauseMenu(false);
         }
     }
 

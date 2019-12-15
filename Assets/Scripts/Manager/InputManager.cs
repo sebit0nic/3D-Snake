@@ -5,9 +5,11 @@ using UnityEngine;
 public class InputManager : MonoBehaviour {
 
     private SnakeMovement snakeMovement;
+    private ShareImageCanvas shareImageCanvas;
 
     private void Start() {
         snakeMovement = GameObject.Find("Snake").GetComponent<SnakeMovement>();
+        shareImageCanvas = new ShareImageCanvas();
     }
 
     public void OnPauseButtonClicked() {
@@ -27,7 +29,7 @@ public class InputManager : MonoBehaviour {
     }
 
     public void OnShareButtonPressed() {
-        //TODO: implement share button
+        shareImageCanvas.ShareScreenshotWithText();
     }
 
     public void OnSteerRightButtonPressed() {
