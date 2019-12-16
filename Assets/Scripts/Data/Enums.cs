@@ -19,3 +19,9 @@ public enum ScreenType {
     GAME,
     SHOP_MENU
 }
+
+public enum ShopSection {
+    HATS,
+    COLORSCHEME,
+    POWERUPS
+}
