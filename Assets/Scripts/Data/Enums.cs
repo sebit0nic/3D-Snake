@@ -2,12 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PowerupType {
-    INVINCIBILTY,
-    MAGNET,
-    THIN
-}
-
 public enum SnakeColliderType {
     COLLECTIBLE,
     TAIL,
@@ -42,4 +36,10 @@ public enum PlayerColorTypes {
     COLOR_4,
     COLOR_5,
     COLOR_6
+}
+
+public enum PlayerPowerupTypes {
+    INVINCIBILTY,
+    MAGNET,
+    THIN
 }

@@ -8,7 +8,7 @@ public class Powerup : MonoBehaviour {
     public float duration = 10f;
     public GameObject powerupRenderer;
 
-    private PowerupType currentType;
+    private PlayerPowerupTypes currentType;
     private PowerupSpawner powerupSpawner;
 
     private void Awake() {
@@ -24,11 +24,11 @@ public class Powerup : MonoBehaviour {
     public void Respawn(bool correction) {
         if (!correction) {
             int randomPowerup = Random.Range(0, 3);
-            currentType = (PowerupType) randomPowerup;
+            currentType = (PlayerPowerupTypes) randomPowerup;
         }
     }
 
-    public PowerupType GetCurrentType() {
+    public PlayerPowerupTypes GetCurrentType() {
         return currentType;
     }
 

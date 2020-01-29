@@ -5,13 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class HatObject {
 
-    public string name { get; }
-    public int price { get; }
-    public bool unlocked { get; set; }
+    public string name;
+    public int price;
+    public bool unlocked;
+    public PlayerHatTypes type;
 
-    public HatObject(string name, int price, bool unlocked) {
-        this.name = name;
-        this.price = price;
-        this.unlocked = unlocked;
-    }
 }

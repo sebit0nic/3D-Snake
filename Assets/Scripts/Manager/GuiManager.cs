@@ -51,15 +51,15 @@ public class GuiManager : MonoBehaviour {
         screenTransition.StartScreenTransition(sceneID);
     }
 
-    public void ShowPowerupText(PowerupType collectedType) {
+    public void ShowPowerupText(PlayerPowerupTypes collectedType) {
         switch ( collectedType ) {
-            case PowerupType.INVINCIBILTY:
+            case PlayerPowerupTypes.INVINCIBILTY:
                 powerupText.text = "INVINCIBILITY";
                 break;
-            case PowerupType.MAGNET:
+            case PlayerPowerupTypes.MAGNET:
                 powerupText.text = "MAGNET";
                 break;
-            case PowerupType.THIN:
+            case PlayerPowerupTypes.THIN:
                 powerupText.text = "THIN";
                 break;
         }

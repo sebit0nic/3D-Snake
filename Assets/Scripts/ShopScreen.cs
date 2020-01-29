@@ -8,13 +8,22 @@ public class ShopScreen : MonoBehaviour {
     public GameObject hatSection, colorSection, powerupSection;
     public Image hatButtonImage, colorButtonImage, powerupButtonImage;
 
+    private ShopSection selectedShopSection;
+    private PlayerHatTypes selectedHat;
+    private PlayerColorTypes selectedColor;
+    private PlayerPowerupTypes selectedPowerup;
+
     private void Start() {
         ShowSection(0);
+        selectedShopSection = ShopSection.HATS;
+        selectedHat = PlayerHatTypes.TYPE_DEFAULT;
+        selectedColor = PlayerColorTypes.COLOR_DEFAULT;
+        selectedPowerup = PlayerPowerupTypes.INVINCIBILTY;
     }
 
-    public void ShowSection(int section) {
-        ShopSection shopSection = (ShopSection) section;
-        switch ( shopSection ) {
+    public void ShowSection(int index) {
+        selectedShopSection = (ShopSection) index;
+        switch ( selectedShopSection ) {
             case ShopSection.HATS:
                 DisableAllSections();
                 hatSection.SetActive(true);
@@ -29,6 +38,20 @@ public class ShopScreen : MonoBehaviour {
                 DisableAllSections();
                 powerupSection.SetActive(true);
                 powerupButtonImage.color = Color.grey;
+                break;
+        }
+    }
+
+    public void PurchaseableObjectSelected(int index) {
+        switch ( selectedShopSection ) {
+            case ShopSection.HATS:
+                selectedHat = (PlayerHatTypes) index;
+                break;
+            case ShopSection.COLORSCHEME:
+                selectedColor = (PlayerColorTypes) index;
+                break;
+            case ShopSection.POWERUPS:
+                selectedPowerup = (PlayerPowerupTypes) index;
                 break;
         }
     }

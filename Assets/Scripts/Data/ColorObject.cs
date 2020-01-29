@@ -5,13 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class ColorObject {
 
-    private string name { get; }
-    private int price { get; }
-    private bool unlocked { get; set; }
+    public string name;
+    public int price;
+    public bool unlocked;
+    public PlayerColorTypes type;
 
-    public ColorObject(string name, int price, bool unlocked) {
-        this.name = name;
-        this.price = price;
-        this.unlocked = unlocked;
-    }
 }

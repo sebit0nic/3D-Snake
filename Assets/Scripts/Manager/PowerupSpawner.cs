@@ -32,8 +32,8 @@ public class PowerupSpawner : MonoBehaviour {
         powerup.Respawn(true);
     }
 
-    public PowerupType CollectPowerup() {
-        PowerupType currentType = powerup.GetCurrentType();
+    public PlayerPowerupTypes CollectPowerup() {
+        PlayerPowerupTypes currentType = powerup.GetCurrentType();
         powerupGameObject.SetActive(false);
         StopAllCoroutines();
         return currentType;

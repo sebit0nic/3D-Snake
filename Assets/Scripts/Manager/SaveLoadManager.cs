@@ -6,12 +6,19 @@ using UnityEngine;
 
 public class SaveLoadManager : MonoBehaviour {
 
-    //private SaveData object loaded at the start of the script?
-    //methods to only update certain values?
     //raywenderlich.com/418-how-to-save-and-load-a-game-in-unity
 
-    public void SaveData() {
-        //TODO: save all values needed in SavedData (parameters?)
+    [SerializeField]
+    public List<HatObject> standardHatObjects = new List<HatObject>();
+    public List<ColorObject> standardColorObjects = new List<ColorObject>();
+    public List<PowerupObject> standardPowerupObjects = new List<PowerupObject>();
+
+    public void SaveData(SavedData savedData) {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+        bf.Serialize(file, savedData);
+        file.Close();
+        Debug.Log("Game saved!");
     }
 
     public SavedData LoadData() {
@@ -20,11 +27,12 @@ public class SaveLoadManager : MonoBehaviour {
             FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
             SavedData savedData = (SavedData) bf.Deserialize(file);
             file.Close();
+            Debug.Log("Game loaded!");
             return savedData;
         } else {
-            Debug.Log("No game saved!");
-            //TODO: return default values
-            return null;
+            Debug.Log("No game saved! Creating file with standard values...");
+            SavedData savedData = new SavedData(standardHatObjects, standardColorObjects, standardPowerupObjects);
+            return savedData;
         }
     }
 }

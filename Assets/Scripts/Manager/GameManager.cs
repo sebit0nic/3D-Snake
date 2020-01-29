@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour {
         fruitSpawner.SetMoveFruitTowardsPlayer(false);
     }
 
-    public PowerupType PlayerCollectedPowerup() {
-        PowerupType collectedType = powerupSpawner.CollectPowerup();
+    public PlayerPowerupTypes PlayerCollectedPowerup() {
+        PlayerPowerupTypes collectedType = powerupSpawner.CollectPowerup();
         guiManager.ShowPowerupText(collectedType);
         guiManager.SetPowerupDuration(powerupSpawner.GetPowerupDuration());
         return collectedType;
