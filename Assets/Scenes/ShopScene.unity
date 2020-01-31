@@ -1948,6 +1948,7 @@ MonoBehaviour:
   hatButtonImage: {fileID: 1736140626}
   colorButtonImage: {fileID: 1881642349}
   powerupButtonImage: {fileID: 2061563631}
+  buySelectButton: {fileID: 2104643068}
 --- !u!4 &785373995
 Transform:
   m_ObjectHideFlags: 0
@@ -2029,17 +2030,17 @@ MonoBehaviour:
     startPrice: 250
     priceIncreaseFactor: 250
     currentLevel: 0
-    powerupType: 0
+    type: 0
   - name: Magnet
     startPrice: 100
     priceIncreaseFactor: 200
     currentLevel: 0
-    powerupType: 1
+    type: 0
   - name: Thin
     startPrice: 200
     priceIncreaseFactor: 200
     currentLevel: 0
-    powerupType: 2
+    type: 0
 --- !u!1 &825871001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5530,7 +5531,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2104643069}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 785373994}
+        m_MethodName: BuyPurchaseable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2104643069

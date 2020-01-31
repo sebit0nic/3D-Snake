@@ -9,6 +9,9 @@ public class PowerupObject {
     public int startPrice;
     public int priceIncreaseFactor;
     public int currentLevel;
-    public PlayerPowerupTypes powerupType;
+    public PlayerPowerupTypes type;
 
+    public void UnlockNextPowerupLevel() {
+        currentLevel++;
+    }
 }

@@ -22,4 +22,28 @@ public class SavedData {
         currentHat = PlayerHatTypes.TYPE_DEFAULT;
         currentColor = PlayerColorTypes.COLOR_DEFAULT;
     }
+
+    public void UnlockHatObject(PlayerHatTypes type) {
+        foreach(HatObject hatObject in unlockedHats) {
+            if (hatObject.type == type) {
+                hatObject.SetUnlocked();
+            }
+        }
+    }
+
+    public void UnlockColorObject(PlayerColorTypes type) {
+        foreach ( ColorObject colorObject in unlockedColors ) {
+            if ( colorObject.type == type ) {
+                colorObject.SetUnlocked();
+            }
+        }
+    }
+
+    public void UnlockPowerupObject(PlayerPowerupTypes type) {
+        foreach ( PowerupObject powerupObject in unlockedPowerups ) {
+            if ( powerupObject.type == type ) {
+                powerupObject.UnlockNextPowerupLevel();
+            }
+        }
+    }
 }

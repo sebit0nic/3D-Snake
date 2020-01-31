@@ -32,6 +32,7 @@ public class SaveLoadManager : MonoBehaviour {
         } else {
             Debug.Log("No game saved! Creating file with standard values...");
             SavedData savedData = new SavedData(standardHatObjects, standardColorObjects, standardPowerupObjects);
+            SaveData(savedData);
             return savedData;
         }
     }

@@ -10,4 +10,7 @@ public class ColorObject {
     public bool unlocked;
     public PlayerColorTypes type;
 
+    public void SetUnlocked() {
+        unlocked = true;
+    }
 }

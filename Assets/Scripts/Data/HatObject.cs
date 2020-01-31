@@ -10,4 +10,7 @@ public class HatObject {
     public bool unlocked;
     public PlayerHatTypes type;
 
+    public void SetUnlocked() {
+        unlocked = true;
+    }
 }
