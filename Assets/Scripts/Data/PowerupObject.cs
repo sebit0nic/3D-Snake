@@ -16,7 +16,7 @@ public class PowerupObject {
     }
 
     public bool IsUnlocked() {
-        return false;
+        return currentLevel > maxLevel;
     }
 
     public int GetPrice() {

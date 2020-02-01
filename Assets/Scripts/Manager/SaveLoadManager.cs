@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class SaveLoadManager : MonoBehaviour {
 
-    //raywenderlich.com/418-how-to-save-and-load-a-game-in-unity
-
     [SerializeField]
     public List<HatObject> standardHatObjects = new List<HatObject>();
     public List<ColorObject> standardColorObjects = new List<ColorObject>();

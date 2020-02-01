@@ -8,7 +8,7 @@ public class ShopScreen : MonoBehaviour {
     public GameObject hatSection, colorSection, powerupSection;
     public Image hatButtonImage, colorButtonImage, powerupButtonImage;
     public Button buySelectButton;
-    public Text buySelectText;
+    public Text buySelectText, totalScoreText;
 
     private int selectedPurchaseableIndex, selectedSectionIndex;
     private SaveLoadManager saveLoadManager;
@@ -21,6 +21,7 @@ public class ShopScreen : MonoBehaviour {
 
         selectedPurchaseableIndex = 0;
         selectedSectionIndex = 0;
+        totalScoreText.text = savedData.totalScore.ToString().PadLeft(5, '0');
         ShowSection(selectedSectionIndex);
     }
 
@@ -69,12 +70,12 @@ public class ShopScreen : MonoBehaviour {
     public void BuySelectPurchaseable() {
         if (buyMode) {
             savedData.UnlockPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
-            saveLoadManager.SaveData(savedData);
+            totalScoreText.text = savedData.totalScore.ToString().PadLeft(5, '0');
             PurchaseableObjectSelected(selectedPurchaseableIndex);
         } else {
             savedData.SelectPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
-            saveLoadManager.SaveData(savedData);
         }
+        saveLoadManager.SaveData(savedData);
     }
 
     private void DisableAllSections() {
@@ -85,6 +86,4 @@ public class ShopScreen : MonoBehaviour {
         colorButtonImage.color = Color.white;
         powerupButtonImage.color = Color.white;
     }
-
-    //TODO: show totalScore on screen
 }

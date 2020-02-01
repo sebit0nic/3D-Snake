@@ -18,23 +18,25 @@ public class SavedData {
         unlockedColors = standardColorObjects;
         unlockedPowerups = standardPowerupObjects;
         highscore = 0;
-        totalScore = 0;
+        totalScore = 200;
         currentHat = PlayerHatTypes.TYPE_DEFAULT;
         currentColor = PlayerColorTypes.COLOR_DEFAULT;
     }
 
     public void UnlockPurchaseable(int sectionIndex, int purchaseableIndex) {
-        //TODO: decrease totalScore by price
         ShopSection shopSection = (ShopSection) sectionIndex;
         switch ( shopSection ) {
             case ShopSection.HATS:
                 unlockedHats[purchaseableIndex].Unlock();
+                totalScore -= unlockedHats[purchaseableIndex].GetPrice();
                 break;
             case ShopSection.COLORSCHEME:
                 unlockedColors[purchaseableIndex].Unlock();
+                totalScore -= unlockedColors[purchaseableIndex].GetPrice();
                 break;
             case ShopSection.POWERUPS:
                 unlockedPowerups[purchaseableIndex].Unlock();
+                totalScore -= unlockedPowerups[purchaseableIndex].GetPrice();
                 break;
         }
     }
