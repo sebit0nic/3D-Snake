@@ -8,27 +8,25 @@ public class ShopScreen : MonoBehaviour {
     public GameObject hatSection, colorSection, powerupSection;
     public Image hatButtonImage, colorButtonImage, powerupButtonImage;
     public Button buySelectButton;
+    public Text buySelectText;
 
-    private ShopSection selectedShopSection;
-    private PlayerHatTypes selectedHat;
-    private PlayerColorTypes selectedColor;
-    private PlayerPowerupTypes selectedPowerup;
+    private int selectedPurchaseableIndex, selectedSectionIndex;
     private SaveLoadManager saveLoadManager;
     private SavedData savedData;
+    private bool buyMode;
 
     private void Start() {
         saveLoadManager = GetComponent<SaveLoadManager>();
         savedData = saveLoadManager.LoadData();
 
-        ShowSection(0);
-        selectedShopSection = ShopSection.HATS;
-        selectedHat = PlayerHatTypes.TYPE_DEFAULT;
-        selectedColor = PlayerColorTypes.COLOR_DEFAULT;
-        selectedPowerup = PlayerPowerupTypes.INVINCIBILTY;
+        selectedPurchaseableIndex = 0;
+        selectedSectionIndex = 0;
+        ShowSection(selectedSectionIndex);
     }
 
     public void ShowSection(int index) {
-        selectedShopSection = (ShopSection) index;
+        selectedSectionIndex = index;
+        ShopSection selectedShopSection = (ShopSection) index;
         switch ( selectedShopSection ) {
             case ShopSection.HATS:
                 DisableAllSections();
@@ -46,33 +44,36 @@ public class ShopScreen : MonoBehaviour {
                 powerupButtonImage.color = Color.grey;
                 break;
         }
+        PurchaseableObjectSelected(0);
     }
 
     public void PurchaseableObjectSelected(int index) {
-        switch ( selectedShopSection ) {
-            case ShopSection.HATS:
-                selectedHat = (PlayerHatTypes) index;
-                break;
-            case ShopSection.COLORSCHEME:
-                selectedColor = (PlayerColorTypes) index;
-                break;
-            case ShopSection.POWERUPS:
-                selectedPowerup = (PlayerPowerupTypes) index;
-                break;
+        selectedPurchaseableIndex = index;
+        ShopSection selectedShopSection = (ShopSection) selectedSectionIndex;
+        //TODO: powerup objects need different handling, so check for that
+        if (savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex)) {
+            buySelectText.text = "Select";
+            buySelectButton.interactable = true;
+            buyMode = false;
+        } else if (savedData.totalScore >= savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex)) {
+            buySelectText.text = "Buy";
+            buySelectButton.interactable = true;
+            buyMode = true;
+        } else {
+            buySelectText.text = "Buy";
+            buySelectButton.interactable = false;
+            buyMode = true;
         }
     }
 
-    public void BuyPurchaseable() {
-        switch ( selectedShopSection ) {
-            case ShopSection.HATS:
-                savedData.UnlockHatObject(selectedHat);
-                break;
-            case ShopSection.COLORSCHEME:
-                savedData.UnlockColorObject(selectedColor);
-                break;
-            case ShopSection.POWERUPS:
-                savedData.UnlockPowerupObject(selectedPowerup);
-                break;
+    public void BuySelectPurchaseable() {
+        if (buyMode) {
+            savedData.UnlockPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
+            saveLoadManager.SaveData(savedData);
+            PurchaseableObjectSelected(selectedPurchaseableIndex);
+        } else {
+            savedData.SelectPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
+            saveLoadManager.SaveData(savedData);
         }
     }
 
@@ -84,4 +85,6 @@ public class ShopScreen : MonoBehaviour {
         colorButtonImage.color = Color.white;
         powerupButtonImage.color = Color.white;
     }
+
+    //TODO: show totalScore on screen
 }

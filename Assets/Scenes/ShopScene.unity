@@ -1949,6 +1949,7 @@ MonoBehaviour:
   colorButtonImage: {fileID: 1881642349}
   powerupButtonImage: {fileID: 2061563631}
   buySelectButton: {fileID: 2104643068}
+  buySelectText: {fileID: 264047278}
 --- !u!4 &785373995
 Transform:
   m_ObjectHideFlags: 0
@@ -1976,71 +1977,86 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   standardHatObjects:
-  - name: No Hat
+  - name: Hat 1
     price: 0
     unlocked: 1
+    selected: 1
     type: 0
-  - name: Cylinder
+  - name: Hat 2
     price: 200
     unlocked: 0
+    selected: 0
     type: 1
-  - name: Cappy
-    price: 300
-    unlocked: 0
-    type: 2
-  - name: Pirate Hat
+  - name: Hat 3
     price: 400
     unlocked: 0
-    type: 3
-  - name: Birthday Hat
-    price: 500
-    unlocked: 0
-    type: 4
-  - name: Sombrero
+    selected: 0
+    type: 2
+  - name: Hat 4
     price: 600
     unlocked: 0
-    type: 5
-  standardColorObjects:
-  - name: Classic
-    price: 0
-    unlocked: 1
-    type: 0
-  - name: Colorful
-    price: 100
-    unlocked: 0
-    type: 1
-  - name: Monochrome
-    price: 250
-    unlocked: 0
-    type: 2
-  - name: Rainbow
-    price: 500
-    unlocked: 0
+    selected: 0
     type: 3
-  - name: Black And White
-    price: 750
+  - name: Hat 5
+    price: 800
     unlocked: 0
+    selected: 0
     type: 4
-  - name: Lively
+  - name: Hat 6
     price: 1000
     unlocked: 0
+    selected: 0
+    type: 5
+  standardColorObjects:
+  - name: Color 1
+    price: 0
+    unlocked: 1
+    selected: 1
+    type: 0
+  - name: Color 2
+    price: 250
+    unlocked: 0
+    selected: 0
+    type: 1
+  - name: Color 3
+    price: 500
+    unlocked: 0
+    selected: 0
+    type: 2
+  - name: Color 4
+    price: 750
+    unlocked: 0
+    selected: 0
+    type: 3
+  - name: Color 5
+    price: 1000
+    unlocked: 0
+    selected: 0
+    type: 4
+  - name: Color 6
+    price: 1500
+    unlocked: 0
+    selected: 0
     type: 5
   standardPowerupObjects:
   - name: Invincibility
-    startPrice: 250
+    price: 250
     priceIncreaseFactor: 250
     currentLevel: 0
+    maxLevel: 0
     type: 0
   - name: Magnet
-    startPrice: 100
-    priceIncreaseFactor: 200
+    price: 150
+    priceIncreaseFactor: 150
     currentLevel: 0
-    type: 0
+    maxLevel: 0
+    type: 1
   - name: Thin
-    startPrice: 200
+    price: 200
     priceIncreaseFactor: 200
     currentLevel: 0
-    type: 0
+    maxLevel: 0
+    type: 2
 --- !u!1 &825871001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5533,7 +5549,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 785373994}
-        m_MethodName: BuyPurchaseable
+        m_MethodName: BuySelectPurchaseable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

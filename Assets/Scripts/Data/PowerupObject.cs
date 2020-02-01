@@ -6,12 +6,20 @@ using UnityEngine;
 public class PowerupObject {
 
     public string name;
-    public int startPrice;
+    public int price;
     public int priceIncreaseFactor;
-    public int currentLevel;
+    public int currentLevel, maxLevel;
     public PlayerPowerupTypes type;
 
-    public void UnlockNextPowerupLevel() {
+    public void Unlock() {
         currentLevel++;
+    }
+
+    public bool IsUnlocked() {
+        return false;
+    }
+
+    public int GetPrice() {
+        return price + priceIncreaseFactor * currentLevel;
     }
 }
