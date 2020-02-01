@@ -9,6 +9,7 @@ public class ShopScreen : MonoBehaviour {
     public Image hatButtonImage, colorButtonImage, powerupButtonImage;
     public Button buySelectButton;
     public Text buySelectText, totalScoreText;
+    public HatSectionManager hatSectionManager;
 
     private int selectedPurchaseableIndex, selectedSectionIndex;
     private SaveLoadManager saveLoadManager;
@@ -18,6 +19,7 @@ public class ShopScreen : MonoBehaviour {
     private void Start() {
         saveLoadManager = GetComponent<SaveLoadManager>();
         savedData = saveLoadManager.LoadData();
+        hatSectionManager.Init(savedData);
 
         selectedPurchaseableIndex = 0;
         selectedSectionIndex = 0;
@@ -76,6 +78,7 @@ public class ShopScreen : MonoBehaviour {
             savedData.SelectPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
         }
         saveLoadManager.SaveData(savedData);
+        hatSectionManager.UpdateHatSelectButton(savedData, selectedPurchaseableIndex);
     }
 
     private void DisableAllSections() {
