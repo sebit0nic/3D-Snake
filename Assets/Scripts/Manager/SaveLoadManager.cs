@@ -16,7 +16,6 @@ public class SaveLoadManager : MonoBehaviour {
         FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
         bf.Serialize(file, savedData);
         file.Close();
-        Debug.Log("Game saved!");
     }
 
     public SavedData LoadData() {

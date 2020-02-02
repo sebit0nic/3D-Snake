@@ -27,16 +27,16 @@ public class SavedData {
         ShopSection shopSection = (ShopSection) sectionIndex;
         switch ( shopSection ) {
             case ShopSection.HATS:
-                unlockedHats[purchaseableIndex].Unlock();
                 totalScore -= unlockedHats[purchaseableIndex].GetPrice();
+                unlockedHats[purchaseableIndex].Unlock();
                 break;
             case ShopSection.COLORSCHEME:
-                unlockedColors[purchaseableIndex].Unlock();
                 totalScore -= unlockedColors[purchaseableIndex].GetPrice();
+                unlockedColors[purchaseableIndex].Unlock();
                 break;
             case ShopSection.POWERUPS:
-                unlockedPowerups[purchaseableIndex].Unlock();
                 totalScore -= unlockedPowerups[purchaseableIndex].GetPrice();
+                unlockedPowerups[purchaseableIndex].Unlock();
                 break;
         }
     }
