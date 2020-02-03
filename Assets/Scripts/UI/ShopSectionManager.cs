@@ -28,6 +28,7 @@ public class ShopSectionManager : MonoBehaviour {
         for ( int i = 0; i < powerupSelectButtons.Length; i++ ) {
             powerupSelectButtons[i].Init((int) ShopSection.POWERUPS, i, true);
             powerupSelectButtons[i].SetPriceText(savedData);
+            powerupSelectButtons[i].SetProgressBar(savedData);
         }
     }
 

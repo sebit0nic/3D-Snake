@@ -13,19 +13,21 @@ public class SavedData {
     public PlayerHatTypes currentHat;
     public PlayerColorTypes currentColor;
 
+    private ShopSection currentShopSection;
+
     public SavedData(List<HatObject> standardHatObjects, List<ColorObject> standardColorObjects, List<PowerupObject> standardPowerupObjects) {
         unlockedHats = standardHatObjects;
         unlockedColors = standardColorObjects;
         unlockedPowerups = standardPowerupObjects;
         highscore = 0;
-        totalScore = 200;
+        totalScore = 9000;
         currentHat = PlayerHatTypes.TYPE_DEFAULT;
         currentColor = PlayerColorTypes.COLOR_DEFAULT;
     }
 
     public void UnlockPurchaseable(int sectionIndex, int purchaseableIndex) {
-        ShopSection shopSection = (ShopSection) sectionIndex;
-        switch ( shopSection ) {
+        currentShopSection = (ShopSection) sectionIndex;
+        switch ( currentShopSection ) {
             case ShopSection.HATS:
                 totalScore -= unlockedHats[purchaseableIndex].GetPrice();
                 unlockedHats[purchaseableIndex].Unlock();
@@ -42,8 +44,8 @@ public class SavedData {
     }
 
     public void SelectPurchaseable(int sectionIndex, int purchaseableIndex) {
-        ShopSection shopSection = (ShopSection) sectionIndex;
-        switch ( shopSection ) {
+        currentShopSection = (ShopSection) sectionIndex;
+        switch ( currentShopSection ) {
             case ShopSection.HATS:
                 foreach(HatObject hatObject in unlockedHats) {
                     hatObject.SetSelected(false);
@@ -60,8 +62,8 @@ public class SavedData {
     }
 
     public bool IsPurchaseableUnlocked(int sectionIndex, int purchaseableIndex) {
-        ShopSection shopSection = (ShopSection) sectionIndex;
-        switch ( shopSection ) {
+        currentShopSection = (ShopSection) sectionIndex;
+        switch ( currentShopSection ) {
             case ShopSection.HATS:
                 return unlockedHats[purchaseableIndex].IsUnlocked();
             case ShopSection.COLORSCHEME:
@@ -74,8 +76,8 @@ public class SavedData {
     }
 
     public bool IsPurchaseableSelected(int sectionIndex, int purchaseableIndex) {
-        ShopSection shopSection = (ShopSection) sectionIndex;
-        switch ( shopSection ) {
+        currentShopSection = (ShopSection) sectionIndex;
+        switch ( currentShopSection ) {
             case ShopSection.HATS:
                 return unlockedHats[purchaseableIndex].IsSelected();
             case ShopSection.COLORSCHEME:
@@ -88,8 +90,8 @@ public class SavedData {
     }
 
     public int GetPurchaseablePrice(int sectionIndex, int purchaseableIndex) {
-        ShopSection shopSection = (ShopSection) sectionIndex;
-        switch ( shopSection ) {
+        currentShopSection = (ShopSection) sectionIndex;
+        switch ( currentShopSection ) {
             case ShopSection.HATS:
                 return unlockedHats[purchaseableIndex].GetPrice();
             case ShopSection.COLORSCHEME:
@@ -98,6 +100,26 @@ public class SavedData {
                 return unlockedPowerups[purchaseableIndex].GetPrice();
             default:
                 return 0;
+        }
+    }
+
+    public int GetCurrentLevel(int sectionIndex, int purchaseableIndex) {
+        currentShopSection = (ShopSection) sectionIndex;
+        if (currentShopSection == ShopSection.HATS || currentShopSection == ShopSection.COLORSCHEME) {
+            Debug.Log("ERROR: HATS and COLORSCHEMES do not have levels!");
+            return 0;
+        } else {
+            return unlockedPowerups[purchaseableIndex].GetCurrentLevel();
+        }
+    }
+
+    public int GetMaxLevel(int sectionIndex, int purchaseableIndex) {
+        currentShopSection = (ShopSection) sectionIndex;
+        if ( currentShopSection == ShopSection.HATS || currentShopSection == ShopSection.COLORSCHEME ) {
+            Debug.Log("ERROR: HATS and COLORSCHEMES do not have levels!");
+            return 0;
+        } else {
+            return unlockedPowerups[purchaseableIndex].GetMaxLevel();
         }
     }
 }

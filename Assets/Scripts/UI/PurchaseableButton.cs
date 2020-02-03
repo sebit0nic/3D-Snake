@@ -9,6 +9,8 @@ public class PurchaseableButton : MonoBehaviour {
     private Text priceText;
     private Image progressBar;
 
+    private float progressBarValue;
+
     public void Init(int sectionIndex, int purchaseableIndex, bool isPowerup) {
         this.sectionIndex = sectionIndex;
         this.purchaseableIndex = purchaseableIndex;
@@ -28,6 +30,7 @@ public class PurchaseableButton : MonoBehaviour {
     }
 
     public void SetProgressBar(SavedData savedData) {
-        //TODO: set progress bar of powerup according to powerup level
+        progressBarValue = (float) savedData.GetCurrentLevel(sectionIndex, purchaseableIndex) / savedData.GetMaxLevel(sectionIndex, purchaseableIndex);
+        progressBar.fillAmount = progressBarValue;
     }
 }

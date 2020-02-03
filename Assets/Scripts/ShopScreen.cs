@@ -54,18 +54,30 @@ public class ShopScreen : MonoBehaviour {
         selectedPurchaseableIndex = index;
         ShopSection selectedShopSection = (ShopSection) selectedSectionIndex;
         //TODO: powerup objects need different handling, so check for that
-        if (savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex)) {
-            buySelectText.text = "Select";
-            buySelectButton.interactable = true;
-            buyMode = false;
-        } else if (savedData.totalScore >= savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex)) {
-            buySelectText.text = "Buy";
-            buySelectButton.interactable = true;
-            buyMode = true;
+        if (selectedShopSection == ShopSection.POWERUPS) {
+            if (savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex)) {
+                buySelectText.text = "Buy";
+                buySelectButton.interactable = false;
+                buyMode = true;
+            } else {
+                buySelectText.text = "Buy";
+                buySelectButton.interactable = true;
+                buyMode = true;
+            }
         } else {
-            buySelectText.text = "Buy";
-            buySelectButton.interactable = false;
-            buyMode = true;
+            if ( savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex) ) {
+                buySelectText.text = "Select";
+                buySelectButton.interactable = true;
+                buyMode = false;
+            } else if ( savedData.totalScore >= savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) ) {
+                buySelectText.text = "Buy";
+                buySelectButton.interactable = true;
+                buyMode = true;
+            } else {
+                buySelectText.text = "Buy";
+                buySelectButton.interactable = false;
+                buyMode = true;
+            }
         }
     }
 

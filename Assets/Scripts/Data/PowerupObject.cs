@@ -12,14 +12,24 @@ public class PowerupObject {
     public PlayerPowerupTypes type;
 
     public void Unlock() {
-        currentLevel++;
+        if (currentLevel < maxLevel) {
+            currentLevel++;
+        }
     }
 
     public bool IsUnlocked() {
-        return currentLevel < maxLevel;
+        return currentLevel >= maxLevel;
     }
 
     public int GetPrice() {
         return price + priceIncreaseFactor * currentLevel;
+    }
+
+    public int GetCurrentLevel() {
+        return currentLevel;
+    }
+
+    public int GetMaxLevel() {
+        return maxLevel;
     }
 }
