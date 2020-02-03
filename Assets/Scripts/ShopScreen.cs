@@ -53,7 +53,7 @@ public class ShopScreen : MonoBehaviour {
     public void PurchaseableObjectSelected(int index) {
         selectedPurchaseableIndex = index;
         ShopSection selectedShopSection = (ShopSection) selectedSectionIndex;
-        //TODO: powerup objects need different handling, so check for that
+
         if (selectedShopSection == ShopSection.POWERUPS) {
             if (savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex)) {
                 buySelectText.text = "Buy";

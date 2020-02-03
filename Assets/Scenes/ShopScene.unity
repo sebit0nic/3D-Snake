@@ -2303,19 +2303,19 @@ MonoBehaviour:
     price: 250
     priceIncreaseFactor: 250
     currentLevel: 0
-    maxLevel: 0
+    maxLevel: 5
     type: 0
   - name: Magnet
     price: 150
     priceIncreaseFactor: 150
     currentLevel: 0
-    maxLevel: 0
+    maxLevel: 5
     type: 1
   - name: Thin
     price: 200
     priceIncreaseFactor: 200
     currentLevel: 0
-    maxLevel: 0
+    maxLevel: 5
     type: 2
 --- !u!1 &825871001
 GameObject:
