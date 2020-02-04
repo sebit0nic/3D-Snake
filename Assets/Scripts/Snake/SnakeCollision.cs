@@ -5,12 +5,14 @@ using UnityEngine;
 public class SnakeCollision : MonoBehaviour {
 
     private SnakeCollider magnetCollider;
+    private ParticleSystem fruitCollectParticle;
     private Snake snake;
     private bool invincible = false;
     private bool stopped = false;
 
     public void Init(Snake snake) {
         this.snake = snake;
+        fruitCollectParticle = GetComponentInChildren<ParticleSystem>();
 
         SnakeCollider[] colliderList = GetComponentsInChildren<SnakeCollider>();
         foreach(SnakeCollider col in colliderList) {
@@ -35,6 +37,8 @@ public class SnakeCollision : MonoBehaviour {
                 case SnakeColliderType.COLLECTIBLE:
                     if ( other.gameObject.tag.Equals("Fruit") ) {
                         snake.NotifyFruitEaten();
+                        fruitCollectParticle.Stop();
+                        fruitCollectParticle.Play();
                     }
                     if ( other.gameObject.tag.Equals("Powerup") ) {
                         snake.NotifyPowerupCollected();

@@ -7,11 +7,11 @@ public class SnakeCollider : MonoBehaviour {
     public SnakeColliderType colliderType;
 
     private SnakeCollision snakeCollision;
-    private SphereCollider sphereCollider;
+    private Collider sphereCollider;
 
     private void Start() {
         snakeCollision = GetComponentInParent<SnakeCollision>();
-        sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider = GetComponent<Collider>();
 
         if ( colliderType == SnakeColliderType.MAGNET ) {
             sphereCollider.enabled = false;

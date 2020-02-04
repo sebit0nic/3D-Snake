@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fruit : MonoBehaviour {
 
     public float rendererShowDelay = 0.25f;
-    public GameObject fruitRenderer;
+    public GameObject fruitRenderer, indicatorRenderer;
 
     private FruitSpawner fruitSpawner;
     private bool ignoreSnakeTailCollision = false;
@@ -28,8 +28,10 @@ public class Fruit : MonoBehaviour {
 
     private IEnumerator WaitForShowDelay() {
         fruitRenderer.SetActive(false);
+        indicatorRenderer.SetActive(false);
         yield return new WaitForSeconds(rendererShowDelay);
         fruitRenderer.SetActive(true);
+        indicatorRenderer.SetActive(true);
     }
 
     public void SetIgnoreSnakeTailCollision(bool value) {
