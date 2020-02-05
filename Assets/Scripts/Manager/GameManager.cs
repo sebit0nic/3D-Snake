@@ -35,11 +35,12 @@ public class GameManager : MonoBehaviour {
         scoreManager.IncreaseScore();
         powerupSpawner.UpdateActualCollectedFruit(scoreManager.GetCurrentScore());
         fruitSpawner.SetMoveFruitTowardsPlayer(false);
+        guiManager.FruitCollected();
     }
 
     public PlayerPowerupTypes PlayerCollectedPowerup() {
         PlayerPowerupTypes collectedType = powerupSpawner.CollectPowerup();
-        guiManager.ShowPowerupText(collectedType);
+        guiManager.ShowPowerupIcon(collectedType);
         guiManager.SetPowerupDuration(powerupSpawner.GetPowerupDuration());
         return collectedType;
     }

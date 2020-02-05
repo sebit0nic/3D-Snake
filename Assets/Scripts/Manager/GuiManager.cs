@@ -10,14 +10,20 @@ public class GuiManager : MonoBehaviour {
     public GameObject gameOverScreen;
     public ScreenTransition screenTransition;
     public Text finalScoreText, totalScoreText;
-    public Text powerupText;
+    public Image powerupIcon;
     public Image powerupDurationImage;
+    public CollectCircleEffect collectCircleEffect;
+
+    [Header("Powerup Icons")]
+    public Sprite powerupInvincibilityIcon;
+    public Sprite powerupThinIcon;
+    public Sprite powerupMagnetIcon;
 
     private float powerupDuration, currentPowerupDuration;
     private string finalScoreString, totalScoreString;
 
     private void Start() {
-        powerupText.text = " ";
+        powerupIcon.enabled = false;
         powerupDurationImage.fillAmount = 0f;
     }
 
@@ -27,6 +33,10 @@ public class GuiManager : MonoBehaviour {
             currentPowerupDuration = Mathf.Clamp(currentPowerupDuration, 0, 100);
             powerupDurationImage.fillAmount = currentPowerupDuration / powerupDuration;
         }
+    }
+
+    public void FruitCollected() {
+        collectCircleEffect.NotifyFruitCollected();
     }
 
     public void TogglePauseMenu(bool value) {
@@ -51,16 +61,17 @@ public class GuiManager : MonoBehaviour {
         screenTransition.StartScreenTransition(sceneID);
     }
 
-    public void ShowPowerupText(PlayerPowerupTypes collectedType) {
+    public void ShowPowerupIcon(PlayerPowerupTypes collectedType) {
+        powerupIcon.enabled = true;
         switch ( collectedType ) {
             case PlayerPowerupTypes.INVINCIBILTY:
-                powerupText.text = "INVINCIBILITY";
+                powerupIcon.sprite = powerupInvincibilityIcon;
                 break;
             case PlayerPowerupTypes.MAGNET:
-                powerupText.text = "MAGNET";
+                powerupIcon.sprite = powerupMagnetIcon;
                 break;
             case PlayerPowerupTypes.THIN:
-                powerupText.text = "THIN";
+                powerupIcon.sprite = powerupThinIcon;
                 break;
         }
     }
@@ -71,6 +82,6 @@ public class GuiManager : MonoBehaviour {
     }
 
     public void HidePowerupText() {
-        powerupText.text = " ";
+        powerupIcon.enabled = false;
     }
 }
