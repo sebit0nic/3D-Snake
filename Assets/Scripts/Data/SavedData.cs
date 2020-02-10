@@ -47,16 +47,10 @@ public class SavedData {
         currentShopSection = (ShopSection) sectionIndex;
         switch ( currentShopSection ) {
             case ShopSection.HATS:
-                foreach(HatObject hatObject in unlockedHats) {
-                    hatObject.SetSelected(false);
-                }
-                unlockedHats[purchaseableIndex].SetSelected(true);
+                currentHat = (PlayerHatTypes) purchaseableIndex;
                 break;
             case ShopSection.COLORSCHEME:
-                foreach (ColorObject colorObject in unlockedColors) {
-                    colorObject.SetSelected(false);
-                }
-                unlockedColors[purchaseableIndex].SetSelected(true);
+                currentColor = (PlayerColorTypes) purchaseableIndex;
                 break;
         }
     }
@@ -75,18 +69,12 @@ public class SavedData {
         }
     }
 
-    public bool IsPurchaseableSelected(int sectionIndex, int purchaseableIndex) {
-        currentShopSection = (ShopSection) sectionIndex;
-        switch ( currentShopSection ) {
-            case ShopSection.HATS:
-                return unlockedHats[purchaseableIndex].IsSelected();
-            case ShopSection.COLORSCHEME:
-                return unlockedColors[purchaseableIndex].IsSelected();
-            case ShopSection.POWERUPS:
-                return false;
-            default:
-                return false;
-        }
+    public PlayerHatTypes GetSelectedHatType() {
+        return currentHat;
+    }
+
+    public PlayerColorTypes GetSelectedColorType() {
+        return currentColor;
     }
 
     public int GetPurchaseablePrice(int sectionIndex, int purchaseableIndex) {

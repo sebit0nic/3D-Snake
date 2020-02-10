@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour {
     private Snake snake;
     private CameraController cameraController;
 
+    private SaveLoadManager saveLoadManager;
+    private SavedData savedData;
+
     private bool paused;
 
     private void Awake() {
@@ -22,6 +25,9 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
+        saveLoadManager = GetComponent<SaveLoadManager>();
+        savedData = saveLoadManager.LoadData();
+
         fruitSpawner = GetComponentInChildren<FruitSpawner>();
         scoreManager = GetComponentInChildren<ScoreManager>();
         guiManager = GetComponentInChildren<GuiManager>();
@@ -94,5 +100,9 @@ public class GameManager : MonoBehaviour {
 
     public float GetPowerupDuration() {
         return powerupSpawner.GetPowerupDuration();
+    }
+
+    public SavedData GetSavedData() {
+        return savedData;
     }
 }

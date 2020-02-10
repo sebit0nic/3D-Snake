@@ -7,6 +7,7 @@ public class Snake : MonoBehaviour {
     private SnakeMovement snakeMovement;
     private SnakeCollision snakeCollision;
     private SnakeTailSpawner snakeTailSpawner;
+    private SnakeHatChooser snakeHatChooser;
 
     [Header("Debug Settings")]
     public bool invincible = false;
@@ -15,10 +16,12 @@ public class Snake : MonoBehaviour {
         snakeMovement = GetComponent<SnakeMovement>();
         snakeCollision = GetComponent<SnakeCollision>();
         snakeTailSpawner = GetComponent<SnakeTailSpawner>();
+        snakeHatChooser = GetComponentInChildren<SnakeHatChooser>();
 
         snakeMovement.Init(this);
         snakeCollision.Init(this);
         snakeTailSpawner.Init(this);
+        snakeHatChooser.Init(GameManager.instance.GetSavedData());
     }
 
     public void NotifyFruitEaten() {

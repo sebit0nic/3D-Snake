@@ -22,11 +22,11 @@ public enum ShopSection {
 
 public enum PlayerHatTypes {
     TYPE_DEFAULT,
-    TYPE_2,
-    TYPE_3,
+    TYPE_CYLINDER,
+    TYPE_CAPPY,
+    TYPE_PROPELLER,
     TYPE_4,
-    TYPE_5,
-    TYPE_6
+    TYPE_5
 }
 
 public enum PlayerColorTypes {
