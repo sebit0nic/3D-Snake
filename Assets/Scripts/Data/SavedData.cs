@@ -20,7 +20,7 @@ public class SavedData {
         unlockedColors = standardColorObjects;
         unlockedPowerups = standardPowerupObjects;
         highscore = 0;
-        totalScore = 9000;
+        totalScore = 0;
         currentHat = PlayerHatTypes.TYPE_DEFAULT;
         currentColor = PlayerColorTypes.COLOR_DEFAULT;
     }
@@ -109,5 +109,13 @@ public class SavedData {
         } else {
             return unlockedPowerups[purchaseableIndex].GetMaxLevel();
         }
+    }
+
+    public int GetTotalScore() {
+        return totalScore;
+    }
+
+    public void SetTotalScore(int totalScore) {
+        this.totalScore = totalScore;
     }
 }

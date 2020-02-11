@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
 
         fruitSpawner = GetComponentInChildren<FruitSpawner>();
         scoreManager = GetComponentInChildren<ScoreManager>();
+        scoreManager.Init(savedData);
         guiManager = GetComponentInChildren<GuiManager>();
         powerupSpawner = GetComponentInChildren<PowerupSpawner>();
         snake = GameObject.Find("Snake").GetComponent<Snake>();
@@ -68,19 +69,12 @@ public class GameManager : MonoBehaviour {
         guiManager.HideHUD();
         guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore());
         cameraController.Stop();
+        scoreManager.FinalizeScore(savedData);
+        saveLoadManager.SaveData(savedData);
     }
 
     public void SwitchScreen(ScreenType screenType) {
-        switch ( screenType ) {
-            case ScreenType.GAME:
-                guiManager.ShowScreenTransition(0);
-                break;
-            case ScreenType.MAIN_MENU:
-                break;
-            case ScreenType.SHOP_MENU:
-                guiManager.ShowScreenTransition(0);
-                break;
-        }
+        guiManager.ShowScreenTransition((int) screenType);
     }
 
     public void GamePaused() {

@@ -54,7 +54,7 @@ public class GuiManager : MonoBehaviour {
         finalScoreString = finalScore.ToString();
         totalScoreString = totalScore.ToString();
         finalScoreText.text = finalScoreString.PadLeft(3, '0');
-        totalScoreText.text = totalScoreString.PadLeft(6, '0');
+        totalScoreText.text = totalScoreString.PadLeft(5, '0');
     }
 
     public void ShowScreenTransition(int sceneID) {

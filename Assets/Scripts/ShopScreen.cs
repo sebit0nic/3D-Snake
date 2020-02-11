@@ -10,6 +10,9 @@ public class ShopScreen : MonoBehaviour {
     public Button buySelectButton;
     public Text buySelectText, totalScoreText;
     public ShopSectionManager shopSectionManager;
+    public ScreenTransition screenTransition;
+
+    public GameObject[] hatPreviewModels;
 
     private int selectedPurchaseableIndex, selectedSectionIndex;
     private SaveLoadManager saveLoadManager;
@@ -24,6 +27,7 @@ public class ShopScreen : MonoBehaviour {
         selectedPurchaseableIndex = 0;
         selectedSectionIndex = 0;
         totalScoreText.text = savedData.totalScore.ToString().PadLeft(5, '0');
+        hatPreviewModels[(int) savedData.GetSelectedHatType()].SetActive(true);
         ShowSection(selectedSectionIndex);
     }
 
@@ -56,14 +60,14 @@ public class ShopScreen : MonoBehaviour {
 
         if (selectedShopSection == ShopSection.POWERUPS) {
             if (savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex)) {
-                buySelectText.text = "Buy";
                 buySelectButton.interactable = false;
-                buyMode = true;
-            } else {
-                buySelectText.text = "Buy";
+            } else if (savedData.totalScore >= savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex)) {
                 buySelectButton.interactable = true;
-                buyMode = true;
+            } else {
+                buySelectButton.interactable = false;
             }
+            buySelectText.text = "Buy";
+            buyMode = true;
         } else {
             if ( savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex) ) {
                 buySelectText.text = "Select";
@@ -91,6 +95,12 @@ public class ShopScreen : MonoBehaviour {
         }
         saveLoadManager.SaveData(savedData);
         shopSectionManager.UpdatePurchaseableSelectButton(savedData, selectedSectionIndex, selectedPurchaseableIndex);
+        HideAllHatPreviewModels();
+        hatPreviewModels[(int) savedData.GetSelectedHatType()].SetActive(true);
+    }
+
+    public void ChangeScreen(int toScreenID) {
+        screenTransition.StartScreenTransition(toScreenID);
     }
 
     private void DisableAllSections() {
@@ -100,5 +110,11 @@ public class ShopScreen : MonoBehaviour {
         hatButtonImage.color = Color.white;
         colorButtonImage.color = Color.white;
         powerupButtonImage.color = Color.white;
+    }
+
+    private void HideAllHatPreviewModels() {
+        foreach (GameObject go in hatPreviewModels) {
+            go.SetActive(false);
+        }
     }
 }

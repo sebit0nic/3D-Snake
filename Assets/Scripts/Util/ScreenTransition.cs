@@ -6,15 +6,10 @@ using UnityEngine.SceneManagement;
 public class ScreenTransition : MonoBehaviour
 {
     private Animator animator;
-    private GuiManager guiManager;
     private int toSceneID;
 
     private void Awake() {
         animator = GetComponent<Animator>();
-    }
-
-    public void Init(GuiManager guiManager) {
-        this.guiManager = guiManager;
     }
 
     public void StartScreenTransition(int sceneID) {

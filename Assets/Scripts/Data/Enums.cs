@@ -9,9 +9,9 @@ public enum SnakeColliderType {
 }
 
 public enum ScreenType {
-    MAIN_MENU,
     GAME,
-    SHOP_MENU
+    SHOP_MENU,
+    MAIN_MENU
 }
 
 public enum ShopSection {

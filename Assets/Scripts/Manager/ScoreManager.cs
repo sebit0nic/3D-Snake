@@ -8,13 +8,20 @@ public class ScoreManager : MonoBehaviour {
     private int finalScore = 0;
     private int totalScore = 0;
 
-    private void Start() {
-        //TODO: get totalScore from saved score
+    public void Init(SavedData savedData) {
+        totalScore = savedData.GetTotalScore();
     }
 
     public void IncreaseScore() {
         finalScore++;
         totalScore++;
+    }
+
+    public void FinalizeScore(SavedData savedData) {
+        savedData.SetTotalScore(totalScore);
+        if (totalScore > savedData.highscore) {
+            savedData.highscore = totalScore;
+        }
     }
 
     public int GetCurrentScore() {
