@@ -47,6 +47,8 @@ public class GuiManager : MonoBehaviour {
         pauseButton.SetActive(false);
         steerRightButton.SetActive(false);
         steerLeftButton.SetActive(false);
+        powerupIcon.gameObject.SetActive(false);
+        powerupDurationImage.gameObject.SetActive(false);
     }
 
     public void ShowGameOverScreen(int finalScore, int totalScore) {
