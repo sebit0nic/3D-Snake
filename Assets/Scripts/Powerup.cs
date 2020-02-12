@@ -15,17 +15,9 @@ public class Powerup : MonoBehaviour {
         powerupSpawner = GameObject.Find("Game Manager").GetComponentInChildren<PowerupSpawner>();
     }
 
-    private void OnTriggerStay(Collider other) {
-        if (other.gameObject.tag.Equals("Snake Tail")) {
-            powerupSpawner.CorrectPowerupPosition();
-        }
-    }
-
-    public void Respawn(bool correction) {
-        if (!correction) {
-            int randomPowerup = Random.Range(0, 3);
-            currentType = (PlayerPowerupTypes) randomPowerup;
-        }
+    public void Respawn() {
+        int randomPowerup = Random.Range(0, 3);
+        currentType = (PlayerPowerupTypes) randomPowerup;
     }
 
     public PlayerPowerupTypes GetCurrentType() {

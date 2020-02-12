@@ -48,6 +48,10 @@ public class SnakeTailSpawner : MonoBehaviour {
         return thinPowerupEnabled;
     }
 
+    public Transform GetLastTailTransform() {
+        return snakeTailList[0].transform;
+    }
+
     private void SpawnCollider() {
         //TODO: could be improved somehow by not using GetComponent
         SnakeTail newSnakeTail = ObjectPool.sharedInstance.GetPooledObject().GetComponent<SnakeTail>();

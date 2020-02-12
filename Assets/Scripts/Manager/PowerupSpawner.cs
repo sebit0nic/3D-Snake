@@ -27,11 +27,6 @@ public class PowerupSpawner : MonoBehaviour {
         StartCoroutine("WaitForSpawnDelay");
     }
 
-    public void CorrectPowerupPosition() {
-        powerupGameObject.transform.Rotate(Random.Range(5, 10), 0, Random.Range(5, 10));
-        powerup.Respawn(true);
-    }
-
     public PlayerPowerupTypes CollectPowerup() {
         PlayerPowerupTypes currentType = powerup.GetCurrentType();
         powerupGameObject.SetActive(false);
@@ -50,11 +45,11 @@ public class PowerupSpawner : MonoBehaviour {
 
     private IEnumerator WaitForSpawnDelay() {
         yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
-        powerupGameObject.transform.rotation = GameManager.instance.GetCurrentSnakePosition().rotation;
-        powerupGameObject.transform.Rotate(180, 0, 0);
+        powerupGameObject.transform.position = GameManager.instance.GetLastTailTransform().position;
+        powerupGameObject.transform.rotation = GameManager.instance.GetLastTailTransform().rotation;
 
         powerupGameObject.SetActive(true);
-        powerup.Respawn(false);
+        powerup.Respawn();
         StopAllCoroutines();
         StartCoroutine("WaitForUnspawnDelay");
     }

@@ -92,6 +92,10 @@ public class GameManager : MonoBehaviour {
         return snake.GetCurrentPosition();
     }
 
+    public Transform GetLastTailTransform() {
+        return snake.GetLastTailTransform();
+    }
+
     public float GetPowerupDuration() {
         return powerupSpawner.GetPowerupDuration();
     }

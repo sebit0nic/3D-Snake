@@ -66,4 +66,8 @@ public class Snake : MonoBehaviour {
     public Transform GetCurrentPosition() {
         return snakeMovement.GetCurrentPosition();
     }
+
+    public Transform GetLastTailTransform() {
+        return snakeTailSpawner.GetLastTailTransform();
+    }
 }
