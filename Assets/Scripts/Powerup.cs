@@ -5,19 +5,17 @@ using UnityEngine;
 public class Powerup : MonoBehaviour {
     
     public float rendererShowDelay = 0.25f;
-    public float duration = 10f;
+    public float baseDuration = 10f;
     public GameObject powerupRenderer;
 
     private PlayerPowerupTypes currentType;
-    private PowerupSpawner powerupSpawner;
+    private float duration;
+    private const float durationMultiplier = 2.5f;
 
-    private void Awake() {
-        powerupSpawner = GameObject.Find("Game Manager").GetComponentInChildren<PowerupSpawner>();
-    }
-
-    public void Respawn() {
-        int randomPowerup = Random.Range(0, 3);
-        currentType = (PlayerPowerupTypes) randomPowerup;
+    public void Respawn(List<PowerupObject> unlockedPowerups) {
+        int randomPowerup = Random.Range(0, unlockedPowerups.Count);
+        currentType = unlockedPowerups[randomPowerup].GetPowerupType();
+        duration = baseDuration + durationMultiplier * unlockedPowerups[randomPowerup].GetCurrentLevel();
     }
 
     public PlayerPowerupTypes GetCurrentType() {

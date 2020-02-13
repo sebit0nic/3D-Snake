@@ -111,11 +111,19 @@ public class SavedData {
         }
     }
 
+    public List<PowerupObject> GetUnlockedPowerups() {
+        return unlockedPowerups;
+    }
+
     public int GetTotalScore() {
         return totalScore;
     }
 
     public void SetTotalScore(int totalScore) {
         this.totalScore = totalScore;
+    }
+
+    public void SetHighscore(int highscore) {
+        this.highscore = highscore;
     }
 }

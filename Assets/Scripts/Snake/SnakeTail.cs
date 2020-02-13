@@ -33,7 +33,6 @@ public class SnakeTail : MonoBehaviour {
     }
 
     public void StartGameOverAnimation(Color gameOverColor) {
-        //thisAnimator.SetTrigger("OnBlink");
         thisRenderer.material.color = gameOverColor;
     }
 

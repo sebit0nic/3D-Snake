@@ -1358,7 +1358,6 @@ MonoBehaviour:
   minimumCollectedFruitToSpawn: 5
   minSpawnDelay: 10
   maxSpawnDelay: 25
-  unspawnDelay: 10
 --- !u!1 &455280995
 GameObject:
   m_ObjectHideFlags: 0
@@ -4001,6 +4000,7 @@ GameObject:
   - component: {fileID: 2094974985}
   - component: {fileID: 2094974986}
   - component: {fileID: 2094974987}
+  - component: {fileID: 2094974981}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Snake Head
@@ -4024,6 +4024,25 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!95 &2094974981
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094974979}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a8778e7513aa9fc409a83532d56d47d6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!23 &2094974982
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4078,7 +4097,7 @@ Transform:
   m_GameObject: {fileID: 2094974979}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 7.85, z: 0}
-  m_LocalScale: {x: 1, y: 1.0000002, z: 1.0000002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 747452297}
   - {fileID: 1070618931}
@@ -4238,7 +4257,7 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 2639029446847104498, guid: c7da1818f900a164e8888dcba3d15560,
     type: 3}
-  amountToPool: 200
+  amountToPool: 300
 --- !u!1 &2119835969
 GameObject:
   m_ObjectHideFlags: 0

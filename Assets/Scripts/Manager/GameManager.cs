@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour {
         scoreManager.Init(savedData);
         guiManager = GetComponentInChildren<GuiManager>();
         powerupSpawner = GetComponentInChildren<PowerupSpawner>();
+        powerupSpawner.Init(savedData);
         snake = GameObject.Find("Snake").GetComponent<Snake>();
         cameraController = GameObject.Find("Environment").GetComponentInChildren<CameraController>();
     }

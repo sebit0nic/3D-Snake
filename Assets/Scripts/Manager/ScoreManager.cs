@@ -19,8 +19,8 @@ public class ScoreManager : MonoBehaviour {
 
     public void FinalizeScore(SavedData savedData) {
         savedData.SetTotalScore(totalScore);
-        if (totalScore > savedData.highscore) {
-            savedData.highscore = totalScore;
+        if (finalScore > savedData.highscore) {
+            savedData.SetHighscore(finalScore);
         }
     }
 

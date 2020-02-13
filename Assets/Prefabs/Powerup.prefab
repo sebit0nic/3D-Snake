@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rendererShowDelay: 0.25
-  duration: 10
+  baseDuration: 7.5
   powerupRenderer: {fileID: 2316394541296811767}
 --- !u!1 &5588991563219331879
 GameObject:

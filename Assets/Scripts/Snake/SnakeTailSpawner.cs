@@ -14,11 +14,13 @@ public class SnakeTailSpawner : MonoBehaviour {
     private List<SnakeTail> snakeTailList;
     private bool thinPowerupEnabled = false;
     private MeshRenderer thisMeshRenderer;
+    private Animator snakeThinAnimator;
 
     public void Init(Snake snake) {
         this.snake = snake;
         snakeTailList = new List<SnakeTail>();
         thisMeshRenderer = GetComponent<MeshRenderer>();
+        snakeThinAnimator = GetComponent<Animator>();
 
         InvokeRepeating("SpawnCollider", tailRepeatFactor, tailRepeatFactor);
         InvokeRepeating("PopTail", startLength, lifespan);
@@ -38,6 +40,7 @@ public class SnakeTailSpawner : MonoBehaviour {
     }
 
     public void Stop() {
+        snakeThinAnimator.enabled = false;
         StartGameOverAnimation();
         CancelInvoke("SpawnCollider");
         CancelInvoke("PopTail");
@@ -75,6 +78,8 @@ public class SnakeTailSpawner : MonoBehaviour {
 
     private IEnumerator WaitForThinPowerupDuration(float duration) {
         thinPowerupEnabled = true;
+        snakeThinAnimator.SetTrigger("ThinOn");
+        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         CancelInvoke("SpawnCollider");
         CancelInvoke("PopTail");
         InvokeRepeating("SpawnCollider", 0, tailRepeatFactor / 2);
@@ -86,7 +91,9 @@ public class SnakeTailSpawner : MonoBehaviour {
         CancelInvoke("PopTail");
         InvokeRepeating("SpawnCollider", 0, tailRepeatFactor);
         InvokeRepeating("PopTail", 0, lifespan);
+        snakeThinAnimator.SetTrigger("ThinOff");
         thinPowerupEnabled = false;
+        transform.localScale = new Vector3(1f, 1f, 1f);
         snake.NotifyPowerupWoreOff();
     }
 }

@@ -6,19 +6,37 @@ public class PowerupSpawner : MonoBehaviour {
 
     public GameObject powerupPrefab;
     public int minimumCollectedFruitToSpawn;
-    public float minSpawnDelay, maxSpawnDelay, unspawnDelay;
+    public float minSpawnDelay, maxSpawnDelay;
     
     private GameObject powerupGameObject;
     private Powerup powerup;
+    private bool canSpawn = false;
+    private List<PowerupObject> unlockedPowerups;
 
-    private void Start() {
+    public void Init(SavedData savedData) {
         powerupGameObject = Instantiate(powerupPrefab, Vector3.zero, Quaternion.identity);
         powerup = powerupGameObject.GetComponent<Powerup>();
         powerupGameObject.SetActive(false);
+        unlockedPowerups = new List<PowerupObject>();
+
+        int unlockedPowerupCount = 0;
+        foreach(PowerupObject powerupObject in savedData.GetUnlockedPowerups()) {
+            if (powerupObject.GetCurrentLevel() > 0) {
+                unlockedPowerups.Add(powerupObject);
+                unlockedPowerupCount++;
+                Debug.Log("Add unlocked powerup: " + powerupObject.name);
+            }
+        }
+
+        if (unlockedPowerupCount > 0) {
+            canSpawn = true;
+        } else {
+            Debug.Log("No powerups added!");
+        }
     }
 
     public void UpdateActualCollectedFruit(int actualCollectedFruit) {
-        if (actualCollectedFruit == minimumCollectedFruitToSpawn) {
+        if (actualCollectedFruit == minimumCollectedFruitToSpawn && canSpawn) {
             ResumeSpawning();
         }
     }
@@ -49,13 +67,13 @@ public class PowerupSpawner : MonoBehaviour {
         powerupGameObject.transform.rotation = GameManager.instance.GetLastTailTransform().rotation;
 
         powerupGameObject.SetActive(true);
-        powerup.Respawn();
+        powerup.Respawn(unlockedPowerups);
         StopAllCoroutines();
         StartCoroutine("WaitForUnspawnDelay");
     }
 
     private IEnumerator WaitForUnspawnDelay() {
-        yield return new WaitForSeconds(unspawnDelay);
+        yield return new WaitForSeconds(powerup.GetDuration());
         powerupGameObject.SetActive(false);
         StartCoroutine("WaitForSpawnDelay");
     }

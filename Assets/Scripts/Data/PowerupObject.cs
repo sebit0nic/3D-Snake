@@ -32,4 +32,8 @@ public class PowerupObject {
     public int GetMaxLevel() {
         return maxLevel;
     }
+
+    public PlayerPowerupTypes GetPowerupType() {
+        return type;
+    }
 }
