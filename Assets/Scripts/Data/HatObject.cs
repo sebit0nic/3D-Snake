@@ -21,4 +21,8 @@ public class HatObject {
     public int GetPrice() {
         return price;
     }
+
+    public string GetName() {
+        return name;
+    }
 }

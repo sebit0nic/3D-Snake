@@ -91,6 +91,20 @@ public class SavedData {
         }
     }
 
+    public string GetPurchaseableName(int sectionIndex, int purchaseableIndex) {
+        currentShopSection = (ShopSection) sectionIndex;
+        switch ( currentShopSection ) {
+            case ShopSection.HATS:
+                return unlockedHats[purchaseableIndex].GetName();
+            case ShopSection.COLORSCHEME:
+                return unlockedColors[purchaseableIndex].GetName();
+            case ShopSection.POWERUPS:
+                return unlockedPowerups[purchaseableIndex].GetName();
+            default:
+                return "DUMMY";
+        }
+    }
+
     public int GetCurrentLevel(int sectionIndex, int purchaseableIndex) {
         currentShopSection = (ShopSection) sectionIndex;
         if (currentShopSection == ShopSection.HATS || currentShopSection == ShopSection.COLORSCHEME) {

@@ -17,34 +17,25 @@ public class ShopSectionManager : MonoBehaviour {
 
         for ( int i = 0; i < hatSelectButtons.Length; i++ ) {
             hatSelectButtons[i].Init((int)ShopSection.HATS, i, false);
-            hatSelectButtons[i].SetPriceText(savedData);
+            hatSelectButtons[i].SetNameText(savedData);
         }
 
         for ( int i = 0; i < colorSelectButtons.Length; i++ ) {
             colorSelectButtons[i].Init((int) ShopSection.COLORSCHEME, i, false);
-            colorSelectButtons[i].SetPriceText(savedData);
+            colorSelectButtons[i].SetNameText(savedData);
         }
 
         for ( int i = 0; i < powerupSelectButtons.Length; i++ ) {
             powerupSelectButtons[i].Init((int) ShopSection.POWERUPS, i, true);
-            powerupSelectButtons[i].SetPriceText(savedData);
+            powerupSelectButtons[i].SetNameText(savedData);
             powerupSelectButtons[i].SetProgressBar(savedData);
         }
     }
 
     public void UpdatePurchaseableSelectButton(SavedData savedData, int sectionIndex, int purchaseableIndex) {
         ShopSection currentSection = (ShopSection) sectionIndex;
-        switch ( currentSection ) {
-            case ShopSection.HATS:
-                hatSelectButtons[purchaseableIndex].SetPriceText(savedData);
-                break;
-            case ShopSection.COLORSCHEME:
-                colorSelectButtons[purchaseableIndex].SetPriceText(savedData);
-                break;
-            case ShopSection.POWERUPS:
-                powerupSelectButtons[purchaseableIndex].SetPriceText(savedData);
-                powerupSelectButtons[purchaseableIndex].SetProgressBar(savedData);
-                break;
+        if (currentSection == ShopSection.POWERUPS) {
+            powerupSelectButtons[purchaseableIndex].SetProgressBar(savedData);
         }
     }
 }

@@ -30,4 +30,8 @@ public class ColorObject {
     public int GetPrice() {
         return price;
     }
+
+    public string GetName() {
+        return name;
+    }
 }

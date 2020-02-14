@@ -25,8 +25,8 @@ public enum PlayerHatTypes {
     TYPE_CYLINDER,
     TYPE_CAPPY,
     TYPE_PROPELLER,
-    TYPE_4,
-    TYPE_5
+    TYPE_VIKING,
+    TYPE_CROWN
 }
 
 public enum PlayerColorTypes {

@@ -36,4 +36,8 @@ public class PowerupObject {
     public PlayerPowerupTypes GetPowerupType() {
         return type;
     }
+
+    public string GetName() {
+        return name;
+    }
 }

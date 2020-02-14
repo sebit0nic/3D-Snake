@@ -66,7 +66,7 @@ public class ShopScreen : MonoBehaviour {
             } else {
                 buySelectButton.interactable = false;
             }
-            buySelectText.text = "Buy";
+            buySelectText.text = "Buy (" + savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) + ")";
             buyMode = true;
         } else {
             if ( savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex) ) {
@@ -74,11 +74,11 @@ public class ShopScreen : MonoBehaviour {
                 buySelectButton.interactable = true;
                 buyMode = false;
             } else if ( savedData.totalScore >= savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) ) {
-                buySelectText.text = "Buy";
+                buySelectText.text = "Buy (" + savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) + ")";
                 buySelectButton.interactable = true;
                 buyMode = true;
             } else {
-                buySelectText.text = "Buy";
+                buySelectText.text = "Buy (" + savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) + ")";
                 buySelectButton.interactable = false;
                 buyMode = true;
             }
