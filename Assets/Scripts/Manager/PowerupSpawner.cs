@@ -6,7 +6,7 @@ public class PowerupSpawner : MonoBehaviour {
 
     public GameObject powerupPrefab;
     public int minimumCollectedFruitToSpawn;
-    public float minSpawnDelay, maxSpawnDelay;
+    public float minSpawnDelay, maxSpawnDelay, unspawnDelay;
     
     private GameObject powerupGameObject;
     private Powerup powerup;
@@ -24,14 +24,11 @@ public class PowerupSpawner : MonoBehaviour {
             if (powerupObject.GetCurrentLevel() > 0) {
                 unlockedPowerups.Add(powerupObject);
                 unlockedPowerupCount++;
-                Debug.Log("Add unlocked powerup: " + powerupObject.name);
             }
         }
 
         if (unlockedPowerupCount > 0) {
             canSpawn = true;
-        } else {
-            Debug.Log("No powerups added!");
         }
     }
 
@@ -73,7 +70,7 @@ public class PowerupSpawner : MonoBehaviour {
     }
 
     private IEnumerator WaitForUnspawnDelay() {
-        yield return new WaitForSeconds(powerup.GetDuration());
+        yield return new WaitForSeconds(unspawnDelay);
         powerupGameObject.SetActive(false);
         StartCoroutine("WaitForSpawnDelay");
     }
