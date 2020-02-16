@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour {
 
     private int finalScore = 0;
     private int totalScore = 0;
+    private bool newHighscore;
 
     public void Init(SavedData savedData) {
         totalScore = savedData.GetTotalScore();
@@ -21,6 +22,7 @@ public class ScoreManager : MonoBehaviour {
         savedData.SetTotalScore(totalScore);
         if (finalScore > savedData.highscore) {
             savedData.SetHighscore(finalScore);
+            newHighscore = true;
         }
     }
 
@@ -30,5 +32,9 @@ public class ScoreManager : MonoBehaviour {
 
     public int GetTotalScore() {
         return totalScore;
+    }
+
+    public bool IsNewHighscore() {
+        return newHighscore;
     }
 }

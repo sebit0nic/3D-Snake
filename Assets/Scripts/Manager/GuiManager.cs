@@ -8,11 +8,13 @@ public class GuiManager : MonoBehaviour {
     public GameObject pauseButton, pauseMenu;
     public GameObject steerRightButton, steerLeftButton;
     public GameObject gameOverScreen;
+    public GameObject newHighscoreCrown;
     public ScreenTransition screenTransition;
     public Text finalScoreText, totalScoreText;
     public Image powerupIcon;
     public Image powerupDurationImage;
-    public CollectCircleEffect collectCircleEffect;
+    public Animator collectCircleEffect;
+    public float scoreCountDuration;
 
     [Header("Powerup Icons")]
     public Sprite powerupInvincibilityIcon;
@@ -36,7 +38,8 @@ public class GuiManager : MonoBehaviour {
     }
 
     public void FruitCollected() {
-        collectCircleEffect.NotifyFruitCollected();
+        collectCircleEffect.transform.LookAt(Camera.main.transform);
+        collectCircleEffect.SetTrigger("OnCollected");
     }
 
     public void TogglePauseMenu(bool value) {
@@ -51,12 +54,9 @@ public class GuiManager : MonoBehaviour {
         powerupDurationImage.gameObject.SetActive(false);
     }
 
-    public void ShowGameOverScreen(int finalScore, int totalScore) {
+    public void ShowGameOverScreen(int finalScore, int totalScore, bool newHighscore) {
         gameOverScreen.SetActive(true);
-        finalScoreString = finalScore.ToString();
-        totalScoreString = totalScore.ToString();
-        finalScoreText.text = finalScoreString.PadLeft(3, '0');
-        totalScoreText.text = totalScoreString.PadLeft(5, '0');
+        StartCoroutine(OnShowFinalScore(finalScore, totalScore, newHighscore));
     }
 
     public void ShowScreenTransition(int sceneID) {
@@ -85,5 +85,44 @@ public class GuiManager : MonoBehaviour {
 
     public void HidePowerupText() {
         powerupIcon.enabled = false;
+    }
+
+    private IEnumerator OnShowFinalScore(int finalScore, int totalScore, bool newHighscore) {
+        int tempTotalScore = totalScore - finalScore;
+        totalScoreString = tempTotalScore.ToString();
+        totalScoreText.text = totalScoreString.PadLeft(5, '0');
+
+        int tempScore = 0;
+        float countTempo = scoreCountDuration / finalScore;
+        while (tempScore < finalScore) {
+            tempScore++;
+            finalScoreString = tempScore.ToString();
+            finalScoreText.text = finalScoreString.PadLeft(3, '0');
+            yield return new WaitForSeconds(countTempo);
+        }
+
+        tempScore = finalScore;
+        finalScoreString = tempScore.ToString();
+        finalScoreText.text = finalScoreString.PadLeft(3, '0');
+        if (newHighscore) {
+            newHighscoreCrown.SetActive(true);
+        }
+
+        StartCoroutine(OnShowTotalScore(finalScore, totalScore));
+    }
+
+    private IEnumerator OnShowTotalScore(int finalScore, int totalScore) {
+        int tempScore = totalScore - finalScore;
+        float countTempo = scoreCountDuration / finalScore;
+        while (tempScore < totalScore) {
+            tempScore++;
+            totalScoreString = tempScore.ToString();
+            totalScoreText.text = totalScoreString.PadLeft(5, '0');
+            yield return new WaitForSeconds(countTempo);
+        }
+
+        tempScore = totalScore;
+        totalScoreString = tempScore.ToString();
+        totalScoreText.text = totalScoreString.PadLeft(5, '0');
     }
 }

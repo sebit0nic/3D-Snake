@@ -67,10 +67,10 @@ public class GameManager : MonoBehaviour {
         fruitSpawner.Stop();
         powerupSpawner.Stop();
         snake.Stop();
-        guiManager.HideHUD();
-        guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore());
-        cameraController.Stop();
         scoreManager.FinalizeScore(savedData);
+        guiManager.HideHUD();
+        guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore());
+        cameraController.Stop();
         saveLoadManager.SaveData(savedData);
     }
 
