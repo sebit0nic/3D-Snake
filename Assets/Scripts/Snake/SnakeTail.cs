@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class SnakeTail : MonoBehaviour {
 
-    private float safetyspan = 0.1f;
+    private const float safetyspan = 0.1f;
+    private const float thinSize = 0.5f;
     private SphereCollider thisCollider;
-    private SnakeTailSpawner snakeTailSpawner;
     private Vector3 thinPowerupScale;
     private MeshRenderer thisRenderer;
+    private bool thinMode;
 
     private void Awake() {
         thisCollider = GetComponent<SphereCollider>();
-        snakeTailSpawner = GameObject.Find("Snake").GetComponent<SnakeTailSpawner>();
-        thinPowerupScale = new Vector3(0.5f, 0.5f, 0.5f);
+        thinPowerupScale = new Vector3(thinSize, thinSize, thinSize);
         thisRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
-    private void OnEnable() {
+    public void Init(bool thinPowerupEnabled) {
+        thinMode = thinPowerupEnabled;
         thisCollider.enabled = false;
-        if (snakeTailSpawner.IsThinPowerupEnabled()) {
+
+        if (thinMode) {
             transform.localScale = thinPowerupScale;
         } else {
             transform.localScale = Vector3.one;
@@ -34,6 +36,10 @@ public class SnakeTail : MonoBehaviour {
 
     public void StartGameOverAnimation(Color gameOverColor) {
         thisRenderer.material.color = gameOverColor;
+    }
+
+    public bool IsInThinMode() {
+        return thinMode;
     }
 
     public IEnumerator WaitSafetyRoutine() {

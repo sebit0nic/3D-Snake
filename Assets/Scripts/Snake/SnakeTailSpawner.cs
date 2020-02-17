@@ -6,13 +6,13 @@ public class SnakeTailSpawner : MonoBehaviour {
     
     public float tailRepeatFactor = 0.1f;
     public float startLength = 0.8f;
-    public float lengthIncreaseFactor = 0.4f;
+    public float lengthIncreaseFactor = 0.4f, thinSize = 0.5f;
     public Color gameOverColor;
 
     private Snake snake;
-    private float lifespan = 0.1f;
+    private const float lifespan = 0.1f;
     private List<SnakeTail> snakeTailList;
-    private bool thinPowerupEnabled = false;
+    private bool thinPowerupEnabled = false, currentTailThin = false, lastTailThin = false;
     private MeshRenderer thisMeshRenderer;
     private Animator snakeThinAnimator;
 
@@ -32,7 +32,7 @@ public class SnakeTailSpawner : MonoBehaviour {
 
     public void IncreaseSnakeLength() {
         CancelInvoke("PopTail");
-        if (thinPowerupEnabled) {
+        if (currentTailThin) {
             InvokeRepeating("PopTail", lengthIncreaseFactor, lifespan / 2);
         } else {
             InvokeRepeating("PopTail", lengthIncreaseFactor, lifespan);
@@ -61,12 +61,26 @@ public class SnakeTailSpawner : MonoBehaviour {
         newSnakeTail.transform.position = transform.position;
         newSnakeTail.transform.rotation = transform.rotation;
         newSnakeTail.gameObject.SetActive(true);
+        newSnakeTail.Init(thinPowerupEnabled);
         snakeTailList.Add(newSnakeTail);
     }
 
     private void PopTail() {
+        currentTailThin = snakeTailList[0].IsInThinMode();
         snakeTailList[0].gameObject.SetActive(false);
         snakeTailList.RemoveAt(0);
+
+        if (currentTailThin != lastTailThin) {
+            if (currentTailThin) {
+                CancelInvoke("PopTail");
+                InvokeRepeating("PopTail", 0, lifespan / 2);
+            } else {
+                CancelInvoke("PopTail");
+                InvokeRepeating("PopTail", 0, lifespan);
+            }
+        }
+
+        lastTailThin = currentTailThin;
     }
 
     private void StartGameOverAnimation() {
@@ -79,18 +93,14 @@ public class SnakeTailSpawner : MonoBehaviour {
     private IEnumerator WaitForThinPowerupDuration(float duration) {
         thinPowerupEnabled = true;
         snakeThinAnimator.SetTrigger("ThinOn");
-        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        transform.localScale = new Vector3(thinSize, thinSize, thinSize);
         CancelInvoke("SpawnCollider");
-        CancelInvoke("PopTail");
         InvokeRepeating("SpawnCollider", 0, tailRepeatFactor / 2);
-        InvokeRepeating("PopTail", 0, lifespan / 2);
 
         yield return new WaitForSeconds(duration);
 
         CancelInvoke("SpawnCollider");
-        CancelInvoke("PopTail");
         InvokeRepeating("SpawnCollider", 0, tailRepeatFactor);
-        InvokeRepeating("PopTail", 0, lifespan);
         snakeThinAnimator.SetTrigger("ThinOff");
         thinPowerupEnabled = false;
         transform.localScale = new Vector3(1f, 1f, 1f);

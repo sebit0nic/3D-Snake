@@ -61,12 +61,14 @@ public class ShopScreen : MonoBehaviour {
         if (selectedShopSection == ShopSection.POWERUPS) {
             if (savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex)) {
                 buySelectButton.interactable = false;
+                buySelectText.text = "Buy";
             } else if (savedData.totalScore >= savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex)) {
                 buySelectButton.interactable = true;
+                buySelectText.text = "Buy (" + savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) + ")";
             } else {
                 buySelectButton.interactable = false;
+                buySelectText.text = "Buy (" + savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) + ")";
             }
-            buySelectText.text = "Buy (" + savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) + ")";
             buyMode = true;
         } else {
             if ( savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex) ) {
@@ -90,9 +92,11 @@ public class ShopScreen : MonoBehaviour {
             savedData.UnlockPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
             totalScoreText.text = savedData.totalScore.ToString().PadLeft(5, '0');
             PurchaseableObjectSelected(selectedPurchaseableIndex);
-        } else {
+        }
+        if ((ShopSection)selectedSectionIndex != ShopSection.POWERUPS) {
             savedData.SelectPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
         }
+
         saveLoadManager.SaveData(savedData);
         shopSectionManager.UpdatePurchaseableSelectButton(savedData, selectedSectionIndex, selectedPurchaseableIndex);
         HideAllHatPreviewModels();

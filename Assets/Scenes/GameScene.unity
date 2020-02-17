@@ -4389,6 +4389,7 @@ MonoBehaviour:
   tailRepeatFactor: 0.1
   startLength: 0.8
   lengthIncreaseFactor: 0.4
+  thinSize: 0.5
   gameOverColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
 --- !u!114 &2094974988
 MonoBehaviour:
