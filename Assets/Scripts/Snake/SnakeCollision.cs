@@ -5,14 +5,15 @@ using UnityEngine;
 public class SnakeCollision : MonoBehaviour {
 
     private SnakeCollider magnetCollider;
-    private ParticleSystem fruitCollectParticle;
+    private ParticleSystem fruitCollectParticle, magnetPowerupParticle;
     private Snake snake;
     private bool invincible = false;
     private bool stopped = false;
 
     public void Init(Snake snake) {
         this.snake = snake;
-        fruitCollectParticle = GetComponentInChildren<ParticleSystem>();
+        fruitCollectParticle = transform.Find("Fruit Collect Particle").GetComponent<ParticleSystem>();
+        magnetPowerupParticle = transform.Find("Magnet Powerup Particle").GetComponent<ParticleSystem>();
 
         SnakeCollider[] colliderList = GetComponentsInChildren<SnakeCollider>();
         foreach(SnakeCollider col in colliderList) {
@@ -60,6 +61,7 @@ public class SnakeCollision : MonoBehaviour {
 
     public void Stop() {
         stopped = true;
+        magnetPowerupParticle.gameObject.SetActive(false);
         StopAllCoroutines();
     }
 
@@ -72,7 +74,11 @@ public class SnakeCollision : MonoBehaviour {
 
     private IEnumerator WaitForMagnetPowerupDuration(float duration) {
         magnetCollider.OnMagnetPowerupStart();
+        magnetPowerupParticle.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(duration);
+
+        magnetPowerupParticle.gameObject.SetActive(false);
         magnetCollider.OnMagnetPowerupEnd();
         snake.NotifyPowerupWoreOff();
     }
