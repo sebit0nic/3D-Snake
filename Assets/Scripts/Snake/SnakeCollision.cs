@@ -6,6 +6,7 @@ public class SnakeCollision : MonoBehaviour {
 
     private SnakeCollider magnetCollider;
     private ParticleSystem fruitCollectParticle, magnetPowerupParticle;
+    private Animator snakeHeadAnimator;
     private Snake snake;
     private bool invincible = false;
     private bool stopped = false;
@@ -14,6 +15,7 @@ public class SnakeCollision : MonoBehaviour {
         this.snake = snake;
         fruitCollectParticle = transform.Find("Fruit Collect Particle").GetComponent<ParticleSystem>();
         magnetPowerupParticle = transform.Find("Magnet Powerup Particle").GetComponent<ParticleSystem>();
+        snakeHeadAnimator = transform.Find("Head").GetComponent<Animator>();
 
         SnakeCollider[] colliderList = GetComponentsInChildren<SnakeCollider>();
         foreach(SnakeCollider col in colliderList) {
@@ -40,6 +42,7 @@ public class SnakeCollision : MonoBehaviour {
                         snake.NotifyFruitEaten();
                         fruitCollectParticle.Stop();
                         fruitCollectParticle.Play();
+                        snakeHeadAnimator.SetTrigger("OnEat");
                     }
                     if ( other.gameObject.tag.Equals("Powerup") ) {
                         snake.NotifyPowerupCollected();

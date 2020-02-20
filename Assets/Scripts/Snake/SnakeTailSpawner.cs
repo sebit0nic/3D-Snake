@@ -13,13 +13,14 @@ public class SnakeTailSpawner : MonoBehaviour {
     private const float lifespan = 0.1f;
     private List<SnakeTail> snakeTailList;
     private bool thinPowerupEnabled = false, currentTailThin = false, lastTailThin = false;
-    private MeshRenderer thisMeshRenderer;
+    private MeshRenderer snakeHeadLowerMeshRenderer, snakeHeadUpperRenderer;
     private Animator snakeThinAnimator;
 
     public void Init(Snake snake) {
         this.snake = snake;
         snakeTailList = new List<SnakeTail>();
-        thisMeshRenderer = GetComponent<MeshRenderer>();
+        snakeHeadLowerMeshRenderer = transform.Find("Head").Find("Lower Head").GetComponent<MeshRenderer>();
+        snakeHeadUpperRenderer = transform.Find("Head").Find("Upper Head").GetComponent<MeshRenderer>();
         snakeThinAnimator = GetComponent<Animator>();
 
         InvokeRepeating("SpawnCollider", tailRepeatFactor, tailRepeatFactor);
@@ -84,7 +85,8 @@ public class SnakeTailSpawner : MonoBehaviour {
     }
 
     private void StartGameOverAnimation() {
-        thisMeshRenderer.material.color = gameOverColor;
+        snakeHeadLowerMeshRenderer.material.color = gameOverColor;
+        snakeHeadUpperRenderer.material.color = gameOverColor;
         foreach (SnakeTail snakeTail in snakeTailList) {
             snakeTail.StartGameOverAnimation(gameOverColor);
         }
