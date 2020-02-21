@@ -7,22 +7,27 @@ ModelImporter:
     100002: //RootNode
     100004: Upper_Snake_Head
     100006: Snake_Body
+    100008: Snake_Body_2
     400000: Lower_Snake_Head
     400002: //RootNode
     400004: Upper_Snake_Head
     400006: Snake_Body
+    400008: Snake_Body_2
     2100000: unnamed
     2100002: Material_001__Colorscheme_1_Colorsheet_png
     2100004: None__Colorscheme_1_Colorsheet_png
     2300000: Lower_Snake_Head
     2300002: Upper_Snake_Head
     2300004: Snake_Body
+    2300006: Snake_Body_2
     3300000: Lower_Snake_Head
     3300002: Upper_Snake_Head
     3300004: Snake_Body
+    3300006: Snake_Body_2
     4300000: Lower_Snake_Head
     4300002: Upper_Snake_Head
     4300004: Snake_Body
+    4300006: Snake_Body_2
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
