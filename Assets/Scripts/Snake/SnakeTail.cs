@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SnakeTail : MonoBehaviour {
 
+    public Material normalMaterial, invincibiltyMaterial;
+
     private const float safetyspan = 0.1f;
     private const float thinSize = 0.5f;
     private SphereCollider thisCollider;
@@ -17,7 +19,7 @@ public class SnakeTail : MonoBehaviour {
         thisRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
-    public void Init(bool thinPowerupEnabled) {
+    public void Init(bool thinPowerupEnabled, bool invincibilityPowerupEnabled) {
         thinMode = thinPowerupEnabled;
         thisCollider.enabled = false;
 
@@ -25,6 +27,12 @@ public class SnakeTail : MonoBehaviour {
             transform.localScale = thinPowerupScale;
         } else {
             transform.localScale = Vector3.one;
+        }
+
+        if (invincibilityPowerupEnabled) {
+            thisRenderer.material = invincibiltyMaterial;
+        } else {
+            thisRenderer.material = normalMaterial;
         }
         StartCoroutine(WaitSafetyRoutine());
     }
@@ -36,6 +44,14 @@ public class SnakeTail : MonoBehaviour {
 
     public void StartGameOverAnimation(Color gameOverColor) {
         thisRenderer.material.color = gameOverColor;
+    }
+
+    public void StartInvincibilityMaterial() {
+        thisRenderer.material = invincibiltyMaterial;
+    }
+
+    public void StopInvincibilityMaterial() {
+        thisRenderer.material = normalMaterial;
     }
 
     public bool IsInThinMode() {

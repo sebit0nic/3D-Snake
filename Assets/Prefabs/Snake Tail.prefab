@@ -75,6 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926b08a2275a4c54bafce6e0a5af44c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 2100000, guid: 6c888bf575e6fe2488d7628d5e8025ae, type: 2}
+  invincibiltyMaterial: {fileID: 2100000, guid: 54fa9113aea6c1f44a1c8eec31dc6d1b,
+    type: 2}
 --- !u!1 &6482476112215773523
 GameObject:
   m_ObjectHideFlags: 0

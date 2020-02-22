@@ -38,6 +38,7 @@ public class Snake : MonoBehaviour {
     public void NotifyPowerupCollected() {
         switch ( GameManager.instance.PlayerCollectedPowerup() ) {
             case PlayerPowerupTypes.INVINCIBILTY:
+                snakeTailSpawner.InvincibilityPowerupActive(GameManager.instance.GetPowerupDuration());
                 snakeCollision.InvincibilityPowerupActive(GameManager.instance.GetPowerupDuration());
                 break;
             case PlayerPowerupTypes.MAGNET:

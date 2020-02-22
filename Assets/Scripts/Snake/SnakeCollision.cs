@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SnakeCollision : MonoBehaviour {
 
+    public float powerupCourtesyDelay;
+
     private SnakeCollider magnetCollider;
     private ParticleSystem fruitCollectParticle, magnetPowerupParticle;
     private Animator snakeHeadAnimator;
@@ -71,8 +73,13 @@ public class SnakeCollision : MonoBehaviour {
     private IEnumerator WaitForInvincibilityPowerupDuration(float duration) {
         invincible = true;
         yield return new WaitForSeconds(duration);
-        invincible = false;
         snake.NotifyPowerupWoreOff();
+        StartCoroutine(WaitForCourtesyPowerupDuration());
+    }
+
+    private IEnumerator WaitForCourtesyPowerupDuration() {
+        yield return new WaitForSeconds(powerupCourtesyDelay);
+        invincible = false;
     }
 
     private IEnumerator WaitForMagnetPowerupDuration(float duration) {

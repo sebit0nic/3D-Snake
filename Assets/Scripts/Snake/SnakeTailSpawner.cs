@@ -8,6 +8,7 @@ public class SnakeTailSpawner : MonoBehaviour {
     public float startLength = 0.8f;
     public float lengthIncreaseFactor = 0.4f, thinSize = 0.5f;
     public Color gameOverColor;
+    public Material normalMaterial, invincibiltyMaterial;
 
     private Snake snake;
     private const float lifespan = 0.1f;
@@ -15,6 +16,7 @@ public class SnakeTailSpawner : MonoBehaviour {
     private bool thinPowerupEnabled = false, currentTailThin = false, lastTailThin = false;
     private MeshRenderer snakeHeadLowerMeshRenderer, snakeHeadUpperRenderer;
     private Animator snakeThinAnimator;
+    private bool invincible = false;
 
     public void Init(Snake snake) {
         this.snake = snake;
@@ -29,6 +31,10 @@ public class SnakeTailSpawner : MonoBehaviour {
 
     public void ThinPowerupActive(float duration) {
         StartCoroutine(WaitForThinPowerupDuration(duration));
+    }
+
+    public void InvincibilityPowerupActive(float duration) {
+        StartCoroutine(WaitForInvincibilityPowerupDuration(duration));
     }
 
     public void IncreaseSnakeLength() {
@@ -62,7 +68,7 @@ public class SnakeTailSpawner : MonoBehaviour {
         newSnakeTail.transform.position = transform.position;
         newSnakeTail.transform.rotation = transform.rotation;
         newSnakeTail.gameObject.SetActive(true);
-        newSnakeTail.Init(thinPowerupEnabled);
+        newSnakeTail.Init(thinPowerupEnabled, invincible);
         snakeTailList.Add(newSnakeTail);
     }
 
@@ -107,5 +113,23 @@ public class SnakeTailSpawner : MonoBehaviour {
         thinPowerupEnabled = false;
         transform.localScale = new Vector3(1f, 1f, 1f);
         snake.NotifyPowerupWoreOff();
+    }
+
+    private IEnumerator WaitForInvincibilityPowerupDuration(float duration) {
+        invincible = true;
+        snakeHeadUpperRenderer.material = invincibiltyMaterial;
+        snakeHeadLowerMeshRenderer.material = invincibiltyMaterial;
+        foreach ( SnakeTail snakeTail in snakeTailList ) {
+            snakeTail.StartInvincibilityMaterial();
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        foreach ( SnakeTail snakeTail in snakeTailList ) {
+            snakeTail.StopInvincibilityMaterial();
+        }
+        snakeHeadLowerMeshRenderer.material = normalMaterial;
+        snakeHeadUpperRenderer.material = normalMaterial;
+        invincible = false;
     }
 }

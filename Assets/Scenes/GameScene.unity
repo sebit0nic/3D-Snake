@@ -9247,6 +9247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f14c4ced2e1bc24b906cb68ce8f942a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerupCourtesyDelay: 0.5
 --- !u!114 &2094974987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9264,6 +9265,9 @@ MonoBehaviour:
   lengthIncreaseFactor: 0.4
   thinSize: 0.5
   gameOverColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
+  normalMaterial: {fileID: 2100000, guid: 6c888bf575e6fe2488d7628d5e8025ae, type: 2}
+  invincibiltyMaterial: {fileID: 2100000, guid: 54fa9113aea6c1f44a1c8eec31dc6d1b,
+    type: 2}
 --- !u!114 &2094974988
 MonoBehaviour:
   m_ObjectHideFlags: 0
