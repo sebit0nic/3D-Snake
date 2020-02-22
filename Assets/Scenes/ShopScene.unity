@@ -2488,12 +2488,12 @@ MonoBehaviour:
     unlocked: 0
     type: 5
   standardColorObjects:
-  - name: Color 1
+  - name: Default
     price: 0
     unlocked: 1
     selected: 1
     type: 0
-  - name: Color 2
+  - name: Black and White
     price: 250
     unlocked: 0
     selected: 0

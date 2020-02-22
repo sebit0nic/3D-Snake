@@ -1838,6 +1838,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750844885}
   m_CullTransparentMesh: 0
+--- !u!1 &771360680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 771360681}
+  - component: {fileID: 771360682}
+  m_Layer: 0
+  m_Name: Style Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &771360681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771360680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1131701161}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &771360682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771360680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef5dedbb60b72947bd22329faf4d7da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMaterial: {fileID: 5115284158559602382}
+  planetSkybox: {fileID: 1778075236}
+  planetMaterial: {fileID: 1508019703}
+  baseTextures:
+  - {fileID: 2800000, guid: 0c486b76562608c4c8f756e530e79bd7, type: 3}
+  - {fileID: 2800000, guid: 291ad31b627d75f489be3b34a4cc275f, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  baseColors:
+  - {r: 0.34509805, g: 0.21568629, b: 0.121568635, a: 1}
+  - {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  planetColors:
+  - {r: 0.9294118, g: 0.9921569, b: 0.8000001, a: 1}
+  - {r: 0.90196085, g: 0.90196085, b: 0.90196085, a: 1}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  baseSkybox:
+  - {fileID: 2100000, guid: 855dff256dcc74149b20a5b84b29b60c, type: 2}
+  - {fileID: 2100000, guid: 3a0e46bf367554643b9c0e8e1c4d3cbf, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &784451653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2387,6 +2461,7 @@ Transform:
   - {fileID: 1490296314}
   - {fileID: 2115995168}
   - {fileID: 397812331}
+  - {fileID: 771360681}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2428,12 +2503,12 @@ MonoBehaviour:
     unlocked: 0
     type: 5
   standardColorObjects:
-  - name: Color 1
+  - name: Default
     price: 0
     unlocked: 1
     selected: 1
     type: 0
-  - name: Color 2
+  - name: Black and White
     price: 250
     unlocked: 0
     selected: 0
@@ -3070,6 +3145,12 @@ Transform:
   m_Father: {fileID: 1131701161}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1508019703 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2562250406221651658, guid: 1b9e25e87c1ab1b43bb25c9b6e1709f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2562250406829567141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1534410179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3381,6 +3462,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694973957}
   m_CullTransparentMesh: 0
+--- !u!45 &1778075236 stripped
+Skybox:
+  m_CorrespondingSourceObject: {fileID: 3235599652236444713, guid: b1a19507b8811334ba31b04437b5978a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1805992717277271972}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1862301730
 GameObject:
   m_ObjectHideFlags: 0
@@ -9825,7 +9912,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5115284158557607950}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5115284158557832236}

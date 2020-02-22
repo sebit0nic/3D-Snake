@@ -31,7 +31,7 @@ public enum PlayerHatTypes {
 
 public enum PlayerColorTypes {
     COLOR_DEFAULT,
-    COLOR_2,
+    COLOR_BLACKWHITE,
     COLOR_3,
     COLOR_4,
     COLOR_5,

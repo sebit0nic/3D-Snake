@@ -20,7 +20,7 @@ public class SavedData {
         unlockedColors = standardColorObjects;
         unlockedPowerups = standardPowerupObjects;
         highscore = 0;
-        totalScore = 0;
+        totalScore = 9999;
         currentHat = PlayerHatTypes.TYPE_DEFAULT;
         currentColor = PlayerColorTypes.COLOR_DEFAULT;
     }
@@ -69,14 +69,6 @@ public class SavedData {
         }
     }
 
-    public PlayerHatTypes GetSelectedHatType() {
-        return currentHat;
-    }
-
-    public PlayerColorTypes GetSelectedColorType() {
-        return currentColor;
-    }
-
     public int GetPurchaseablePrice(int sectionIndex, int purchaseableIndex) {
         currentShopSection = (ShopSection) sectionIndex;
         switch ( currentShopSection ) {
@@ -105,24 +97,34 @@ public class SavedData {
         }
     }
 
-    public int GetCurrentLevel(int sectionIndex, int purchaseableIndex) {
-        currentShopSection = (ShopSection) sectionIndex;
+    public int GetCurrentLevel(int purchaseableIndex) {
+        return unlockedPowerups[purchaseableIndex].GetCurrentLevel();
+        /*currentShopSection = (ShopSection) sectionIndex;
         if (currentShopSection == ShopSection.HATS || currentShopSection == ShopSection.COLORSCHEME) {
             Debug.Log("ERROR: HATS and COLORSCHEMES do not have levels!");
             return 0;
         } else {
             return unlockedPowerups[purchaseableIndex].GetCurrentLevel();
-        }
+        }*/
     }
 
-    public int GetMaxLevel(int sectionIndex, int purchaseableIndex) {
-        currentShopSection = (ShopSection) sectionIndex;
+    public int GetMaxLevel(int purchaseableIndex) {
+        return unlockedPowerups[purchaseableIndex].GetMaxLevel();
+        /*currentShopSection = (ShopSection) sectionIndex;
         if ( currentShopSection == ShopSection.HATS || currentShopSection == ShopSection.COLORSCHEME ) {
             Debug.Log("ERROR: HATS and COLORSCHEMES do not have levels!");
             return 0;
         } else {
             return unlockedPowerups[purchaseableIndex].GetMaxLevel();
-        }
+        }*/
+    }
+
+    public PlayerHatTypes GetSelectedHatType() {
+        return currentHat;
+    }
+
+    public PlayerColorTypes GetSelectedColorType() {
+        return currentColor;
     }
 
     public List<PowerupObject> GetUnlockedPowerups() {

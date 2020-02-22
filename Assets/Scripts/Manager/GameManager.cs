@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     private PowerupSpawner powerupSpawner;
     private Snake snake;
     private CameraController cameraController;
+    private StyleManager styleManager;
 
     private SaveLoadManager saveLoadManager;
     private SavedData savedData;
@@ -36,6 +37,8 @@ public class GameManager : MonoBehaviour {
         powerupSpawner.Init(savedData);
         snake = GameObject.Find("Snake").GetComponent<Snake>();
         cameraController = GameObject.Find("Environment").GetComponentInChildren<CameraController>();
+        styleManager = GetComponentInChildren<StyleManager>();
+        styleManager.Init(savedData);
     }
 
     public void PlayerCollectedFruit() {

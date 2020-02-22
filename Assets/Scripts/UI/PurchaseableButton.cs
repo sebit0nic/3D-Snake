@@ -26,7 +26,7 @@ public class PurchaseableButton : MonoBehaviour {
     }
 
     public void SetProgressBar(SavedData savedData) {
-        progressBarValue = (float) savedData.GetCurrentLevel(sectionIndex, purchaseableIndex) / savedData.GetMaxLevel(sectionIndex, purchaseableIndex);
+        progressBarValue = (float) savedData.GetCurrentLevel(purchaseableIndex) / savedData.GetMaxLevel(purchaseableIndex);
         progressBar.fillAmount = progressBarValue;
     }
 }
