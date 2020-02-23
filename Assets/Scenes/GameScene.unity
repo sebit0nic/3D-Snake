@@ -1887,29 +1887,29 @@ MonoBehaviour:
   baseTextures:
   - {fileID: 2800000, guid: 0c486b76562608c4c8f756e530e79bd7, type: 3}
   - {fileID: 2800000, guid: 291ad31b627d75f489be3b34a4cc275f, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2800000, guid: e97d422c852c11f4180ba938c14a715f, type: 3}
+  - {fileID: 2800000, guid: 74836d96aea03d745bc1115bbdd89d17, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   baseColors:
   - {r: 0.34509805, g: 0.21568629, b: 0.121568635, a: 1}
   - {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0.34509805, g: 0.2509804, b: 0.3803922, a: 1}
+  - {r: 0.121568635, g: 0.15294118, b: 0.3137255, a: 1}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   planetColors:
   - {r: 0.9294118, g: 0.9921569, b: 0.8000001, a: 1}
   - {r: 0.90196085, g: 0.90196085, b: 0.90196085, a: 1}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0.91372555, g: 0.7843138, b: 0.427451, a: 1}
+  - {r: 0.8470589, g: 0.87843144, b: 0.91372555, a: 1}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   baseSkybox:
   - {fileID: 2100000, guid: 855dff256dcc74149b20a5b84b29b60c, type: 2}
   - {fileID: 2100000, guid: 3a0e46bf367554643b9c0e8e1c4d3cbf, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 69813545e9c4cd942ae7043a53a6ecb0, type: 2}
+  - {fileID: 2100000, guid: 56f6de1390d9cf547b4b3dea442a77d2, type: 2}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!1 &784451653
