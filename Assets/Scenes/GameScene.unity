@@ -9274,7 +9274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01cbe16bdc4ba949b1287defbd89298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerVelocity: 7.5
+  playerVelocity: 6.5
   playerTurnVelocity: 380
   playerHoverOffset: 0.5
   planet: {fileID: 618410611}
@@ -9287,26 +9287,26 @@ MonoBehaviour:
       time: 0
       value: 0
       inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      outSlope: 17.459198
+      tangentMode: 65
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.055455297
-      value: 0.697508
-      inSlope: 2.8969376
-      outSlope: 2.8969376
-      tangentMode: 0
+      time: 0.051404018
+      value: 0.8974729
+      inSlope: 17.459198
+      outSlope: 0.18641254
+      tangentMode: 69
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.054699115
     - serializedVersion: 3
-      time: 0.34759974
-      value: 0.97100204
-      inSlope: 0.074204504
+      time: 0.35095668
+      value: 0.9533133
+      inSlope: 0.18641254
       outSlope: 0.074204504
-      tangentMode: 0
+      tangentMode: 5
       weightedMode: 0
       inWeight: 0.096885994
       outWeight: 0.09556958
