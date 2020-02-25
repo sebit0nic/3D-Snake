@@ -24,7 +24,7 @@ public class GuiManager : MonoBehaviour {
     private float powerupDuration, currentPowerupDuration;
     private string finalScoreString, totalScoreString;
 
-    private void Start() {
+    public void Init() {
         powerupIcon.enabled = false;
         powerupDurationImage.fillAmount = 0f;
     }
