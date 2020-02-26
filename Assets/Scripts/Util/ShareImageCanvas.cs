@@ -17,7 +17,7 @@ public class ShareImageCanvas {
 
     public void Share(string shareText, string imagePath, string url, string subject = "") {
         if (Application.platform == RuntimePlatform.Android) {
-            AndroidJavaClass intentClass = new AndroidJavaClass("android.content.Intent");
+            /*AndroidJavaClass intentClass = new AndroidJavaClass("android.content.Intent");
             AndroidJavaObject intentObject = new AndroidJavaObject("android.content.Intent");
 
             intentObject.Call<AndroidJavaObject>("setAction", intentClass.GetStatic<string>("ACTION_SEND"));
@@ -33,6 +33,36 @@ public class ShareImageCanvas {
 
             AndroidJavaObject jChooser = intentClass.CallStatic<AndroidJavaObject>("createChooser", intentObject, subject);
             currentActivity.Call("startActivity", jChooser);
+
+            //instantiate the class Intent
+            AndroidJavaClass intentClass = new AndroidJavaClass("android.content.Intent");
+
+            //instantiate the object Intent
+            AndroidJavaObject intentObject = new AndroidJavaObject("android.content.Intent");
+
+            //call setAction setting ACTION_SEND as parameter
+            intentObject.Call<AndroidJavaObject>("setAction", intentClass.GetStatic<string>("ACTION_SEND"));
+
+            //instantiate the class Uri
+            AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri");
+
+            //instantiate the object Uri with the parse of the url's file
+            AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse", "file://" + imagePath);
+
+            //call putExtra with the uri object of the file
+            intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_STREAM"), uriObject);
+
+            //set the type of file
+            intentObject.Call<AndroidJavaObject>("setType", "image/jpeg");
+
+            //instantiate the class UnityPlayer
+            AndroidJavaClass unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+
+            //instantiate the object currentActivity
+            AndroidJavaObject currentActivity = unity.GetStatic<AndroidJavaObject>("currentActivity");
+
+            //call the activity with our Intent
+            currentActivity.Call("startActivity", intentObject); */
         } else {
             Debug.Log("No sharing set up for this platform.");
         }

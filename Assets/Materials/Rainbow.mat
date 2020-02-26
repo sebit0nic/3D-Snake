@@ -63,16 +63,16 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Luminosity: 0.472
+    - _Luminosity: 0.5
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Saturation: 0.888
+    - _Saturation: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 2
-    - _Spread: 0.85
+    - _Speed: 0.75
+    - _Spread: 0.75
     - _SrcBlend: 1
     - _TimeOffset: 0
     - _UVSec: 0
