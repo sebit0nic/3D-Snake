@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScreenTransition : MonoBehaviour
-{
+public class ScreenTransition : MonoBehaviour {
+
     private Animator animator;
     private int toSceneID;
 

@@ -6,6 +6,7 @@ public class Planet : MonoBehaviour {
 
     public float rotationSpeed = 5f;
 
+    [SerializeField]
     private bool rotating = false;
 
     private void Update() {
