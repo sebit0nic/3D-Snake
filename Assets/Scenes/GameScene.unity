@@ -1961,41 +1961,6 @@ MonoBehaviour:
   - {fileID: 1553283473}
   - {fileID: 1778591509}
   - {fileID: 950176294}
-  baseTextures:
-  - {fileID: 2800000, guid: 0c486b76562608c4c8f756e530e79bd7, type: 3}
-  - {fileID: 2800000, guid: 291ad31b627d75f489be3b34a4cc275f, type: 3}
-  - {fileID: 2800000, guid: e97d422c852c11f4180ba938c14a715f, type: 3}
-  - {fileID: 2800000, guid: 74836d96aea03d745bc1115bbdd89d17, type: 3}
-  - {fileID: 2800000, guid: ddda91c3943a70a4dacaac0e7518ab0e, type: 3}
-  - {fileID: 2800000, guid: bd74bc04709c47e438702e35156ecaf7, type: 3}
-  baseColors:
-  - {r: 0.34509805, g: 0.21568629, b: 0.121568635, a: 1}
-  - {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-  - {r: 0.34509805, g: 0.2509804, b: 0.3803922, a: 1}
-  - {r: 0.121568635, g: 0.15294118, b: 0.3137255, a: 1}
-  - {r: 0.019607844, g: 0.08235294, b: 0.14901961, a: 1}
-  - {r: 0.054901965, g: 0.054901965, b: 0.054901965, a: 1}
-  planetColors:
-  - {r: 0.9294118, g: 0.9921569, b: 0.8000001, a: 1}
-  - {r: 0.90196085, g: 0.90196085, b: 0.90196085, a: 1}
-  - {r: 0.91372555, g: 0.7843138, b: 0.427451, a: 1}
-  - {r: 0.8470589, g: 0.87843144, b: 0.91372555, a: 1}
-  - {r: 0.9921569, g: 0.8313726, b: 0.6392157, a: 1}
-  - {r: 0.61960787, g: 0.4901961, b: 0.26666668, a: 1}
-  particleColors:
-  - {r: 0.5411765, g: 0.6392157, b: 0.34509805, a: 1}
-  - {r: 0.7019608, g: 0.7019608, b: 0.7019608, a: 1}
-  - {r: 0.8470589, g: 0.45882356, b: 0.32941177, a: 1}
-  - {r: 0.5372549, g: 0.7960785, b: 0.8588236, a: 1}
-  - {r: 0.8196079, g: 0.49803925, b: 0.33333334, a: 1}
-  - {r: 0.29803923, g: 0.29803923, b: 0.16862746, a: 1}
-  baseSkybox:
-  - {fileID: 2100000, guid: 855dff256dcc74149b20a5b84b29b60c, type: 2}
-  - {fileID: 2100000, guid: 3a0e46bf367554643b9c0e8e1c4d3cbf, type: 2}
-  - {fileID: 2100000, guid: 69813545e9c4cd942ae7043a53a6ecb0, type: 2}
-  - {fileID: 2100000, guid: 56f6de1390d9cf547b4b3dea442a77d2, type: 2}
-  - {fileID: 2100000, guid: 3635f6aa6e59cd54eac4906d11fabff9, type: 2}
-  - {fileID: 2100000, guid: 01afad017cf5eea43b7c174051dd3c17, type: 2}
 --- !u!1 &784451653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2616,36 +2581,126 @@ MonoBehaviour:
     unlocked: 0
     type: 5
   standardColorObjects:
-  - name: Default
+  - name: Classic
     price: 0
     unlocked: 1
     selected: 1
     type: 0
+    baseColor:
+    - 0.351
+    - 0.222
+    - 0.129
+    - 1
+    planetColor:
+    - 0.93
+    - 1
+    - 0.79
+    - 1
+    particleColor:
+    - 0.53
+    - 0.63
+    - 0.34
+    - 1
   - name: Black and White
     price: 250
     unlocked: 0
     selected: 0
     type: 1
-  - name: Color 3
+    baseColor:
+    - 0.3
+    - 0.3
+    - 0.3
+    - 1
+    planetColor:
+    - 0.9
+    - 0.9
+    - 0.9
+    - 1
+    particleColor:
+    - 0.7
+    - 0.7
+    - 0.7
+    - 1
+  - name: Playful
     price: 500
     unlocked: 0
     selected: 0
     type: 2
-  - name: Color 4
+    baseColor:
+    - 0.332
+    - 0.254
+    - 0.371
+    - 1
+    planetColor:
+    - 0.9
+    - 0.78
+    - 0.43
+    - 1
+    particleColor:
+    - 0.84
+    - 0.45
+    - 0.33
+    - 1
+  - name: Arctic
     price: 750
     unlocked: 0
     selected: 0
     type: 3
-  - name: Color 5
+    baseColor:
+    - 0.125
+    - 0.156
+    - 0.305
+    - 1
+    planetColor:
+    - 0.835
+    - 0.878
+    - 0.91
+    - 1
+    particleColor:
+    - 0.543
+    - 0.789
+    - 0.863
+    - 1
+  - name: Autumn
     price: 1000
     unlocked: 0
     selected: 0
     type: 4
-  - name: Color 6
+    baseColor:
+    - 0.023
+    - 0.086
+    - 0.141
+    - 1
+    planetColor:
+    - 1
+    - 0.828
+    - 0.637
+    - 1
+    particleColor:
+    - 0.813
+    - 0.504
+    - 0.348
+    - 1
+  - name: Dark
     price: 1500
     unlocked: 0
     selected: 0
     type: 5
+    baseColor:
+    - 0.05
+    - 0.059
+    - 0.066
+    - 1
+    planetColor:
+    - 0.625
+    - 0.484
+    - 0.262
+    - 1
+    particleColor:
+    - 0.293
+    - 0.289
+    - 0.152
+    - 1
   standardPowerupObjects:
   - name: Invincibility
     price: 250

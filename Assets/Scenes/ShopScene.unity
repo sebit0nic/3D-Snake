@@ -2488,36 +2488,126 @@ MonoBehaviour:
     unlocked: 0
     type: 5
   standardColorObjects:
-  - name: Default
+  - name: Classic
     price: 0
     unlocked: 1
     selected: 1
     type: 0
+    baseColor:
+    - 0.351
+    - 0.222
+    - 0.129
+    - 1
+    planetColor:
+    - 0.93
+    - 1
+    - 0.79
+    - 1
+    particleColor:
+    - 0.53
+    - 0.63
+    - 0.34
+    - 1
   - name: Black and White
     price: 250
     unlocked: 0
     selected: 0
     type: 1
-  - name: Color 3
+    baseColor:
+    - 0.3
+    - 0.3
+    - 0.3
+    - 1
+    planetColor:
+    - 0.9
+    - 0.9
+    - 0.9
+    - 1
+    particleColor:
+    - 0.7
+    - 0.7
+    - 0.7
+    - 1
+  - name: Playful
     price: 500
     unlocked: 0
     selected: 0
     type: 2
-  - name: Color 4
+    baseColor:
+    - 0.332
+    - 0.254
+    - 0.371
+    - 1
+    planetColor:
+    - 0.9
+    - 0.78
+    - 0.43
+    - 1
+    particleColor:
+    - 0.84
+    - 0.45
+    - 0.33
+    - 1
+  - name: Arctic
     price: 750
     unlocked: 0
     selected: 0
     type: 3
-  - name: Color 5
+    baseColor:
+    - 0.125
+    - 0.156
+    - 0.305
+    - 1
+    planetColor:
+    - 0.835
+    - 0.878
+    - 0.91
+    - 1
+    particleColor:
+    - 0.543
+    - 0.789
+    - 0.863
+    - 1
+  - name: Autumn
     price: 1000
     unlocked: 0
     selected: 0
     type: 4
-  - name: Color 6
+    baseColor:
+    - 0.023
+    - 0.086
+    - 0.141
+    - 1
+    planetColor:
+    - 1
+    - 0.828
+    - 0.637
+    - 1
+    particleColor:
+    - 0.813
+    - 0.504
+    - 0.348
+    - 1
+  - name: Dark
     price: 1500
     unlocked: 0
     selected: 0
     type: 5
+    baseColor:
+    - 0.05
+    - 0.059
+    - 0.066
+    - 1
+    planetColor:
+    - 0.625
+    - 0.484
+    - 0.262
+    - 1
+    particleColor:
+    - 0.293
+    - 0.289
+    - 0.152
+    - 1
   standardPowerupObjects:
   - name: Invincibility
     price: 250

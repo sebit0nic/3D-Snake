@@ -22,7 +22,7 @@ public class SavedData {
         highscore = 0;
         totalScore = 0;
         currentHat = PlayerHatTypes.TYPE_DEFAULT;
-        currentColor = PlayerColorTypes.COLOR_DEFAULT;
+        currentColor = PlayerColorTypes.COLOR_CLASSIC;
     }
 
     public void UnlockPurchaseable(int sectionIndex, int purchaseableIndex) {
@@ -97,26 +97,16 @@ public class SavedData {
         }
     }
 
+    public Color GetColorByPurchaseableColorType(PurchaseableColorType purchaseableColorType) {
+        return unlockedColors[(int) currentColor].GetColorByColorType(purchaseableColorType);
+    }
+
     public int GetCurrentLevel(int purchaseableIndex) {
         return unlockedPowerups[purchaseableIndex].GetCurrentLevel();
-        /*currentShopSection = (ShopSection) sectionIndex;
-        if (currentShopSection == ShopSection.HATS || currentShopSection == ShopSection.COLORSCHEME) {
-            Debug.Log("ERROR: HATS and COLORSCHEMES do not have levels!");
-            return 0;
-        } else {
-            return unlockedPowerups[purchaseableIndex].GetCurrentLevel();
-        }*/
     }
 
     public int GetMaxLevel(int purchaseableIndex) {
         return unlockedPowerups[purchaseableIndex].GetMaxLevel();
-        /*currentShopSection = (ShopSection) sectionIndex;
-        if ( currentShopSection == ShopSection.HATS || currentShopSection == ShopSection.COLORSCHEME ) {
-            Debug.Log("ERROR: HATS and COLORSCHEMES do not have levels!");
-            return 0;
-        } else {
-            return unlockedPowerups[purchaseableIndex].GetMaxLevel();
-        }*/
     }
 
     public PlayerHatTypes GetSelectedHatType() {

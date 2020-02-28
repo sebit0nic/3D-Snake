@@ -30,16 +30,27 @@ public enum PlayerHatTypes {
 }
 
 public enum PlayerColorTypes {
-    COLOR_DEFAULT,
+    COLOR_CLASSIC,
     COLOR_BLACKWHITE,
-    COLOR_3,
-    COLOR_4,
-    COLOR_5,
-    COLOR_6
+    COLOR_PLAYFUL,
+    COLOR_ARCTIC,
+    COLOR_AUTUMN,
+    COLOR_DARK
 }
 
 public enum PlayerPowerupTypes {
     INVINCIBILTY,
     MAGNET,
     THIN
+}
+
+public enum PurchaseableColorType {
+    BASE,
+    PLANET,
+    PARTICLE
+}
+
+public enum PurchaseableMaterialType {
+    BASE,
+    SKYBOX
 }
