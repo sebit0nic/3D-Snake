@@ -6,12 +6,6 @@ public class InputManager : MonoBehaviour {
 
     public SnakeMovement snakeMovement;
 
-    private ShareImageCanvas shareImageCanvas;
-
-    private void Start() {
-        shareImageCanvas = new ShareImageCanvas();
-    }
-
     public void OnPauseButtonClicked() {
         GameManager.instance.GamePaused();
     }
@@ -41,7 +35,7 @@ public class InputManager : MonoBehaviour {
     }
 
     public void OnShareButtonPressed() {
-        shareImageCanvas.ShareScreenshotWithText();
+        GameManager.instance.ShareScreen();
     }
 
     public void OnSteerRightButtonPressed() {

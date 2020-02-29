@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour {
     private SavedData savedData;
 
     private bool paused;
+    private const string screenshotName = "screenshot.png";
+    private const string shareSubject = "Snake Planet";
+    private const string shareText1 = "My score at #snakeplanet is ";
+    private const string shareText2 = " ! Try to beat that!";
 
     private void Awake() {
         if ( instance == null ) {
@@ -80,6 +84,13 @@ public class GameManager : MonoBehaviour {
 
     public void SwitchScreen(ScreenType screenType) {
         guiManager.ShowScreenTransition((int) screenType);
+    }
+
+    public void ShareScreen() {
+        string screenShotPath = Application.persistentDataPath + "/" + screenshotName;
+        ScreenCapture.CaptureScreenshot(screenshotName);
+
+        new NativeShare().AddFile(screenShotPath, null).SetSubject("Snake Planet").SetText(shareText1 + scoreManager.GetCurrentScore() + shareText2).Share();
     }
 
     public void GamePaused() {
