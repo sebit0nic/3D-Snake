@@ -17,12 +17,15 @@ public class ShopScreen : MonoBehaviour {
     private int selectedPurchaseableIndex, selectedSectionIndex;
     private SaveLoadManager saveLoadManager;
     private SavedData savedData;
+    private StyleManager styleManager;
     private bool buyMode;
 
     private void Start() {
         saveLoadManager = GetComponent<SaveLoadManager>();
         savedData = saveLoadManager.LoadData();
         shopSectionManager.Init(savedData);
+        styleManager = GetComponentInChildren<StyleManager>();
+        styleManager.Init(savedData);
 
         selectedPurchaseableIndex = 0;
         selectedSectionIndex = 0;
@@ -101,6 +104,7 @@ public class ShopScreen : MonoBehaviour {
         shopSectionManager.UpdatePurchaseableSelectButton(savedData, selectedSectionIndex, selectedPurchaseableIndex);
         HideAllHatPreviewModels();
         hatPreviewModels[(int) savedData.GetSelectedHatType()].SetActive(true);
+        styleManager.Init(savedData);
     }
 
     public void ChangeScreen(int toScreenID) {
