@@ -11,15 +11,17 @@ public class StyleManager : MonoBehaviour {
     public ParticleSystem playerParticleSystem;
     public SpriteRenderer[] flowerPrefabs;
 
+    [Header("Base-Textures & Skyboxes")]
+    public Texture2D[] baseTextures;
+    public Material[] skyboxes;
+
     private IUIColorManager uiColorManager;
-    private const string colorschemeTexturePath = "Colorscheme/Colorscheme_";
-    private const string skyboxMaterialPath = "Skybox/Skybox_";
 
     public void Init(SavedData savedData) {
         uiColorManager = GameObject.Find("GUI").GetComponent<IUIColorManager>();
 
-        baseMaterial.sharedMaterial.mainTexture = Resources.Load<Texture2D>(colorschemeTexturePath + (int) savedData.GetSelectedColorType());
-        planetSkybox.material = Resources.Load<Material>(skyboxMaterialPath + (int) savedData.GetSelectedColorType());
+        baseMaterial.sharedMaterial.mainTexture = baseTextures[(int) savedData.GetSelectedColorType()];
+        planetSkybox.material = skyboxes[(int) savedData.GetSelectedColorType()];
         planetMaterial.sharedMaterial.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.PLANET);
 
         if (playerParticleSystem != null) {

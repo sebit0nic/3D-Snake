@@ -1928,69 +1928,6 @@ SpriteRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 754699695}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &681747016
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 681747017}
-  - component: {fileID: 681747018}
-  m_Layer: 0
-  m_Name: Style Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &681747017
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 681747016}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 785373995}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &681747018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 681747016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef5dedbb60b72947bd22329faf4d7da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseMaterial: {fileID: 1060493634}
-  planetSkybox: {fileID: 755706918}
-  planetMaterial: {fileID: 1655863503}
-  playerParticleSystem: {fileID: 0}
-  flowerPrefabs:
-  - {fileID: 154908922}
-  - {fileID: 1836543199}
-  - {fileID: 1083242171}
-  - {fileID: 302067942}
-  - {fileID: 2121167320}
-  - {fileID: 1532453333}
-  - {fileID: 1808123483}
-  - {fileID: 2109652305}
-  - {fileID: 1806793016}
-  - {fileID: 1764339697}
-  - {fileID: 665663754}
-  - {fileID: 1799161753}
-  - {fileID: 1486705452}
-  - {fileID: 1314016646}
-  - {fileID: 740154848}
 --- !u!1001 &692240256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2569,7 +2506,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 681747017}
+  - {fileID: 1196535445}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4312,6 +4249,171 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &1196535444
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 785373995}
+    m_Modifications:
+    - target: {fileID: 2925195633190551016, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_Name
+      value: Style Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: planetMaterial
+      value: 
+      objectReference: {fileID: 1655863503}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: baseMaterial
+      value: 
+      objectReference: {fileID: 1060493634}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: planetSkybox
+      value: 
+      objectReference: {fileID: 755706918}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 154908922}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1836543199}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1083242171}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 302067942}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 2121167320}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 1532453333}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 1808123483}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 2109652305}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[8]
+      value: 
+      objectReference: {fileID: 1806793016}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[9]
+      value: 
+      objectReference: {fileID: 1764339697}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[10]
+      value: 
+      objectReference: {fileID: 665663754}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[11]
+      value: 
+      objectReference: {fileID: 1799161753}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[12]
+      value: 
+      objectReference: {fileID: 1486705452}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[13]
+      value: 
+      objectReference: {fileID: 1314016646}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: flowerPrefabs.Array.data[14]
+      value: 
+      objectReference: {fileID: 740154848}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d171258e60ac3204f87af602e573d3ef, type: 3}
+--- !u!4 &1196535445 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2925195633190551019, guid: d171258e60ac3204f87af602e573d3ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 1196535444}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1271289964
 GameObject:
   m_ObjectHideFlags: 0

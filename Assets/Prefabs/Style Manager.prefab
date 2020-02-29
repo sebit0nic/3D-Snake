@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2925195633190551016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2925195633190551019}
+  - component: {fileID: 2925195633190551018}
+  m_Layer: 0
+  m_Name: Style Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2925195633190551019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2925195633190551016}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2925195633190551018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2925195633190551016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef5dedbb60b72947bd22329faf4d7da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMaterial: {fileID: 0}
+  planetSkybox: {fileID: 0}
+  planetMaterial: {fileID: 0}
+  playerParticleSystem: {fileID: 0}
+  flowerPrefabs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  baseTextures:
+  - {fileID: 2800000, guid: 0c486b76562608c4c8f756e530e79bd7, type: 3}
+  - {fileID: 2800000, guid: 291ad31b627d75f489be3b34a4cc275f, type: 3}
+  - {fileID: 2800000, guid: e97d422c852c11f4180ba938c14a715f, type: 3}
+  - {fileID: 2800000, guid: 74836d96aea03d745bc1115bbdd89d17, type: 3}
+  - {fileID: 2800000, guid: ddda91c3943a70a4dacaac0e7518ab0e, type: 3}
+  - {fileID: 2800000, guid: bd74bc04709c47e438702e35156ecaf7, type: 3}
+  skyboxes:
+  - {fileID: 2100000, guid: 855dff256dcc74149b20a5b84b29b60c, type: 2}
+  - {fileID: 2100000, guid: 3a0e46bf367554643b9c0e8e1c4d3cbf, type: 2}
+  - {fileID: 2100000, guid: 69813545e9c4cd942ae7043a53a6ecb0, type: 2}
+  - {fileID: 2100000, guid: 56f6de1390d9cf547b4b3dea442a77d2, type: 2}
+  - {fileID: 2100000, guid: 3635f6aa6e59cd54eac4906d11fabff9, type: 2}
+  - {fileID: 2100000, guid: 01afad017cf5eea43b7c174051dd3c17, type: 2}
