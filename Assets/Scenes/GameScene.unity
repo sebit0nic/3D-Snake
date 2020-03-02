@@ -894,6 +894,7 @@ GameObject:
   - component: {fileID: 370517931}
   - component: {fileID: 370517930}
   - component: {fileID: 370517929}
+  - component: {fileID: 370517932}
   m_Layer: 5
   m_Name: Retry Button
   m_TagString: Untagged
@@ -1011,6 +1012,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370517927}
   m_CullTransparentMesh: 0
+--- !u!114 &370517932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370517927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -25}
+  m_UseGraphicAlpha: 1
 --- !u!1 &397812330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,6 +1088,7 @@ GameObject:
   - component: {fileID: 455280999}
   - component: {fileID: 455280998}
   - component: {fileID: 455280997}
+  - component: {fileID: 455281000}
   m_Layer: 5
   m_Name: Shop Button
   m_TagString: Untagged
@@ -1189,6 +1206,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455280995}
   m_CullTransparentMesh: 0
+--- !u!114 &455281000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455280995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -25}
+  m_UseGraphicAlpha: 1
 --- !u!1 &465481786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,6 +1233,7 @@ GameObject:
   - component: {fileID: 465481790}
   - component: {fileID: 465481789}
   - component: {fileID: 465481788}
+  - component: {fileID: 465481791}
   m_Layer: 0
   m_Name: Share Button
   m_TagString: Untagged
@@ -1224,7 +1257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 317.5, y: -100}
+  m_AnchoredPosition: {x: 325, y: -100}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &465481788
@@ -1317,6 +1350,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465481786}
   m_CullTransparentMesh: 0
+--- !u!114 &465481791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465481786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 15, y: -15}
+  m_UseGraphicAlpha: 1
 --- !u!1 &484567502
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,6 +2191,7 @@ GameObject:
   - component: {fileID: 809376969}
   - component: {fileID: 809376968}
   - component: {fileID: 809376967}
+  - component: {fileID: 809376970}
   m_Layer: 0
   m_Name: Home Button
   m_TagString: Untagged
@@ -2259,6 +2308,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809376965}
   m_CullTransparentMesh: 0
+--- !u!114 &809376970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809376965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 15, y: -15}
+  m_UseGraphicAlpha: 1
 --- !u!1 &816595307
 GameObject:
   m_ObjectHideFlags: 0
@@ -3090,7 +3154,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 15
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -3198,6 +3262,7 @@ GameObject:
   - component: {fileID: 1299763312}
   - component: {fileID: 1299763311}
   - component: {fileID: 1299763310}
+  - component: {fileID: 1299763313}
   m_Layer: 5
   m_Name: Highscore Button
   m_TagString: Untagged
@@ -3315,6 +3380,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299763308}
   m_CullTransparentMesh: 0
+--- !u!114 &1299763313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299763308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -25}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1321144265
 GameObject:
   m_ObjectHideFlags: 0
