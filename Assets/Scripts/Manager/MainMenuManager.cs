@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour {
 
     public static MainMenuManager instance = null;
+    public Toggle soundButton, cameraButton;
 
     private ScreenTransition screenTransition;
     private SaveLoadManager saveLoadManager;
@@ -23,9 +25,20 @@ public class MainMenuManager : MonoBehaviour {
         savedData = saveLoadManager.LoadData();
         styleManager = GetComponentInChildren<StyleManager>();
         styleManager.Init(savedData);
+
+        soundButton.isOn = saveLoadManager.GetSoundStatus() != 0;
+        cameraButton.isOn = saveLoadManager.GetCameraStatus() != 0;
     }
 
     public void SwitchScreen(ScreenType screenType) {
         screenTransition.StartScreenTransition((int) screenType);
+    }
+
+    public void ToggleButtonSoundPressed() {
+        saveLoadManager.SetSoundStatus(soundButton.isOn ? 1 : 0);
+    }
+
+    public void ToggleButtonCameraPressed() {
+        saveLoadManager.SetCameraStatus(cameraButton.isOn ? 1 : 0);
     }
 }

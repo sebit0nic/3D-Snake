@@ -54,3 +54,13 @@ public enum PurchaseableMaterialType {
     BASE,
     SKYBOX
 }
+
+public enum SoundStatus {
+    SOUND_ON,
+    SOUND_OFF
+}
+
+public enum CameraStatus {
+    CAMERA_ROTATE,
+    CAMERA_NO_ROTATION
+}
