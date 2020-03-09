@@ -30,20 +30,29 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
+        //PlayerPrefs.DeleteAll();
         saveLoadManager = GetComponent<SaveLoadManager>();
         savedData = saveLoadManager.LoadData();
 
         fruitSpawner = GetComponentInChildren<FruitSpawner>();
+        if (saveLoadManager.GetTutorialStatus()) {
+            fruitSpawner.Init();
+        }
         scoreManager = GetComponentInChildren<ScoreManager>();
         scoreManager.Init(savedData);
         guiManager = GetComponentInChildren<GuiManager>();
-        guiManager.Init();
+        guiManager.Init(saveLoadManager.GetTutorialStatus());
         powerupSpawner = GetComponentInChildren<PowerupSpawner>();
         powerupSpawner.Init(savedData);
         snake = GameObject.Find("Snake").GetComponent<Snake>();
         cameraController = GameObject.Find("Environment").GetComponentInChildren<CameraController>();
         styleManager = GetComponentInChildren<StyleManager>();
         styleManager.Init(savedData);
+    }
+
+    public void TutorialDone() {
+        fruitSpawner.Init();
+        fruitSpawner.SpawnNewFruit(false);
     }
 
     public void PlayerCollectedFruit() {
@@ -79,6 +88,7 @@ public class GameManager : MonoBehaviour {
         guiManager.HideHUD();
         guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore());
         cameraController.Stop();
+        saveLoadManager.SetTutorialStatus((int) TutorialStatus.TUTORIAL_DONE);
         saveLoadManager.SaveData(savedData);
     }
 

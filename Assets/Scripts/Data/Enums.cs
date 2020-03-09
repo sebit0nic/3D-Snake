@@ -64,3 +64,8 @@ public enum CameraStatus {
     CAMERA_ROTATE,
     CAMERA_NO_ROTATION
 }
+
+public enum TutorialStatus {
+    TUTORIAL_OPEN,
+    TUTORIAL_DONE
+}

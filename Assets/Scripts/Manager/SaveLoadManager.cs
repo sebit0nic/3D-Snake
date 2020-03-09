@@ -14,6 +14,7 @@ public class SaveLoadManager : MonoBehaviour {
     private const string gameSavePath = "/gamesave.save";
     private const string soundStatusKey = "SoundStatus";
     private const string cameraStatusKey = "CameraStatus";
+    private const string tutorialStatusKey = "TutorialStatus";
 
     public void SaveData(SavedData savedData) {
         BinaryFormatter bf = new BinaryFormatter();
@@ -51,5 +52,13 @@ public class SaveLoadManager : MonoBehaviour {
 
     public void SetCameraStatus(int value) {
         PlayerPrefs.SetInt(cameraStatusKey, value);
+    }
+
+    public bool GetTutorialStatus() {
+        return PlayerPrefs.GetInt(tutorialStatusKey, (int) TutorialStatus.TUTORIAL_OPEN) != 0;
+    }
+
+    public void SetTutorialStatus(int value) {
+        PlayerPrefs.SetInt(tutorialStatusKey, value);
     }
 }

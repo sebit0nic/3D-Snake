@@ -14,6 +14,7 @@ public class GuiManager : MonoBehaviour {
     public Image powerupIcon;
     public Image powerupDurationImage;
     public Animator collectCircleEffect;
+    public TouchIndicator touchIndicatorLeft, touchIndicatorRight;
     public float scoreCountDuration;
 
     [Header("Powerup Icons")]
@@ -23,10 +24,14 @@ public class GuiManager : MonoBehaviour {
 
     private float powerupDuration, currentPowerupDuration;
     private string finalScoreString, totalScoreString;
+    private int tutorialsDone;
 
-    public void Init() {
+    public void Init(bool tutorialDone) {
         powerupIcon.enabled = false;
         powerupDurationImage.fillAmount = 0f;
+
+        touchIndicatorLeft.Init(this, tutorialDone);
+        touchIndicatorRight.Init(this, tutorialDone);
     }
 
     private void Update() {
@@ -85,6 +90,13 @@ public class GuiManager : MonoBehaviour {
 
     public void HidePowerupText() {
         powerupIcon.enabled = false;
+    }
+
+    public void TouchIndicatorTutorialDone() {
+        tutorialsDone++;
+        if (tutorialsDone == 2) {
+            GameManager.instance.TutorialDone();
+        }
     }
 
     private IEnumerator OnShowFinalScore(int finalScore, int totalScore, bool newHighscore) {

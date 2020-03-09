@@ -31,19 +31,22 @@ public class FruitSpawner : MonoBehaviour {
     private Fruit fruit;
     private int collectedFruit;
     private bool moveFruitTowardsPlayer = false;
-    private bool stopped = false;
+    private bool stopped = false, initiated = false;
 
-    private void Start() {
+    public void Init() {
         Vector3 fruitRotation = new Vector3();
         fruitRotation.Set(Random.Range(minRandomRotation, maxRandomRotation), Random.Range(minRandomRotation, maxRandomRotation), Random.Range(minRandomRotation, maxRandomRotation));
         fruitGameobject = Instantiate(fruitPrefab, Vector3.zero, Quaternion.Euler(fruitRotation));
         fruit = fruitGameobject.GetComponent<Fruit>();
+        initiated = true;
     }
 
     private void Update() {
-        if (!stopped) {
-            if ( moveFruitTowardsPlayer ) {
-                fruitGameobject.transform.rotation = Quaternion.Lerp(fruitGameobject.transform.rotation, GameManager.instance.GetCurrentSnakePosition().rotation, Time.deltaTime * moveTowardsPlayerSpeed);
+        if (initiated) {
+            if ( !stopped ) {
+                if ( moveFruitTowardsPlayer ) {
+                    fruitGameobject.transform.rotation = Quaternion.Lerp(fruitGameobject.transform.rotation, GameManager.instance.GetCurrentSnakePosition().rotation, Time.deltaTime * moveTowardsPlayerSpeed);
+                }
             }
         }
     }
