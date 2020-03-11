@@ -208,6 +208,7 @@ RectTransform:
   - {fileID: 660569402}
   - {fileID: 355878879}
   - {fileID: 892157798}
+  - {fileID: 1380744933}
   m_Father: {fileID: 641233057}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1808,6 +1809,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1805992717277271972}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &616439984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 616439986}
+  - component: {fileID: 616439985}
+  m_Layer: 0
+  m_Name: Play Store Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &616439985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616439984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53b2ddfdc061374897cebd432fcb576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playStoreNotification: {fileID: 1380744932}
+--- !u!4 &616439986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616439984}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1131701161}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &618410609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2562250406221651668, guid: 1b9e25e87c1ab1b43bb25c9b6e1709f6,
@@ -2911,6 +2956,7 @@ Transform:
   - {fileID: 2115995168}
   - {fileID: 397812331}
   - {fileID: 487387875}
+  - {fileID: 616439986}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3678,6 +3724,137 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363869605}
   m_CullTransparentMesh: 0
+--- !u!1001 &1380744931
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 35286408}
+    m_Modifications:
+    - target: {fileID: 7269808166565667710, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_Name
+      value: Play Store Notification
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1250
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86072e62bcd69294ebad54225dc85ea6, type: 3}
+--- !u!95 &1380744932 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7269808166565667708, guid: 86072e62bcd69294ebad54225dc85ea6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1380744931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1380744933 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7269808166565667711, guid: 86072e62bcd69294ebad54225dc85ea6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1380744931}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1414921537
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,6 +3885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeMovement: {fileID: 2094974985}
+  playStoreManager: {fileID: 616439985}
 --- !u!4 &1414921539
 Transform:
   m_ObjectHideFlags: 0

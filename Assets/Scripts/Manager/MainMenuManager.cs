@@ -12,6 +12,7 @@ public class MainMenuManager : MonoBehaviour {
     private SaveLoadManager saveLoadManager;
     private StyleManager styleManager;
     private SavedData savedData;
+    private PlayStoreManager playStoreManager;
 
     private void Awake() {
         if ( instance == null ) {
@@ -25,9 +26,12 @@ public class MainMenuManager : MonoBehaviour {
         savedData = saveLoadManager.LoadData();
         styleManager = GetComponentInChildren<StyleManager>();
         styleManager.Init(savedData);
+        playStoreManager = GetComponentInChildren<PlayStoreManager>();
 
         soundButton.isOn = saveLoadManager.GetSoundStatus() != 0;
         cameraButton.isOn = saveLoadManager.GetCameraStatus() != 0;
+
+        playStoreManager.SignIn();
     }
 
     public void SwitchScreen(ScreenType screenType) {

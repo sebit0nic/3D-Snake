@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour {
 
     public SnakeMovement snakeMovement;
+    public PlayStoreManager playStoreManager;
 
     public void OnPauseButtonClicked() {
         GameManager.instance.GamePaused();
@@ -23,7 +24,7 @@ public class InputManager : MonoBehaviour {
     }
 
     public void OnHighScoreButtonPressed() {
-        //TODO: implement highscore boards
+        playStoreManager.ShowLeaderboard();
     }
 
     public void OnMainMenuButtonPressed() {
