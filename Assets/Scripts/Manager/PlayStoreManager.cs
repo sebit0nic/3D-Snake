@@ -14,8 +14,10 @@ public class PlayStoreManager : MonoBehaviour {
     private const string highscoreTag = "CgkIv_LIqYYREAIQAQ";
     private const string totalscoreTag = "CgkIv_LIqYYREAIQAg";
 
+    private const string animationShowToken = "OnShow";
     private const string loginFailString = "Login to Google Play failed...";
     private const string loadFailString = "Could not load leaderboards...";
+    private const string postFailString = "Could not post score....";
 
     private void Start() {
         playStoreNotificationText = playStoreNotification.GetComponentInChildren<Text>();
@@ -26,18 +28,28 @@ public class PlayStoreManager : MonoBehaviour {
         Social.localUser.Authenticate((bool success) => {
             if (!success) {
                 playStoreNotificationText.text = loginFailString;
-                playStoreNotification.SetTrigger("OnShow");
+                playStoreNotification.SetTrigger(animationShowToken);
             }
         });
     }
 
-    public void UnlockAchievement() {
-
+    public void UnlockAchievement(string unlockToken) {
+        Social.ReportProgress(unlockToken, 100.0f, (bool success) => { });
     }
 
     public void PostScore(int highscore, int totalscore) {
-        Social.ReportScore(highscore, highscoreTag, (bool success) => {});
-        Social.ReportScore(totalscore, totalscoreTag, (bool success) => { });
+        Social.ReportScore(highscore, highscoreTag, (bool success) => {
+            if (!success) {
+                playStoreNotificationText.text = postFailString;
+                playStoreNotification.SetTrigger(animationShowToken);
+            }
+        });
+        Social.ReportScore(totalscore, totalscoreTag, (bool success) => {
+            if (!success) {
+                playStoreNotificationText.text = postFailString;
+                playStoreNotification.SetTrigger(animationShowToken);
+            }
+        });
     }
 
     public void ShowLeaderboard() {

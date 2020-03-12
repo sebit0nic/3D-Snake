@@ -69,3 +69,12 @@ public enum TutorialStatus {
     TUTORIAL_OPEN,
     TUTORIAL_DONE
 }
+
+public enum AchievementType {
+    SNAKE_NOVICE,
+    SNAKE_MASTER,
+    SNAKE_KING,
+    COLLECTOR,
+    UPGRADER,
+    HOARDER
+}

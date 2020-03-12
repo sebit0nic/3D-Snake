@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
     private Snake snake;
     private CameraController cameraController;
     private StyleManager styleManager;
-
+    private PlayStoreManager playStoreManager;
     private SaveLoadManager saveLoadManager;
     private SavedData savedData;
 
@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour {
         cameraController = GameObject.Find("Environment").GetComponentInChildren<CameraController>();
         styleManager = GetComponentInChildren<StyleManager>();
         styleManager.Init(savedData);
+        playStoreManager = GetComponentInChildren<PlayStoreManager>();
     }
 
     public void TutorialDone() {
@@ -90,6 +91,7 @@ public class GameManager : MonoBehaviour {
         cameraController.Stop();
         saveLoadManager.SetTutorialStatus((int) TutorialStatus.TUTORIAL_DONE);
         saveLoadManager.SaveData(savedData);
+        playStoreManager.PostScore(savedData.highscore, savedData.totalScore);
     }
 
     public void SwitchScreen(ScreenType screenType) {
