@@ -10,16 +10,16 @@ public class AchievementManager : MonoBehaviour {
     private const int snakeNoviceScore = 50;
     private const int snakeMasterScore = 100;
     private const int snakeKingScore = 150;
-    private const int collectorCount = 10;
+    private const int collectorCount = 12;
 
     public void NotifyCurrentScoreIncreased(int currentScore) {
-        if (currentScore >= snakeNoviceScore) {
+        if (currentScore == snakeNoviceScore) {
             playStoreManager.UnlockAchievement(achievementUnlockTokens[(int) AchievementType.SNAKE_NOVICE]);
         }
-        if (currentScore >= snakeMasterScore) {
+        if (currentScore == snakeMasterScore) {
             playStoreManager.UnlockAchievement(achievementUnlockTokens[(int) AchievementType.SNAKE_MASTER]);
         }
-        if (currentScore >= snakeKingScore) {
+        if (currentScore == snakeKingScore) {
             playStoreManager.UnlockAchievement(achievementUnlockTokens[(int) AchievementType.SNAKE_KING]);
         }
     }

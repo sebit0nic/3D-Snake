@@ -16,7 +16,6 @@ public class PlayStoreManager : MonoBehaviour {
 
     private const string animationShowToken = "OnShow";
     private const string loginFailString = "Login to Google Play failed...";
-    private const string loadFailString = "Could not load leaderboards...";
     private const string postFailString = "Could not post score....";
 
     private void Start() {

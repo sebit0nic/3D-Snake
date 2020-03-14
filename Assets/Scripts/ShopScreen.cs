@@ -18,6 +18,7 @@ public class ShopScreen : MonoBehaviour {
     private SaveLoadManager saveLoadManager;
     private SavedData savedData;
     private StyleManager styleManager;
+    private AchievementManager achievementManager;
     private bool buyMode;
 
     private void Start() {
@@ -26,12 +27,21 @@ public class ShopScreen : MonoBehaviour {
         shopSectionManager.Init(savedData);
         styleManager = GetComponentInChildren<StyleManager>();
         styleManager.Init(savedData);
+        achievementManager = GetComponentInChildren<AchievementManager>();
 
         selectedPurchaseableIndex = 0;
         selectedSectionIndex = 0;
         totalScoreText.text = savedData.totalScore.ToString().PadLeft(5, '0');
         hatPreviewModels[(int) savedData.GetSelectedHatType()].SetActive(true);
         ShowSection(selectedSectionIndex);
+        
+        achievementManager.NotifyPurchaseableBought(savedData.GetPurchaseableBoughtCount());
+        if ( savedData.IsPowerupAtMaxLevel() ) {
+            achievementManager.NotifyPowerupAtMaxLevel();
+        }
+        if ( savedData.IsEverythingUnlocked() ) {
+            achievementManager.NotifyEverythingUnlocked();
+        }
     }
 
     public void ShowSection(int index) {
@@ -95,6 +105,14 @@ public class ShopScreen : MonoBehaviour {
             savedData.UnlockPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
             totalScoreText.text = savedData.totalScore.ToString().PadLeft(5, '0');
             PurchaseableObjectSelected(selectedPurchaseableIndex);
+
+            achievementManager.NotifyPurchaseableBought(savedData.GetPurchaseableBoughtCount());
+            if (savedData.IsPowerupAtMaxLevel()) {
+                achievementManager.NotifyPowerupAtMaxLevel();
+            }
+            if (savedData.IsEverythingUnlocked()) {
+                achievementManager.NotifyEverythingUnlocked();
+            }
         }
         if ((ShopSection)selectedSectionIndex != ShopSection.POWERUPS) {
             savedData.SelectPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);

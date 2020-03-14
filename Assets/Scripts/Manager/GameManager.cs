@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     private CameraController cameraController;
     private StyleManager styleManager;
     private PlayStoreManager playStoreManager;
+    private AchievementManager achievementManager;
     private SaveLoadManager saveLoadManager;
     private SavedData savedData;
 
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour {
         styleManager = GetComponentInChildren<StyleManager>();
         styleManager.Init(savedData);
         playStoreManager = GetComponentInChildren<PlayStoreManager>();
+        achievementManager = GetComponentInChildren<AchievementManager>();
     }
 
     public void TutorialDone() {
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour {
         powerupSpawner.UpdateActualCollectedFruit(scoreManager.GetCurrentScore());
         fruitSpawner.SetMoveFruitTowardsPlayer(false);
         guiManager.FruitCollected();
+        achievementManager.NotifyCurrentScoreIncreased(scoreManager.GetCurrentScore());
     }
 
     public PlayerPowerupTypes PlayerCollectedPowerup() {

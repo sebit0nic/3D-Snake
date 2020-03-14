@@ -125,6 +125,59 @@ public class SavedData {
         return totalScore;
     }
 
+    public int GetPurchaseableBoughtCount() {
+        int purchaseableBoughtCount = 0;
+        foreach(HatObject hatObject in unlockedHats) {
+            if (hatObject.IsUnlocked()) {
+                purchaseableBoughtCount++;
+            }
+        }
+
+        foreach(ColorObject colorObject in unlockedColors) {
+            if (colorObject.IsUnlocked()) {
+                purchaseableBoughtCount++;
+            }
+        }
+        
+        foreach(PowerupObject powerupObject in unlockedPowerups) {
+            purchaseableBoughtCount += powerupObject.GetCurrentLevel();
+        }
+        return purchaseableBoughtCount;
+    }
+
+    public bool IsEverythingUnlocked() {
+        int purchaseableCount = 0;
+        int purchaseableBoughtCount = 0;
+        foreach ( HatObject hatObject in unlockedHats ) {
+            purchaseableCount++;
+            if (hatObject.IsUnlocked()) {
+                purchaseableBoughtCount++;
+            }
+        }
+
+        foreach ( ColorObject colorObject in unlockedColors ) {
+            purchaseableCount++;
+            if (colorObject.IsUnlocked()) {
+                purchaseableBoughtCount++;
+            }
+        }
+
+        foreach ( PowerupObject powerupObject in unlockedPowerups ) {
+            purchaseableCount += powerupObject.GetMaxLevel();
+            purchaseableBoughtCount += powerupObject.GetCurrentLevel();
+        }
+        return purchaseableCount == purchaseableBoughtCount;
+    }
+
+    public bool IsPowerupAtMaxLevel() {
+        foreach ( PowerupObject powerupObject in unlockedPowerups ) {
+            if (powerupObject.GetCurrentLevel() == powerupObject.GetMaxLevel()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void SetTotalScore(int totalScore) {
         this.totalScore = totalScore;
     }
