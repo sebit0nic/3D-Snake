@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
-        //PlayerPrefs.DeleteAll();
         saveLoadManager = GetComponent<SaveLoadManager>();
         savedData = saveLoadManager.LoadData();
 
@@ -47,6 +46,7 @@ public class GameManager : MonoBehaviour {
         powerupSpawner.Init(savedData);
         snake = GameObject.Find("Snake").GetComponent<Snake>();
         cameraController = GameObject.Find("Environment").GetComponentInChildren<CameraController>();
+        cameraController.Init((CameraStatus)saveLoadManager.GetCameraStatus());
         styleManager = GetComponentInChildren<StyleManager>();
         styleManager.Init(savedData);
         playStoreManager = GetComponentInChildren<PlayStoreManager>();

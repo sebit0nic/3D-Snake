@@ -10889,6 +10889,16 @@ PrefabInstance:
       propertyPath: planet
       value: 
       objectReference: {fileID: 618410609}
+    - target: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
+        type: 3}
+      propertyPath: secondaryRotationSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
+        type: 3}
+      propertyPath: secondaryTrackingSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1805992717400899063, guid: b1a19507b8811334ba31b04437b5978a,
         type: 3}
       propertyPath: m_Enabled
