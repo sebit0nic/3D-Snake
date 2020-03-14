@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeMovement: {fileID: 0}
-  playStoreManager: {fileID: 0}
+  playStoreManager: {fileID: 895019761}
 --- !u!23 &694516016 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4847596988877887342, guid: c7da1818f900a164e8888dcba3d15560,
@@ -993,6 +993,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 895019759}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &895019761 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 339341217458741634, guid: 2a114f3ad3fae7f41b14f6a7e6a84d8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 895019759}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53b2ddfdc061374897cebd432fcb576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &921407356
 GameObject:
   m_ObjectHideFlags: 0

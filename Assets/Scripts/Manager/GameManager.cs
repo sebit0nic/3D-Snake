@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour {
         styleManager = GetComponentInChildren<StyleManager>();
         styleManager.Init(savedData);
         playStoreManager = GetComponentInChildren<PlayStoreManager>();
+        playStoreManager.Init();
         achievementManager = GetComponentInChildren<AchievementManager>();
     }
 

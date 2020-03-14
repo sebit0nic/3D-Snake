@@ -18,7 +18,7 @@ public class PlayStoreManager : MonoBehaviour {
     private const string loginFailString = "Login to Google Play failed...";
     private const string postFailString = "Could not post score....";
 
-    private void Start() {
+    public void Init() {
         playStoreNotificationText = playStoreNotification.GetComponentInChildren<Text>();
         PlayGamesPlatform.Activate();
     }
@@ -33,7 +33,7 @@ public class PlayStoreManager : MonoBehaviour {
     }
 
     public void UnlockAchievement(string unlockToken) {
-        Social.ReportProgress(unlockToken, 100.0f, (bool success) => { });
+        Social.ReportProgress(unlockToken, 100, (bool success) => { });
     }
 
     public void PostScore(int highscore, int totalscore) {

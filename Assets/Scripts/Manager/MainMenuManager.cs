@@ -31,6 +31,7 @@ public class MainMenuManager : MonoBehaviour {
         soundButton.isOn = saveLoadManager.GetSoundStatus() != 0;
         cameraButton.isOn = saveLoadManager.GetCameraStatus() != 0;
 
+        playStoreManager.Init();
         playStoreManager.SignIn();
     }
 
