@@ -54,17 +54,17 @@ public class ShopScreen : MonoBehaviour {
             case ShopSection.HATS:
                 DisableAllSections();
                 hatSection.SetActive(true);
-                hatButtonImage.color = Color.grey;
+                hatButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 break;
             case ShopSection.COLORSCHEME:
                 DisableAllSections();
                 colorSection.SetActive(true);
-                colorButtonImage.color = Color.grey;
+                colorButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 break;
             case ShopSection.POWERUPS:
                 DisableAllSections();
                 powerupSection.SetActive(true);
-                powerupButtonImage.color = Color.grey;
+                powerupButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 break;
         }
         PurchaseableObjectSelected(0);
