@@ -7,6 +7,7 @@ public class ShopScreen : MonoBehaviour {
 
     public GameObject hatSection, colorSection, powerupSection;
     public Image hatButtonImage, colorButtonImage, powerupButtonImage;
+    public Image hatButtonIcon, colorButtonIcon, powerupButtonIcon;
     public Button buySelectButton;
     public Text buySelectText, totalScoreText;
     public ShopSectionManager shopSectionManager;
@@ -55,16 +56,19 @@ public class ShopScreen : MonoBehaviour {
                 DisableAllSections();
                 hatSection.SetActive(true);
                 hatButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
+                hatButtonIcon.color = Color.white;
                 break;
             case ShopSection.COLORSCHEME:
                 DisableAllSections();
                 colorSection.SetActive(true);
                 colorButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
+                colorButtonIcon.color = Color.white;
                 break;
             case ShopSection.POWERUPS:
                 DisableAllSections();
                 powerupSection.SetActive(true);
                 powerupButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
+                powerupButtonIcon.color = Color.white;
                 break;
         }
         PurchaseableObjectSelected(0);
@@ -139,6 +143,9 @@ public class ShopScreen : MonoBehaviour {
         hatButtonImage.color = Color.white;
         colorButtonImage.color = Color.white;
         powerupButtonImage.color = Color.white;
+        hatButtonIcon.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
+        colorButtonIcon.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
+        powerupButtonIcon.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
     }
 
     private void HideAllHatPreviewModels() {
