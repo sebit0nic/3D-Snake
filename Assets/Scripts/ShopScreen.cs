@@ -12,7 +12,6 @@ public class ShopScreen : MonoBehaviour {
     public Text buySelectText, totalScoreText;
     public ShopSectionManager shopSectionManager;
     public ScreenTransition screenTransition;
-
     public GameObject[] hatPreviewModels;
 
     private int selectedPurchaseableIndex, selectedSectionIndex;
@@ -37,6 +36,7 @@ public class ShopScreen : MonoBehaviour {
         selectedSectionIndex = 0;
         totalScoreText.text = savedData.totalScore.ToString().PadLeft(5, '0');
         hatPreviewModels[(int) savedData.GetSelectedHatType()].SetActive(true);
+        shopSectionManager.PurchaseableSelected(selectedSectionIndex, (int)savedData.GetSelectedHatType());
         ShowSection(selectedSectionIndex);
         
         achievementManager.NotifyPurchaseableBought(savedData.GetPurchaseableBoughtCount());
@@ -57,12 +57,14 @@ public class ShopScreen : MonoBehaviour {
                 hatSection.SetActive(true);
                 hatButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 hatButtonIcon.color = Color.white;
+                shopSectionManager.PurchaseableSelected(selectedSectionIndex, (int) savedData.GetSelectedHatType());
                 break;
             case ShopSection.COLORSCHEME:
                 DisableAllSections();
                 colorSection.SetActive(true);
                 colorButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 colorButtonIcon.color = Color.white;
+                shopSectionManager.PurchaseableSelected(selectedSectionIndex, (int) savedData.GetSelectedColorType());
                 break;
             case ShopSection.POWERUPS:
                 DisableAllSections();
@@ -76,6 +78,7 @@ public class ShopScreen : MonoBehaviour {
 
     public void PurchaseableObjectSelected(int index) {
         selectedPurchaseableIndex = index;
+        shopSectionManager.PurchaseableButtonPressed(selectedSectionIndex, selectedPurchaseableIndex);
         ShopSection selectedShopSection = (ShopSection) selectedSectionIndex;
 
         if (selectedShopSection == ShopSection.POWERUPS) {
@@ -123,6 +126,7 @@ public class ShopScreen : MonoBehaviour {
         }
         if ((ShopSection)selectedSectionIndex != ShopSection.POWERUPS) {
             savedData.SelectPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
+            shopSectionManager.PurchaseableSelected(selectedSectionIndex, selectedPurchaseableIndex);
         }
 
         saveLoadManager.SaveData(savedData);

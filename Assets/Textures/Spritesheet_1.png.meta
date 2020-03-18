@@ -49,6 +49,7 @@ TextureImporter:
     21300088: Spritesheet_1_Hat_Section_Icon
     21300090: Spritesheet_1_Style_Section_Icon
     21300092: Spritesheet_1_Powerup_Section_Icon
+    21300094: Spritesheet_1_Checkmark
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -970,13 +971,33 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 262fd15e3a682dd408f7b7a5a6348656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_1_Checkmark
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f688e6f904bec484f92ece06c092b6fe
       vertices: []
       indices: 
       edges: []
