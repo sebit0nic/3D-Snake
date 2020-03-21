@@ -22,7 +22,7 @@ public class MainMenuManager : MonoBehaviour {
 
     private void Start() {
         screenTransition = GameObject.Find("GUI").GetComponentInChildren<ScreenTransition>();
-        saveLoadManager = GetComponent<SaveLoadManager>();
+        saveLoadManager = GetComponentInChildren<SaveLoadManager>();
         savedData = saveLoadManager.LoadData();
         styleManager = GetComponentInChildren<StyleManager>();
         styleManager.Init(savedData);

@@ -37,4 +37,25 @@ public class StyleManager : MonoBehaviour {
             }
         }
     }
+
+    public void InitByIndex(SavedData savedData, int index) {
+        uiColorManager = GameObject.Find("GUI").GetComponent<IUIColorManager>();
+
+        baseMaterial.sharedMaterial.mainTexture = baseTextures[index];
+        planetSkybox.material = skyboxes[index];
+        planetMaterial.sharedMaterial.color = savedData.GetColorByPurchaseableColorIndex(PurchaseableColorType.PLANET, index);
+
+        if ( playerParticleSystem != null ) {
+            ParticleSystem.MainModule mainModule = playerParticleSystem.main;
+            mainModule.startColor = savedData.GetColorByPurchaseableColorIndex(PurchaseableColorType.PARTICLE, index);
+        }
+
+        uiColorManager.SetUIColor(savedData.GetColorByPurchaseableColorIndex(PurchaseableColorType.BASE, index));
+
+        if ( flowerPrefabs.Length > 0 ) {
+            foreach ( SpriteRenderer spre in flowerPrefabs ) {
+                spre.color = savedData.GetColorByPurchaseableColorIndex(PurchaseableColorType.PARTICLE, index);
+            }
+        }
+    }
 }

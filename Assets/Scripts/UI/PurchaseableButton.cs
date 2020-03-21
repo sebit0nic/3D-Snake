@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PurchaseableButton : MonoBehaviour {
 
+    public Vector2 checkMarkPositionOffset;
+
     private int sectionIndex, purchaseableIndex;
     private Text nameText;
     private Image progressBar;
@@ -38,6 +40,6 @@ public class PurchaseableButton : MonoBehaviour {
 
     public void SetSelected(RectTransform checkMark) {
         checkMark.SetParent(this.transform);
-        checkMark.anchoredPosition = new Vector2(-125, 125);
+        checkMark.anchoredPosition = checkMarkPositionOffset;
     }
 }

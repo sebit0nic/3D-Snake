@@ -458,6 +458,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b9e25e87c1ab1b43bb25c9b6e1709f6, type: 3}
+--- !u!1001 &498080783
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2105949456}
+    m_Modifications:
+    - target: {fileID: 3844484356182393417, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_Name
+      value: Save Load Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7ee33687e9e64274bae460f71129921c, type: 3}
 --- !u!1 &515810768
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,7 +1032,7 @@ PrefabInstance:
     - target: {fileID: 339341217458741633, guid: 2a114f3ad3fae7f41b14f6a7e6a84d8a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 339341217458741633, guid: 2a114f3ad3fae7f41b14f6a7e6a84d8a,
         type: 3}
@@ -1752,6 +1821,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc32790abb961d44ea6e3a8a42040f59, type: 3}
+--- !u!4 &1402914108 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3844484356182393416, guid: 7ee33687e9e64274bae460f71129921c,
+    type: 3}
+  m_PrefabInstance: {fileID: 498080783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1409741650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2473,7 +2548,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2105949456}
   - component: {fileID: 2105949457}
-  - component: {fileID: 2105949458}
   m_Layer: 0
   m_Name: Main Menu
   m_TagString: Untagged
@@ -2495,6 +2569,7 @@ Transform:
   - {fileID: 690390169}
   - {fileID: 1950607738}
   - {fileID: 895019760}
+  - {fileID: 1402914108}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2512,183 +2587,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundButton: {fileID: 515810770}
   cameraButton: {fileID: 1037445420}
---- !u!114 &2105949458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2105949455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a490736fb1ffed54c9653cd0705170c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  standardHatObjects:
-  - name: None
-    price: 0
-    unlocked: 1
-    type: 0
-  - name: Cylinder
-    price: 200
-    unlocked: 0
-    type: 1
-  - name: Cappy
-    price: 400
-    unlocked: 0
-    type: 2
-  - name: Propeller
-    price: 600
-    unlocked: 0
-    type: 3
-  - name: Viking
-    price: 800
-    unlocked: 0
-    type: 4
-  - name: Crown
-    price: 1000
-    unlocked: 0
-    type: 5
-  standardColorObjects:
-  - name: Classic
-    price: 0
-    unlocked: 1
-    selected: 1
-    type: 0
-    baseColor:
-    - 0.351
-    - 0.222
-    - 0.129
-    - 1
-    planetColor:
-    - 0.93
-    - 1
-    - 0.79
-    - 1
-    particleColor:
-    - 0.53
-    - 0.63
-    - 0.34
-    - 1
-  - name: Black and White
-    price: 250
-    unlocked: 0
-    selected: 0
-    type: 1
-    baseColor:
-    - 0.3
-    - 0.3
-    - 0.3
-    - 1
-    planetColor:
-    - 0.9
-    - 0.9
-    - 0.9
-    - 1
-    particleColor:
-    - 0.7
-    - 0.7
-    - 0.7
-    - 1
-  - name: Playful
-    price: 500
-    unlocked: 0
-    selected: 0
-    type: 2
-    baseColor:
-    - 0.332
-    - 0.254
-    - 0.371
-    - 1
-    planetColor:
-    - 0.9
-    - 0.78
-    - 0.43
-    - 1
-    particleColor:
-    - 0.84
-    - 0.45
-    - 0.33
-    - 1
-  - name: Arctic
-    price: 750
-    unlocked: 0
-    selected: 0
-    type: 3
-    baseColor:
-    - 0.125
-    - 0.156
-    - 0.305
-    - 1
-    planetColor:
-    - 0.835
-    - 0.878
-    - 0.91
-    - 1
-    particleColor:
-    - 0.543
-    - 0.789
-    - 0.863
-    - 1
-  - name: Autumn
-    price: 1000
-    unlocked: 0
-    selected: 0
-    type: 4
-    baseColor:
-    - 0.023
-    - 0.086
-    - 0.141
-    - 1
-    planetColor:
-    - 1
-    - 0.828
-    - 0.637
-    - 1
-    particleColor:
-    - 0.813
-    - 0.504
-    - 0.348
-    - 1
-  - name: Dark
-    price: 1500
-    unlocked: 0
-    selected: 0
-    type: 5
-    baseColor:
-    - 0.05
-    - 0.059
-    - 0.066
-    - 1
-    planetColor:
-    - 0.625
-    - 0.484
-    - 0.262
-    - 1
-    particleColor:
-    - 0.293
-    - 0.289
-    - 0.152
-    - 1
-  standardPowerupObjects:
-  - name: Invincibility
-    price: 250
-    priceIncreaseFactor: 250
-    currentLevel: 0
-    maxLevel: 5
-    type: 0
-  - name: Magnet
-    price: 150
-    priceIncreaseFactor: 150
-    currentLevel: 0
-    maxLevel: 5
-    type: 1
-  - name: Thin
-    price: 200
-    priceIncreaseFactor: 200
-    currentLevel: 0
-    maxLevel: 5
-    type: 2
 --- !u!1001 &2925195634461594769
 PrefabInstance:
   m_ObjectHideFlags: 0

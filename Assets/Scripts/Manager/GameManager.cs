@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
-        saveLoadManager = GetComponent<SaveLoadManager>();
+        saveLoadManager = GetComponentInChildren<SaveLoadManager>();
         savedData = saveLoadManager.LoadData();
 
         fruitSpawner = GetComponentInChildren<FruitSpawner>();

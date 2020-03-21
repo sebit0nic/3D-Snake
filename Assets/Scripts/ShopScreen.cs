@@ -9,10 +9,11 @@ public class ShopScreen : MonoBehaviour {
     public Image hatButtonImage, colorButtonImage, powerupButtonImage;
     public Image hatButtonIcon, colorButtonIcon, powerupButtonIcon;
     public Button buySelectButton;
-    public Text buySelectText, totalScoreText;
+    public Text buyText, priceText, selectText, totalScoreText;
     public ShopSectionManager shopSectionManager;
     public ScreenTransition screenTransition;
     public GameObject[] hatPreviewModels;
+    public Animator hatAnimator;
 
     private int selectedPurchaseableIndex, selectedSectionIndex;
     private SaveLoadManager saveLoadManager;
@@ -23,7 +24,7 @@ public class ShopScreen : MonoBehaviour {
     private bool buyMode;
 
     private void Start() {
-        saveLoadManager = GetComponent<SaveLoadManager>();
+        saveLoadManager = GetComponentInChildren<SaveLoadManager>();
         savedData = saveLoadManager.LoadData();
         shopSectionManager.Init(savedData);
         styleManager = GetComponentInChildren<StyleManager>();
@@ -58,6 +59,7 @@ public class ShopScreen : MonoBehaviour {
                 hatButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 hatButtonIcon.color = Color.white;
                 shopSectionManager.PurchaseableSelected(selectedSectionIndex, (int) savedData.GetSelectedHatType());
+                PurchaseableObjectSelected((int) savedData.GetSelectedHatType());
                 break;
             case ShopSection.COLORSCHEME:
                 DisableAllSections();
@@ -65,15 +67,20 @@ public class ShopScreen : MonoBehaviour {
                 colorButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 colorButtonIcon.color = Color.white;
                 shopSectionManager.PurchaseableSelected(selectedSectionIndex, (int) savedData.GetSelectedColorType());
+                PurchaseableObjectSelected((int)savedData.GetSelectedColorType());
                 break;
             case ShopSection.POWERUPS:
                 DisableAllSections();
                 powerupSection.SetActive(true);
                 powerupButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 powerupButtonIcon.color = Color.white;
+                PurchaseableObjectSelected(0);
                 break;
         }
-        PurchaseableObjectSelected(0);
+
+        HideAllHatPreviewModels();
+        hatPreviewModels[(int)savedData.GetSelectedHatType()].SetActive(true);
+        styleManager.Init(savedData);
     }
 
     public void PurchaseableObjectSelected(int index) {
@@ -84,29 +91,56 @@ public class ShopScreen : MonoBehaviour {
         if (selectedShopSection == ShopSection.POWERUPS) {
             if (savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex)) {
                 buySelectButton.interactable = false;
-                buySelectText.text = "Buy";
+                buyText.gameObject.SetActive(true);
+                priceText.gameObject.SetActive(false);
+                selectText.gameObject.SetActive(false);
             } else if (savedData.totalScore >= savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex)) {
                 buySelectButton.interactable = true;
-                buySelectText.text = "Buy (" + savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) + ")";
+                priceText.text = savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex).ToString();
+                buyText.gameObject.SetActive(true);
+                priceText.gameObject.SetActive(true);
+                selectText.gameObject.SetActive(false);
             } else {
                 buySelectButton.interactable = false;
-                buySelectText.text = "Buy (" + savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) + ")";
+                priceText.text = savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex).ToString();
+                buyText.gameObject.SetActive(true);
+                priceText.gameObject.SetActive(true);
+                selectText.gameObject.SetActive(false);
             }
             buyMode = true;
         } else {
-            if ( savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex) ) {
-                buySelectText.text = "Select";
+            if (savedData.IsPurchaseableUnlocked(selectedSectionIndex, selectedPurchaseableIndex)) {
                 buySelectButton.interactable = true;
+                priceText.text = savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex).ToString();
                 buyMode = false;
+                buyText.gameObject.SetActive(false);
+                priceText.gameObject.SetActive(false);
+                selectText.gameObject.SetActive(true);
             } else if ( savedData.totalScore >= savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) ) {
-                buySelectText.text = "Buy (" + savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) + ")";
                 buySelectButton.interactable = true;
+                priceText.text = savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex).ToString();
                 buyMode = true;
+                buyText.gameObject.SetActive(true);
+                priceText.gameObject.SetActive(true);
+                selectText.gameObject.SetActive(false);
             } else {
-                buySelectText.text = "Buy (" + savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex) + ")";
                 buySelectButton.interactable = false;
+                priceText.text = savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex).ToString();
                 buyMode = true;
+                buyText.gameObject.SetActive(true);
+                priceText.gameObject.SetActive(true);
+                selectText.gameObject.SetActive(false);
             }
+        }
+
+        switch ( selectedShopSection ) {
+            case ShopSection.HATS:
+                HideAllHatPreviewModels();
+                hatPreviewModels[selectedPurchaseableIndex].SetActive(true);
+                break;
+            case ShopSection.COLORSCHEME:
+                styleManager.InitByIndex(savedData, selectedPurchaseableIndex);
+                break;
         }
     }
 
@@ -131,13 +165,14 @@ public class ShopScreen : MonoBehaviour {
 
         saveLoadManager.SaveData(savedData);
         shopSectionManager.UpdatePurchaseableSelectButton(savedData, selectedSectionIndex, selectedPurchaseableIndex);
-        HideAllHatPreviewModels();
-        hatPreviewModels[(int) savedData.GetSelectedHatType()].SetActive(true);
-        styleManager.Init(savedData);
     }
 
     public void ChangeScreen(int toScreenID) {
         screenTransition.StartScreenTransition(toScreenID);
+    }
+
+    public void ShowHatAnimation() {
+        hatAnimator.SetTrigger("OnShow");
     }
 
     private void DisableAllSections() {

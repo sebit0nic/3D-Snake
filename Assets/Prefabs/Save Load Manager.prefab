@@ -1,0 +1,210 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3844484356182393417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3844484356182393416}
+  - component: {fileID: 3844484356182393431}
+  m_Layer: 0
+  m_Name: Save Load Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3844484356182393416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3844484356182393417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3844484356182393431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3844484356182393417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a490736fb1ffed54c9653cd0705170c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standardHatObjects:
+  - name: None
+    price: 0
+    unlocked: 1
+    type: 0
+  - name: Cylinder
+    price: 200
+    unlocked: 0
+    type: 1
+  - name: Cappy
+    price: 400
+    unlocked: 0
+    type: 2
+  - name: Propeller
+    price: 600
+    unlocked: 0
+    type: 3
+  - name: Viking
+    price: 800
+    unlocked: 0
+    type: 4
+  - name: Crown
+    price: 1000
+    unlocked: 0
+    type: 5
+  standardColorObjects:
+  - name: Classic
+    price: 0
+    unlocked: 1
+    selected: 1
+    type: 0
+    baseColor:
+    - 0.351
+    - 0.222
+    - 0.129
+    - 1
+    planetColor:
+    - 0.93
+    - 1
+    - 0.79
+    - 1
+    particleColor:
+    - 0.53
+    - 0.63
+    - 0.34
+    - 1
+  - name: Black and White
+    price: 250
+    unlocked: 0
+    selected: 0
+    type: 1
+    baseColor:
+    - 0.3
+    - 0.3
+    - 0.3
+    - 1
+    planetColor:
+    - 0.9
+    - 0.9
+    - 0.9
+    - 1
+    particleColor:
+    - 0.7
+    - 0.7
+    - 0.7
+    - 1
+  - name: Playful
+    price: 500
+    unlocked: 0
+    selected: 0
+    type: 2
+    baseColor:
+    - 0.332
+    - 0.254
+    - 0.371
+    - 1
+    planetColor:
+    - 0.9
+    - 0.78
+    - 0.43
+    - 1
+    particleColor:
+    - 0.84
+    - 0.45
+    - 0.33
+    - 1
+  - name: Arctic
+    price: 750
+    unlocked: 0
+    selected: 0
+    type: 3
+    baseColor:
+    - 0.125
+    - 0.156
+    - 0.305
+    - 1
+    planetColor:
+    - 0.835
+    - 0.878
+    - 0.91
+    - 1
+    particleColor:
+    - 0.543
+    - 0.789
+    - 0.863
+    - 1
+  - name: Autumn
+    price: 1000
+    unlocked: 0
+    selected: 0
+    type: 4
+    baseColor:
+    - 0.023
+    - 0.086
+    - 0.141
+    - 1
+    planetColor:
+    - 1
+    - 0.828
+    - 0.637
+    - 1
+    particleColor:
+    - 0.813
+    - 0.504
+    - 0.348
+    - 1
+  - name: Dark
+    price: 1500
+    unlocked: 0
+    selected: 0
+    type: 5
+    baseColor:
+    - 0.05
+    - 0.059
+    - 0.066
+    - 1
+    planetColor:
+    - 0.625
+    - 0.484
+    - 0.262
+    - 1
+    particleColor:
+    - 0.293
+    - 0.289
+    - 0.152
+    - 1
+  standardPowerupObjects:
+  - name: Invincibility
+    price: 250
+    priceIncreaseFactor: 250
+    currentLevel: 0
+    maxLevel: 5
+    type: 0
+  - name: Magnet
+    price: 150
+    priceIncreaseFactor: 150
+    currentLevel: 0
+    maxLevel: 5
+    type: 1
+  - name: Thin
+    price: 200
+    priceIncreaseFactor: 200
+    currentLevel: 0
+    maxLevel: 5
+    type: 2

@@ -101,6 +101,10 @@ public class SavedData {
         return unlockedColors[(int) currentColor].GetColorByColorType(purchaseableColorType);
     }
 
+    public Color GetColorByPurchaseableColorIndex(PurchaseableColorType purchaseableColorType, int index) {
+        return unlockedColors[index].GetColorByColorType(purchaseableColorType);
+    }
+
     public int GetCurrentLevel(int purchaseableIndex) {
         return unlockedPowerups[purchaseableIndex].GetCurrentLevel();
     }
