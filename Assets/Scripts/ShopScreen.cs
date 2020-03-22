@@ -52,9 +52,10 @@ public class ShopScreen : MonoBehaviour {
     public void ShowSection(int index) {
         selectedSectionIndex = index;
         ShopSection selectedShopSection = (ShopSection) index;
+        DisableAllSections();
+
         switch ( selectedShopSection ) {
             case ShopSection.HATS:
-                DisableAllSections();
                 hatSection.SetActive(true);
                 hatButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 hatButtonIcon.color = Color.white;
@@ -62,7 +63,6 @@ public class ShopScreen : MonoBehaviour {
                 PurchaseableObjectSelected((int) savedData.GetSelectedHatType());
                 break;
             case ShopSection.COLORSCHEME:
-                DisableAllSections();
                 colorSection.SetActive(true);
                 colorButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 colorButtonIcon.color = Color.white;
@@ -70,7 +70,6 @@ public class ShopScreen : MonoBehaviour {
                 PurchaseableObjectSelected((int)savedData.GetSelectedColorType());
                 break;
             case ShopSection.POWERUPS:
-                DisableAllSections();
                 powerupSection.SetActive(true);
                 powerupButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 powerupButtonIcon.color = Color.white;
