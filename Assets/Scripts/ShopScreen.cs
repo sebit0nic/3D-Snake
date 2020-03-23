@@ -11,6 +11,7 @@ public class ShopScreen : MonoBehaviour {
     public Button buySelectButton;
     public Text buyText, priceText, selectText, totalScoreText;
     public ShopSectionManager shopSectionManager;
+    public PowerupPreview powerupPreview;
     public ScreenTransition screenTransition;
     public GameObject[] hatPreviewModels;
     public Animator hatAnimator;
@@ -39,20 +40,14 @@ public class ShopScreen : MonoBehaviour {
         hatPreviewModels[(int) savedData.GetSelectedHatType()].SetActive(true);
         shopSectionManager.PurchaseableSelected(selectedSectionIndex, (int)savedData.GetSelectedHatType());
         ShowSection(selectedSectionIndex);
-        
-        achievementManager.NotifyPurchaseableBought(savedData.GetPurchaseableBoughtCount());
-        if ( savedData.IsPowerupAtMaxLevel() ) {
-            achievementManager.NotifyPowerupAtMaxLevel();
-        }
-        if ( savedData.IsEverythingUnlocked() ) {
-            achievementManager.NotifyEverythingUnlocked();
-        }
+        CheckAchievementConditions();
     }
 
     public void ShowSection(int index) {
         selectedSectionIndex = index;
         ShopSection selectedShopSection = (ShopSection) index;
         DisableAllSections();
+        powerupPreview.DisableAllPreviews();
 
         switch ( selectedShopSection ) {
             case ShopSection.HATS:
@@ -74,6 +69,7 @@ public class ShopScreen : MonoBehaviour {
                 powerupButtonImage.color = savedData.GetColorByPurchaseableColorType(PurchaseableColorType.BASE);
                 powerupButtonIcon.color = Color.white;
                 PurchaseableObjectSelected(0);
+                powerupPreview.Show(PlayerPowerupTypes.INVINCIBILTY);
                 break;
         }
 
@@ -148,14 +144,7 @@ public class ShopScreen : MonoBehaviour {
             savedData.UnlockPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
             totalScoreText.text = savedData.totalScore.ToString().PadLeft(5, '0');
             PurchaseableObjectSelected(selectedPurchaseableIndex);
-
-            achievementManager.NotifyPurchaseableBought(savedData.GetPurchaseableBoughtCount());
-            if (savedData.IsPowerupAtMaxLevel()) {
-                achievementManager.NotifyPowerupAtMaxLevel();
-            }
-            if (savedData.IsEverythingUnlocked()) {
-                achievementManager.NotifyEverythingUnlocked();
-            }
+            CheckAchievementConditions();
         }
         if ((ShopSection)selectedSectionIndex != ShopSection.POWERUPS) {
             savedData.SelectPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
@@ -174,6 +163,11 @@ public class ShopScreen : MonoBehaviour {
         hatAnimator.SetTrigger("OnShow");
     }
 
+    public void PowerupButtonPressed(int index) {
+        powerupPreview.DisableAllPreviews();
+        powerupPreview.Show((PlayerPowerupTypes) index);
+    }
+
     private void DisableAllSections() {
         hatSection.SetActive(false);
         colorSection.SetActive(false);
@@ -189,6 +183,16 @@ public class ShopScreen : MonoBehaviour {
     private void HideAllHatPreviewModels() {
         foreach (GameObject go in hatPreviewModels) {
             go.SetActive(false);
+        }
+    }
+
+    private void CheckAchievementConditions() {
+        achievementManager.NotifyPurchaseableBought(savedData.GetPurchaseableBoughtCount());
+        if ( savedData.IsPowerupAtMaxLevel() ) {
+            achievementManager.NotifyPowerupAtMaxLevel();
+        }
+        if ( savedData.IsEverythingUnlocked() ) {
+            achievementManager.NotifyEverythingUnlocked();
         }
     }
 }
