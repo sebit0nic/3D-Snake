@@ -23,6 +23,7 @@ public class ShopScreen : MonoBehaviour {
     private PlayStoreManager playStoreManager;
     private AchievementManager achievementManager;
     private bool buyMode;
+    private string totalScoreString;
 
     private void Start() {
         saveLoadManager = GetComponentInChildren<SaveLoadManager>();
@@ -141,8 +142,8 @@ public class ShopScreen : MonoBehaviour {
 
     public void BuySelectPurchaseable() {
         if (buyMode) {
+            StartCoroutine(OnShowTotalScoreAfterBuy(savedData.GetTotalScore(), savedData.GetTotalScore() - savedData.GetPurchaseablePrice(selectedSectionIndex, selectedPurchaseableIndex)));
             savedData.UnlockPurchaseable(selectedSectionIndex, selectedPurchaseableIndex);
-            totalScoreText.text = savedData.totalScore.ToString().PadLeft(5, '0');
             PurchaseableObjectSelected(selectedPurchaseableIndex);
             CheckAchievementConditions();
         }
@@ -194,5 +195,20 @@ public class ShopScreen : MonoBehaviour {
         if ( savedData.IsEverythingUnlocked() ) {
             achievementManager.NotifyEverythingUnlocked();
         }
+    }
+
+    private IEnumerator OnShowTotalScoreAfterBuy(int totalScore, int newTotalScore) {
+        totalScoreString = totalScore.ToString();
+        totalScoreText.text = totalScoreString.PadLeft(5, '0');
+        
+        while (totalScore > newTotalScore) {
+            totalScore -= 20;
+            totalScoreString = totalScore.ToString();
+            totalScoreText.text = totalScoreString.PadLeft(5, '0');
+            yield return new WaitForFixedUpdate();
+        }
+
+        totalScoreString = newTotalScore.ToString();
+        totalScoreText.text = totalScoreString.PadLeft(5, '0');
     }
 }
