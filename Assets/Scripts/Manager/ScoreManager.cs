@@ -9,6 +9,8 @@ public class ScoreManager : MonoBehaviour {
     private int totalScore = 0;
     private bool newHighscore;
 
+    private const int minRevivalScore = 5;
+
     public void Init(SavedData savedData) {
         totalScore = savedData.GetTotalScore();
     }
@@ -32,6 +34,10 @@ public class ScoreManager : MonoBehaviour {
 
     public int GetTotalScore() {
         return totalScore;
+    }
+
+    public int GetMinRevivalScore() {
+        return minRevivalScore;
     }
 
     public bool IsNewHighscore() {

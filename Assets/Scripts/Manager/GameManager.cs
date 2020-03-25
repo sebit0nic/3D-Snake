@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     private StyleManager styleManager;
     private PlayStoreManager playStoreManager;
     private AchievementManager achievementManager;
+    private AdManager adManager;
     private SaveLoadManager saveLoadManager;
     private SavedData savedData;
 
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour {
         playStoreManager = GetComponentInChildren<PlayStoreManager>();
         playStoreManager.Init();
         achievementManager = GetComponentInChildren<AchievementManager>();
+        adManager = GetComponentInChildren<AdManager>();
     }
 
     public void TutorialDone() {
@@ -89,13 +91,18 @@ public class GameManager : MonoBehaviour {
         fruitSpawner.Stop();
         powerupSpawner.Stop();
         snake.Stop();
-        scoreManager.FinalizeScore(savedData);
         guiManager.HideHUD();
-        guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore());
         cameraController.Stop();
-        saveLoadManager.SetTutorialStatus((int) TutorialStatus.TUTORIAL_DONE);
-        saveLoadManager.SaveData(savedData);
-        playStoreManager.PostScore(savedData.highscore, savedData.totalScore);
+
+        if (scoreManager.GetCurrentScore() > scoreManager.GetMinRevivalScore() && adManager.IsAdAvailable()) {
+            guiManager.ShowAdScreen();
+        } else {
+            scoreManager.FinalizeScore(savedData);
+            guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore());
+            saveLoadManager.SetTutorialStatus((int) TutorialStatus.TUTORIAL_DONE);
+            saveLoadManager.SaveData(savedData);
+            playStoreManager.PostScore(savedData.highscore, savedData.totalScore);
+        }
     }
 
     public void SwitchScreen(ScreenType screenType) {

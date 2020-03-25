@@ -8,6 +8,8 @@ public class GuiManager : MonoBehaviour {
     public GameObject pauseButton, pauseMenu;
     public GameObject steerRightButton, steerLeftButton;
     public GameObject gameOverScreen;
+    public GameObject adScreen;
+    public Animator adScreenAnimator;
     public GameObject newHighscoreCrown;
     public ScreenTransition screenTransition;
     public Text finalScoreText, totalScoreText;
@@ -60,8 +62,11 @@ public class GuiManager : MonoBehaviour {
     }
 
     public void ShowGameOverScreen(int finalScore, int totalScore, bool newHighscore) {
-        gameOverScreen.SetActive(true);
-        StartCoroutine(OnShowFinalScore(finalScore, totalScore, newHighscore));
+        StartCoroutine(OnWaitForGameOverScreen(finalScore, totalScore, newHighscore));
+    }
+
+    public void ShowAdScreen() {
+        StartCoroutine(OnWaitForAdScreen());
     }
 
     public void ShowScreenTransition(int sceneID) {
@@ -92,11 +97,26 @@ public class GuiManager : MonoBehaviour {
         powerupIcon.enabled = false;
     }
 
+    public void HideAdScreen() {
+        adScreenAnimator.SetTrigger("OnHide");
+    }
+
     public void TouchIndicatorTutorialDone() {
         tutorialsDone++;
         if (tutorialsDone == 2) {
             GameManager.instance.TutorialDone();
         }
+    }
+
+    private IEnumerator OnWaitForGameOverScreen(int finalScore, int totalScore, bool newHighscore) {
+        yield return new WaitForSeconds(1f);
+        gameOverScreen.SetActive(true);
+        StartCoroutine(OnShowFinalScore(finalScore, totalScore, newHighscore));
+    }
+
+    private IEnumerator OnWaitForAdScreen() {
+        yield return new WaitForSeconds(1f);
+        adScreen.SetActive(true);
     }
 
     private IEnumerator OnShowFinalScore(int finalScore, int totalScore, bool newHighscore) {
