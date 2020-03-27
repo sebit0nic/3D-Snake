@@ -89,8 +89,12 @@ public class FruitSpawner : MonoBehaviour {
 
     public void Stop() {
         stopped = true;
-        StopAllCoroutines();
         fruit.gameObject.SetActive(false);
+    }
+
+    public void Resume() {
+        stopped = false;
+        fruit.gameObject.SetActive(true);
     }
 
     public void SetMoveFruitTowardsPlayer(bool value) {

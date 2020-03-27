@@ -84,11 +84,18 @@ public class SnakeMovement : MonoBehaviour {
 
     public void Stop() {
         stopped = true;
-        StopAllCoroutines();
         thisRigidbody.velocity = Vector3.zero;
         transform.parent = planet.transform;
         instantiatedObjects.transform.parent = planet.transform;
         planet.SetRotating(true);
+    }
+
+    public void Resume() {
+        stopped = false;
+        thisRigidbody.velocity = thisRigidbody.transform.forward * playerVelocity;
+        transform.parent = null;
+        instantiatedObjects.transform.parent = null;
+        planet.SetRotating(false);
     }
 
     public void MoveRight() {

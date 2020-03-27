@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameUIColorManager : MonoBehaviour, IUIColorManager {
 
     public Image[] uiButtonImages;
+    public Text[] uiButtonTexts;
     public Image screenTransitionImage;
     public Image pauseScreenImage;
 

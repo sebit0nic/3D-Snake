@@ -61,6 +61,14 @@ public class GuiManager : MonoBehaviour {
         powerupDurationImage.gameObject.SetActive(false);
     }
 
+    public void ShowHUD() {
+        pauseButton.SetActive(true);
+        steerRightButton.SetActive(true);
+        steerLeftButton.SetActive(true);
+        powerupIcon.gameObject.SetActive(true);
+        powerupDurationImage.gameObject.SetActive(true);
+    }
+
     public void ShowGameOverScreen(int finalScore, int totalScore, bool newHighscore) {
         StartCoroutine(OnWaitForGameOverScreen(finalScore, totalScore, newHighscore));
     }
@@ -111,6 +119,7 @@ public class GuiManager : MonoBehaviour {
     private IEnumerator OnWaitForGameOverScreen(int finalScore, int totalScore, bool newHighscore) {
         yield return new WaitForSeconds(1f);
         gameOverScreen.SetActive(true);
+        GameManager.instance.GameOverScreenShown();
         StartCoroutine(OnShowFinalScore(finalScore, totalScore, newHighscore));
     }
 

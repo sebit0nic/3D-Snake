@@ -70,6 +70,10 @@ public class SnakeCollision : MonoBehaviour {
         StopAllCoroutines();
     }
 
+    public void Resume() {
+        stopped = false;
+    }
+
     private IEnumerator WaitForInvincibilityPowerupDuration(float duration) {
         invincible = true;
         yield return new WaitForSeconds(duration);

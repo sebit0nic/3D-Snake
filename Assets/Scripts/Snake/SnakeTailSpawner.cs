@@ -17,6 +17,7 @@ public class SnakeTailSpawner : MonoBehaviour {
     private MeshRenderer snakeHeadLowerMeshRenderer, snakeHeadUpperRenderer;
     private Animator snakeThinAnimator;
     private bool invincible = false;
+    private Color initialColor;
 
     public void Init(Snake snake) {
         this.snake = snake;
@@ -24,6 +25,7 @@ public class SnakeTailSpawner : MonoBehaviour {
         snakeHeadLowerMeshRenderer = transform.Find("Head").Find("Lower Head").GetComponent<MeshRenderer>();
         snakeHeadUpperRenderer = transform.Find("Head").Find("Upper Head").GetComponent<MeshRenderer>();
         snakeThinAnimator = GetComponent<Animator>();
+        initialColor = snakeHeadLowerMeshRenderer.material.color;
 
         InvokeRepeating("SpawnCollider", tailRepeatFactor, tailRepeatFactor);
         InvokeRepeating("PopTail", startLength, lifespan);
@@ -52,6 +54,18 @@ public class SnakeTailSpawner : MonoBehaviour {
         CancelInvoke("SpawnCollider");
         CancelInvoke("PopTail");
         StopAllCoroutines();
+    }
+
+    public void Resume() {
+        snakeThinAnimator.enabled = true;
+        InvokeRepeating("SpawnCollider", tailRepeatFactor, tailRepeatFactor);
+        InvokeRepeating("PopTail", startLength, lifespan);
+
+        snakeHeadLowerMeshRenderer.material.color = initialColor;
+        snakeHeadUpperRenderer.material.color = initialColor;
+        foreach (SnakeTail snakeTail in snakeTailList) {
+            snakeTail.StartGameOverAnimation(initialColor);
+        }
     }
 
     public bool IsThinPowerupEnabled() {

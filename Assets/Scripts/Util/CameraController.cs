@@ -27,7 +27,6 @@ public class CameraController : MonoBehaviour {
 
     private void LateUpdate() {
         if (!stopped) {
-            
             if (cameraStatus == CameraStatus.CAMERA_NO_ROTATION) {
                 v3To = target.position - target.forward * backDistance + target.up * upDistance;
                 transform.position = Vector3.Lerp(transform.position, v3To, trackingSpeed * Time.deltaTime);
@@ -47,5 +46,9 @@ public class CameraController : MonoBehaviour {
     public void Stop() {
         targetRotation = Quaternion.LookRotation(Vector3.zero - transform.position, transform.up);
         stopped = true;
+    }
+
+    public void Resume() {
+        stopped = false;
     }
 }

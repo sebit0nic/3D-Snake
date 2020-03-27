@@ -97,12 +97,15 @@ public class GameManager : MonoBehaviour {
         if (scoreManager.GetCurrentScore() > scoreManager.GetMinRevivalScore() && adManager.IsAdAvailable()) {
             guiManager.ShowAdScreen();
         } else {
-            scoreManager.FinalizeScore(savedData);
             guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore());
-            saveLoadManager.SetTutorialStatus((int) TutorialStatus.TUTORIAL_DONE);
-            saveLoadManager.SaveData(savedData);
-            playStoreManager.PostScore(savedData.highscore, savedData.totalScore);
         }
+    }
+
+    public void GameOverScreenShown() {
+        scoreManager.FinalizeScore(savedData);
+        saveLoadManager.SetTutorialStatus((int) TutorialStatus.TUTORIAL_DONE);
+        saveLoadManager.SaveData(savedData);
+        playStoreManager.PostScore(savedData.highscore, savedData.totalScore);
     }
 
     public void SwitchScreen(ScreenType screenType) {
@@ -125,6 +128,21 @@ public class GameManager : MonoBehaviour {
             Time.timeScale = 1;
             guiManager.TogglePauseMenu(false);
         }
+    }
+
+    public void GameResumedAfterAd() {
+        adManager.SetAdAvailable(false);
+        guiManager.HideAdScreen();
+        guiManager.ShowHUD();
+        fruitSpawner.Resume();
+        snake.Resume();
+        cameraController.Resume();
+    }
+
+    public void AdSkippedOrFailed() {
+        adManager.SetAdAvailable(false);
+        PlayerTouchedTail();
+        guiManager.HideAdScreen();
     }
 
     public Transform GetCurrentSnakePosition() {

@@ -64,6 +64,14 @@ public class Snake : MonoBehaviour {
         snakeTailSpawner.Stop();
     }
 
+    public void Resume() {
+        snakeTailSpawner.InvincibilityPowerupActive(3f);
+        snakeCollision.InvincibilityPowerupActive(3f);
+        snakeMovement.Resume();
+        snakeCollision.Resume();
+        snakeTailSpawner.Resume();
+    }
+
     public Transform GetCurrentPosition() {
         return snakeMovement.GetCurrentPosition();
     }
