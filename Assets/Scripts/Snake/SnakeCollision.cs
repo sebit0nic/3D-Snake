@@ -66,7 +66,10 @@ public class SnakeCollision : MonoBehaviour {
 
     public void Stop() {
         stopped = true;
+        invincible = false;
         magnetPowerupParticle.gameObject.SetActive(false);
+        magnetCollider.OnMagnetPowerupEnd();
+        snake.NotifyPowerupWoreOff(false);
         StopAllCoroutines();
     }
 
@@ -77,7 +80,7 @@ public class SnakeCollision : MonoBehaviour {
     private IEnumerator WaitForInvincibilityPowerupDuration(float duration) {
         invincible = true;
         yield return new WaitForSeconds(duration);
-        snake.NotifyPowerupWoreOff();
+        snake.NotifyPowerupWoreOff(true);
         StartCoroutine(WaitForCourtesyPowerupDuration());
     }
 
@@ -94,6 +97,6 @@ public class SnakeCollision : MonoBehaviour {
 
         magnetPowerupParticle.gameObject.SetActive(false);
         magnetCollider.OnMagnetPowerupEnd();
-        snake.NotifyPowerupWoreOff();
+        snake.NotifyPowerupWoreOff(true);
     }
 }

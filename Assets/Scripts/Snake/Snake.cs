@@ -54,8 +54,8 @@ public class Snake : MonoBehaviour {
         GameManager.instance.PlayerMagnetTouchedFruit();
     }
 
-    public void NotifyPowerupWoreOff() {
-        GameManager.instance.PowerupWoreOff();
+    public void NotifyPowerupWoreOff(bool resumeSpawning) {
+        GameManager.instance.PowerupWoreOff(resumeSpawning);
     }
 
     public void Stop() {
@@ -65,11 +65,7 @@ public class Snake : MonoBehaviour {
     }
 
     public void Resume() {
-        snakeTailSpawner.InvincibilityPowerupActive(3f);
-        snakeCollision.InvincibilityPowerupActive(3f);
-        snakeMovement.Resume();
-        snakeCollision.Resume();
-        snakeTailSpawner.Resume();
+        StartCoroutine(WaitAfterResume());
     }
 
     public Transform GetCurrentPosition() {
@@ -78,5 +74,14 @@ public class Snake : MonoBehaviour {
 
     public Transform GetLastTailTransform() {
         return snakeTailSpawner.GetLastTailTransform();
+    }
+
+    private IEnumerator WaitAfterResume() {
+        yield return new WaitForSeconds(1f);
+        snakeTailSpawner.InvincibilityPowerupActive(3f);
+        snakeCollision.InvincibilityPowerupActive(3f);
+        snakeMovement.Resume();
+        snakeCollision.Resume();
+        snakeTailSpawner.Resume();
     }
 }

@@ -49,6 +49,16 @@ public class CameraController : MonoBehaviour {
     }
 
     public void Resume() {
+        if ( cameraStatus == CameraStatus.CAMERA_NO_ROTATION ) {
+            v3To = target.position - target.forward * backDistance + target.up * upDistance;
+            qTo = Quaternion.LookRotation(target.position - transform.position, transform.up);
+        } else if ( cameraStatus == CameraStatus.CAMERA_ROTATE ) {
+            v3To = target.position - target.forward * backDistance + target.up * upDistance;
+            qTo = Quaternion.LookRotation(target.position - transform.position, transform.forward);
+        }
+        transform.position = v3To;
+        transform.localRotation = qTo;
+
         stopped = false;
     }
 }

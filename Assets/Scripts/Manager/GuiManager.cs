@@ -103,6 +103,9 @@ public class GuiManager : MonoBehaviour {
 
     public void HidePowerupText() {
         powerupIcon.enabled = false;
+        powerupDurationImage.fillAmount = 0;
+        powerupDuration = 0;
+        currentPowerupDuration = 0;
     }
 
     public void HideAdScreen() {

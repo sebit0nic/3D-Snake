@@ -53,13 +53,17 @@ public class SnakeTailSpawner : MonoBehaviour {
         StartGameOverAnimation();
         CancelInvoke("SpawnCollider");
         CancelInvoke("PopTail");
+        snakeThinAnimator.SetTrigger("ThinOff");
+        snake.NotifyPowerupWoreOff(false);
+        thinPowerupEnabled = false;
         StopAllCoroutines();
     }
 
     public void Resume() {
         snakeThinAnimator.enabled = true;
-        InvokeRepeating("SpawnCollider", tailRepeatFactor, tailRepeatFactor);
-        InvokeRepeating("PopTail", startLength, lifespan);
+        InvokeRepeating("SpawnCollider", 0, tailRepeatFactor);
+        InvokeRepeating("PopTail", 0, lifespan);
+        transform.localScale = new Vector3(1f, 1f, 1f);
 
         snakeHeadLowerMeshRenderer.material.color = initialColor;
         snakeHeadUpperRenderer.material.color = initialColor;
@@ -126,7 +130,7 @@ public class SnakeTailSpawner : MonoBehaviour {
         snakeThinAnimator.SetTrigger("ThinOff");
         thinPowerupEnabled = false;
         transform.localScale = new Vector3(1f, 1f, 1f);
-        snake.NotifyPowerupWoreOff();
+        snake.NotifyPowerupWoreOff(true);
     }
 
     private IEnumerator WaitForInvincibilityPowerupDuration(float duration) {

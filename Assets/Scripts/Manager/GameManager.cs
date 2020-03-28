@@ -81,9 +81,11 @@ public class GameManager : MonoBehaviour {
         fruitSpawner.SetMoveFruitTowardsPlayer(true);
     }
 
-    public void PowerupWoreOff() {
+    public void PowerupWoreOff(bool resumeSpawning) {
         guiManager.HidePowerupText();
-        powerupSpawner.ResumeSpawning();
+        if (resumeSpawning) {
+            powerupSpawner.ResumeSpawning();
+        }
         fruitSpawner.SetMoveFruitTowardsPlayer(false);
     }
 
@@ -135,8 +137,8 @@ public class GameManager : MonoBehaviour {
         guiManager.HideAdScreen();
         guiManager.ShowHUD();
         fruitSpawner.Resume();
-        snake.Resume();
         cameraController.Resume();
+        snake.Resume();
     }
 
     public void AdSkippedOrFailed() {
