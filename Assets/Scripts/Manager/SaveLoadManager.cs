@@ -15,6 +15,7 @@ public class SaveLoadManager : MonoBehaviour {
     private const string soundStatusKey = "SoundStatus";
     private const string cameraStatusKey = "CameraStatus";
     private const string tutorialStatusKey = "TutorialStatus";
+    private const string lastRewardTimeKey = "LastRewardTime";
 
     public void SaveData(SavedData savedData) {
         BinaryFormatter bf = new BinaryFormatter();
@@ -60,5 +61,13 @@ public class SaveLoadManager : MonoBehaviour {
 
     public void SetTutorialStatus(int value) {
         PlayerPrefs.SetInt(tutorialStatusKey, value);
+    }
+
+    public System.DateTime GetLastRewardTime() {
+        return System.DateTime.Parse(PlayerPrefs.GetString(lastRewardTimeKey, "01.01.2000 00:00:00"));
+    }
+
+    public void SetLastRewardTime(string lastRewardTime) {
+        PlayerPrefs.SetString(lastRewardTimeKey, lastRewardTime);
     }
 }

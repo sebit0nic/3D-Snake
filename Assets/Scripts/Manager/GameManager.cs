@@ -99,7 +99,12 @@ public class GameManager : MonoBehaviour {
         if (scoreManager.GetCurrentScore() > scoreManager.GetMinRevivalScore() && adManager.IsAdAvailable()) {
             guiManager.ShowAdScreen();
         } else {
-            guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore());
+            if (scoreManager.CheckDailyPlayReward(saveLoadManager)) {
+                scoreManager.ClaimDailyPlayReward(saveLoadManager, savedData);
+                guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), true);
+            } else {
+                guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), false);
+            }
         }
     }
 

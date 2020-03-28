@@ -9,7 +9,8 @@ public class ScoreManager : MonoBehaviour {
     private int totalScore = 0;
     private bool newHighscore;
 
-    private const int minRevivalScore = 5;
+    private const int minRevivalScore = 20;
+    private const int dailyPlayRewardScore = 100;
 
     public void Init(SavedData savedData) {
         totalScore = savedData.GetTotalScore();
@@ -28,6 +29,16 @@ public class ScoreManager : MonoBehaviour {
         }
     }
 
+    public bool CheckDailyPlayReward(SaveLoadManager saveLoadManager) {
+        System.TimeSpan timeDiff = System.DateTime.Now - saveLoadManager.GetLastRewardTime();
+        return timeDiff.TotalHours >= 24;
+    }
+
+    public void ClaimDailyPlayReward(SaveLoadManager saveLoadManager, SavedData savedData) {
+        saveLoadManager.SetLastRewardTime(System.DateTime.Today.ToString());
+        totalScore += dailyPlayRewardScore;
+    }
+    
     public int GetCurrentScore() {
         return finalScore;
     }

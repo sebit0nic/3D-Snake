@@ -10,6 +10,7 @@ public class GuiManager : MonoBehaviour {
     public GameObject gameOverScreen;
     public GameObject adScreen;
     public Animator adScreenAnimator;
+    public GameObject dailyPlayRewardNotification;
     public GameObject newHighscoreCrown;
     public ScreenTransition screenTransition;
     public Text finalScoreText, totalScoreText;
@@ -69,7 +70,8 @@ public class GuiManager : MonoBehaviour {
         powerupDurationImage.gameObject.SetActive(true);
     }
 
-    public void ShowGameOverScreen(int finalScore, int totalScore, bool newHighscore) {
+    public void ShowGameOverScreen(int finalScore, int totalScore, bool newHighscore, bool dailyPlayRewardActive) {
+        dailyPlayRewardNotification.gameObject.SetActive(dailyPlayRewardActive);
         StartCoroutine(OnWaitForGameOverScreen(finalScore, totalScore, newHighscore));
     }
 
