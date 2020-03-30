@@ -77,7 +77,7 @@ public class Snake : MonoBehaviour {
     }
 
     private IEnumerator WaitAfterResume() {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         snakeTailSpawner.InvincibilityPowerupActive(3f);
         snakeCollision.InvincibilityPowerupActive(3f);
         snakeMovement.Resume();

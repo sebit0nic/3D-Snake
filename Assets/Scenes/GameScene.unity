@@ -11949,7 +11949,7 @@ PrefabInstance:
         type: 3}
       propertyPath: planet
       value: 
-      objectReference: {fileID: 618410609}
+      objectReference: {fileID: 618410611}
     - target: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
         type: 3}
       propertyPath: secondaryRotationSpeed

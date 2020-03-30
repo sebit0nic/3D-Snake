@@ -39,7 +39,9 @@ public class PowerupSpawner : MonoBehaviour {
     }
 
     public void ResumeSpawning() {
-        StartCoroutine("WaitForSpawnDelay");
+        if (canSpawn) {
+            StartCoroutine("WaitForSpawnDelay");
+        }
     }
 
     public PlayerPowerupTypes CollectPowerup() {

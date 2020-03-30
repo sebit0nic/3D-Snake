@@ -61,6 +61,8 @@ public class SnakeTailSpawner : MonoBehaviour {
 
     public void Resume() {
         snakeThinAnimator.enabled = true;
+        CancelInvoke("SpawnCollider");
+        CancelInvoke("PopTail");
         InvokeRepeating("SpawnCollider", 0, tailRepeatFactor);
         InvokeRepeating("PopTail", 0, lifespan);
         transform.localScale = new Vector3(1f, 1f, 1f);

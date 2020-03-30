@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
     public Transform target;
-    public Transform planet;
+    public Planet planet;
     public float upDistance = 7.0f;
     public float backDistance = 10.0f;
     public float trackingSpeed = 3.0f;
@@ -45,20 +45,7 @@ public class CameraController : MonoBehaviour {
 
     public void Stop() {
         targetRotation = Quaternion.LookRotation(Vector3.zero - transform.position, transform.up);
+        planet.SetRotating(true);
         stopped = true;
-    }
-
-    public void Resume() {
-        if ( cameraStatus == CameraStatus.CAMERA_NO_ROTATION ) {
-            v3To = target.position - target.forward * backDistance + target.up * upDistance;
-            qTo = Quaternion.LookRotation(target.position - transform.position, transform.up);
-        } else if ( cameraStatus == CameraStatus.CAMERA_ROTATE ) {
-            v3To = target.position - target.forward * backDistance + target.up * upDistance;
-            qTo = Quaternion.LookRotation(target.position - transform.position, transform.forward);
-        }
-        transform.position = v3To;
-        transform.localRotation = qTo;
-
-        stopped = false;
     }
 }

@@ -87,7 +87,7 @@ public class SnakeMovement : MonoBehaviour {
         thisRigidbody.velocity = Vector3.zero;
         transform.parent = planet.transform;
         instantiatedObjects.transform.parent = planet.transform;
-        planet.SetRotating(true);
+        //planet.SetRotating(true);
     }
 
     public void Resume() {
@@ -95,7 +95,7 @@ public class SnakeMovement : MonoBehaviour {
         thisRigidbody.velocity = thisRigidbody.transform.forward * playerVelocity;
         transform.parent = null;
         instantiatedObjects.transform.parent = null;
-        planet.SetRotating(false);
+        //planet.SetRotating(false);
     }
 
     public void MoveRight() {

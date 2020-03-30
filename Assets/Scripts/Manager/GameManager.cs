@@ -94,7 +94,6 @@ public class GameManager : MonoBehaviour {
         powerupSpawner.Stop();
         snake.Stop();
         guiManager.HideHUD();
-        cameraController.Stop();
 
         if (scoreManager.GetCurrentScore() > scoreManager.GetMinRevivalScore() && adManager.IsAdAvailable()) {
             guiManager.ShowAdScreen();
@@ -103,6 +102,7 @@ public class GameManager : MonoBehaviour {
                 scoreManager.ClaimDailyPlayReward(saveLoadManager, savedData);
                 guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), true);
             } else {
+                cameraController.Stop();
                 guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), false);
             }
         }
@@ -142,7 +142,6 @@ public class GameManager : MonoBehaviour {
         guiManager.HideAdScreen();
         guiManager.ShowHUD();
         fruitSpawner.Resume();
-        cameraController.Resume();
         snake.Resume();
     }
 
