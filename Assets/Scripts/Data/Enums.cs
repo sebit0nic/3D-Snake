@@ -78,3 +78,14 @@ public enum AchievementType {
     UPGRADER,
     HOARDER
 }
+
+public enum SoundEffectType {
+    SOUND_EAT,
+    SOUND_SLITHER,
+    SOUND_BUTTON,
+    SOUND_MAGNET,
+    SOUND_THIN,
+    SOUND_INVINCIBILITY,
+    SOUND_TAIL_EAT,
+    SOUND_HAT_FALL
+}

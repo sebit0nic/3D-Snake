@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
     private PlayStoreManager playStoreManager;
     private AchievementManager achievementManager;
     private AdManager adManager;
+    private SoundManager soundManager;
     private SaveLoadManager saveLoadManager;
     private SavedData savedData;
 
@@ -54,6 +55,9 @@ public class GameManager : MonoBehaviour {
         playStoreManager.Init();
         achievementManager = GetComponentInChildren<AchievementManager>();
         adManager = GetComponentInChildren<AdManager>();
+        soundManager = GetComponentInChildren<SoundManager>();
+        soundManager.Init(saveLoadManager);
+        soundManager.PlaySound(SoundEffectType.SOUND_SLITHER, false);
     }
 
     public void TutorialDone() {
@@ -68,10 +72,23 @@ public class GameManager : MonoBehaviour {
         fruitSpawner.SetMoveFruitTowardsPlayer(false);
         guiManager.FruitCollected();
         achievementManager.NotifyCurrentScoreIncreased(scoreManager.GetCurrentScore());
+        soundManager.PlaySound(SoundEffectType.SOUND_EAT, true);
     }
 
     public PlayerPowerupTypes PlayerCollectedPowerup() {
         PlayerPowerupTypes collectedType = powerupSpawner.CollectPowerup();
+
+        soundManager.StopSound(SoundEffectType.SOUND_SLITHER);
+        switch (collectedType) {
+            case PlayerPowerupTypes.INVINCIBILTY:
+                break;
+            case PlayerPowerupTypes.MAGNET:
+                break;
+            case PlayerPowerupTypes.THIN:
+                soundManager.PlaySound(SoundEffectType.SOUND_THIN, false);
+                break;
+        }
+
         guiManager.ShowPowerupIcon(collectedType);
         guiManager.SetPowerupDuration(powerupSpawner.GetPowerupDuration());
         return collectedType;
@@ -83,6 +100,10 @@ public class GameManager : MonoBehaviour {
 
     public void PowerupWoreOff(bool resumeSpawning) {
         guiManager.HidePowerupText();
+
+        soundManager.StopSound(SoundEffectType.SOUND_THIN);
+        soundManager.PlaySound(SoundEffectType.SOUND_SLITHER, false);
+
         if (resumeSpawning) {
             powerupSpawner.ResumeSpawning();
         }
@@ -94,6 +115,9 @@ public class GameManager : MonoBehaviour {
         powerupSpawner.Stop();
         snake.Stop();
         guiManager.HideHUD();
+
+        soundManager.StopSound(SoundEffectType.SOUND_SLITHER);
+        soundManager.PlaySound(SoundEffectType.SOUND_TAIL_EAT, false);
 
         if (scoreManager.GetCurrentScore() > scoreManager.GetMinRevivalScore() && adManager.IsAdAvailable()) {
             guiManager.ShowAdScreen();
