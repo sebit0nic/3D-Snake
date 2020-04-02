@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour {
         PlayerPowerupTypes collectedType = powerupSpawner.CollectPowerup();
 
         soundManager.StopSound(SoundEffectType.SOUND_SLITHER);
+        soundManager.PlaySound(SoundEffectType.SOUND_POWERUP_COLLECT, false);
         switch (collectedType) {
             case PlayerPowerupTypes.INVINCIBILTY:
                 break;
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour {
 
         soundManager.StopSound(SoundEffectType.SOUND_THIN);
         soundManager.PlaySound(SoundEffectType.SOUND_SLITHER, false);
+        soundManager.PlaySound(SoundEffectType.SOUND_POWERUP_WORE_OFF, false);
 
         if (resumeSpawning) {
             powerupSpawner.ResumeSpawning();
@@ -124,10 +126,10 @@ public class GameManager : MonoBehaviour {
         } else {
             if (scoreManager.CheckDailyPlayReward(saveLoadManager)) {
                 scoreManager.ClaimDailyPlayReward(saveLoadManager, savedData);
-                guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), true);
+                guiManager.ShowGameOverScreen(soundManager, scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), true);
             } else {
                 cameraController.Stop();
-                guiManager.ShowGameOverScreen(scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), false);
+                guiManager.ShowGameOverScreen(soundManager, scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), false);
             }
         }
     }
@@ -155,9 +157,13 @@ public class GameManager : MonoBehaviour {
         if (paused) {
             Time.timeScale = 0;
             guiManager.TogglePauseMenu(true);
+            soundManager.StopSound(SoundEffectType.SOUND_SLITHER);
+            soundManager.PlaySound(SoundEffectType.SOUND_PAUSE_START, false);
         } else {
             Time.timeScale = 1;
             guiManager.TogglePauseMenu(false);
+            soundManager.PlaySound(SoundEffectType.SOUND_PAUSE_END, false);
+            soundManager.PlaySound(SoundEffectType.SOUND_SLITHER, false);
         }
     }
 

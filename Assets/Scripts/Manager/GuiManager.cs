@@ -70,9 +70,9 @@ public class GuiManager : MonoBehaviour {
         powerupDurationImage.gameObject.SetActive(true);
     }
 
-    public void ShowGameOverScreen(int finalScore, int totalScore, bool newHighscore, bool dailyPlayRewardActive) {
+    public void ShowGameOverScreen(SoundManager soundManager, int finalScore, int totalScore, bool newHighscore, bool dailyPlayRewardActive) {
         dailyPlayRewardNotification.gameObject.SetActive(dailyPlayRewardActive);
-        StartCoroutine(OnWaitForGameOverScreen(finalScore, totalScore, newHighscore));
+        StartCoroutine(OnWaitForGameOverScreen(soundManager, finalScore, totalScore, newHighscore));
     }
 
     public void ShowAdScreen() {
@@ -121,11 +121,11 @@ public class GuiManager : MonoBehaviour {
         }
     }
 
-    private IEnumerator OnWaitForGameOverScreen(int finalScore, int totalScore, bool newHighscore) {
+    private IEnumerator OnWaitForGameOverScreen(SoundManager soundManager, int finalScore, int totalScore, bool newHighscore) {
         yield return new WaitForSeconds(1f);
         gameOverScreen.SetActive(true);
         GameManager.instance.GameOverScreenShown();
-        StartCoroutine(OnShowFinalScore(finalScore, totalScore, newHighscore));
+        StartCoroutine(OnShowFinalScore(soundManager, finalScore, totalScore, newHighscore));
     }
 
     private IEnumerator OnWaitForAdScreen() {
@@ -133,7 +133,7 @@ public class GuiManager : MonoBehaviour {
         adScreen.SetActive(true);
     }
 
-    private IEnumerator OnShowFinalScore(int finalScore, int totalScore, bool newHighscore) {
+    private IEnumerator OnShowFinalScore(SoundManager soundManager, int finalScore, int totalScore, bool newHighscore) {
         int tempTotalScore = totalScore - finalScore;
         totalScoreString = tempTotalScore.ToString();
         totalScoreText.text = totalScoreString.PadLeft(5, '0');
@@ -144,6 +144,7 @@ public class GuiManager : MonoBehaviour {
             tempScore++;
             finalScoreString = tempScore.ToString();
             finalScoreText.text = finalScoreString.PadLeft(3, '0');
+            soundManager.PlaySoundWithPitch(SoundEffectType.SOUND_POINTS_UP, 0.1f + countTempo * tempScore);
             yield return new WaitForSeconds(countTempo);
         }
 
@@ -154,16 +155,17 @@ public class GuiManager : MonoBehaviour {
             newHighscoreCrown.SetActive(true);
         }
 
-        StartCoroutine(OnShowTotalScore(finalScore, totalScore));
+        StartCoroutine(OnShowTotalScore(soundManager, finalScore, totalScore));
     }
 
-    private IEnumerator OnShowTotalScore(int finalScore, int totalScore) {
+    private IEnumerator OnShowTotalScore(SoundManager soundManager, int finalScore, int totalScore) {
         int tempScore = totalScore - finalScore;
         float countTempo = scoreCountDuration / finalScore;
         while (tempScore < totalScore) {
             tempScore++;
             totalScoreString = tempScore.ToString();
             totalScoreText.text = totalScoreString.PadLeft(5, '0');
+            soundManager.PlaySoundWithPitch(SoundEffectType.SOUND_TOTAL_POINTS_UP, 0.1f + countTempo * tempScore);
             yield return new WaitForSeconds(countTempo);
         }
 

@@ -23,6 +23,14 @@ public class SoundManager : MonoBehaviour {
         }
     }
 
+    public void PlaySoundWithPitch(SoundEffectType soundEffectType, float pitch) {
+        if (soundStatus == SoundStatus.SOUND_ON) {
+            currentAudioSource = soundEffects[(int) soundEffectType];
+            currentAudioSource.pitch = pitch;
+            currentAudioSource.Play();
+        }
+    }
+
     public void StopSound(SoundEffectType soundEffectType) {
         if (soundStatus == SoundStatus.SOUND_ON) {
             currentAudioSource = soundEffects[(int) soundEffectType];
