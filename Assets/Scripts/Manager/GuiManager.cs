@@ -153,6 +153,7 @@ public class GuiManager : MonoBehaviour {
         finalScoreText.text = finalScoreString.PadLeft(3, '0');
         if (newHighscore) {
             newHighscoreCrown.SetActive(true);
+            soundManager.PlaySound(SoundEffectType.SOUND_NEW_HIGHSCORE, false);
         }
 
         StartCoroutine(OnShowTotalScore(soundManager, finalScore, totalScore));

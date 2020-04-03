@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ShopScreen : MonoBehaviour {
 
+    public static ShopScreen instance = null;
+
     public GameObject hatSection, colorSection, powerupSection;
     public Image hatButtonImage, colorButtonImage, powerupButtonImage;
     public Image hatButtonIcon, colorButtonIcon, powerupButtonIcon;
@@ -22,8 +24,15 @@ public class ShopScreen : MonoBehaviour {
     private StyleManager styleManager;
     private PlayStoreManager playStoreManager;
     private AchievementManager achievementManager;
+    private SoundManager soundManager;
     private bool buyMode;
     private string totalScoreString;
+
+    private void Awake() {
+        if ( instance == null ) {
+            instance = this;
+        }
+    }
 
     private void Start() {
         saveLoadManager = GetComponentInChildren<SaveLoadManager>();
@@ -34,6 +43,9 @@ public class ShopScreen : MonoBehaviour {
         playStoreManager = GetComponentInChildren<PlayStoreManager>();
         playStoreManager.Init();
         achievementManager = GetComponentInChildren<AchievementManager>();
+        soundManager = GetComponentInChildren<SoundManager>();
+        soundManager.Init(saveLoadManager);
+        soundManager.PlaySound(SoundEffectType.SOUND_AMBIENCE, false);
 
         selectedPurchaseableIndex = 0;
         selectedSectionIndex = 0;
@@ -157,6 +169,7 @@ public class ShopScreen : MonoBehaviour {
     }
 
     public void ChangeScreen(int toScreenID) {
+        soundManager.PlaySound(SoundEffectType.SOUND_BUTTON, false);
         screenTransition.StartScreenTransition(toScreenID);
     }
 
@@ -205,6 +218,7 @@ public class ShopScreen : MonoBehaviour {
             totalScore -= 20;
             totalScoreString = totalScore.ToString();
             totalScoreText.text = totalScoreString.PadLeft(5, '0');
+            soundManager.PlaySound(SoundEffectType.SOUND_TOTAL_POINTS_UP, false);
             yield return new WaitForFixedUpdate();
         }
 

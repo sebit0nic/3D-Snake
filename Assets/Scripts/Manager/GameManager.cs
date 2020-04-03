@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour {
         soundManager = GetComponentInChildren<SoundManager>();
         soundManager.Init(saveLoadManager);
         soundManager.PlaySound(SoundEffectType.SOUND_SLITHER, false);
+        soundManager.PlaySound(SoundEffectType.SOUND_AMBIENCE, false);
     }
 
     public void TutorialDone() {
@@ -82,8 +83,10 @@ public class GameManager : MonoBehaviour {
         soundManager.PlaySound(SoundEffectType.SOUND_POWERUP_COLLECT, false);
         switch (collectedType) {
             case PlayerPowerupTypes.INVINCIBILTY:
+                soundManager.PlaySound(SoundEffectType.SOUND_INVINCIBILITY, false);
                 break;
             case PlayerPowerupTypes.MAGNET:
+                soundManager.PlaySound(SoundEffectType.SOUND_MAGNET, false);
                 break;
             case PlayerPowerupTypes.THIN:
                 soundManager.PlaySound(SoundEffectType.SOUND_THIN, false);
@@ -103,6 +106,8 @@ public class GameManager : MonoBehaviour {
         guiManager.HidePowerupText();
 
         soundManager.StopSound(SoundEffectType.SOUND_THIN);
+        soundManager.StopSound(SoundEffectType.SOUND_MAGNET);
+        soundManager.StopSound(SoundEffectType.SOUND_INVINCIBILITY);
         soundManager.PlaySound(SoundEffectType.SOUND_SLITHER, false);
         soundManager.PlaySound(SoundEffectType.SOUND_POWERUP_WORE_OFF, false);
 
@@ -129,13 +134,13 @@ public class GameManager : MonoBehaviour {
                 guiManager.ShowGameOverScreen(soundManager, scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), true);
             } else {
                 cameraController.Stop();
+                scoreManager.FinalizeScore(savedData);
                 guiManager.ShowGameOverScreen(soundManager, scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), false);
             }
         }
     }
 
     public void GameOverScreenShown() {
-        scoreManager.FinalizeScore(savedData);
         saveLoadManager.SetTutorialStatus((int) TutorialStatus.TUTORIAL_DONE);
         saveLoadManager.SaveData(savedData);
         playStoreManager.PostScore(savedData.highscore, savedData.totalScore);
@@ -157,13 +162,11 @@ public class GameManager : MonoBehaviour {
         if (paused) {
             Time.timeScale = 0;
             guiManager.TogglePauseMenu(true);
-            soundManager.StopSound(SoundEffectType.SOUND_SLITHER);
             soundManager.PlaySound(SoundEffectType.SOUND_PAUSE_START, false);
         } else {
             Time.timeScale = 1;
             guiManager.TogglePauseMenu(false);
             soundManager.PlaySound(SoundEffectType.SOUND_PAUSE_END, false);
-            soundManager.PlaySound(SoundEffectType.SOUND_SLITHER, false);
         }
     }
 

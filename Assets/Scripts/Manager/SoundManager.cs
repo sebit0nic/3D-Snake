@@ -37,4 +37,12 @@ public class SoundManager : MonoBehaviour {
             currentAudioSource.Stop();
         }
     }
+
+    public void StopAllSound() {
+        foreach(AudioSource audioSource in soundEffects) {
+            if (audioSource != null) {
+                audioSource.Stop();
+            }
+        }
+    }
 }

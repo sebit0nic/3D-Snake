@@ -37,14 +37,33 @@ public class InputManager : MonoBehaviour {
         GameManager.instance.SwitchScreen(ScreenType.MAIN_MENU);
     }
     
-    public void OnPlayButtonPressed() {
+    public void OnPlayButtonPressed(bool inShopScreen) {
         soundManager.PlaySound(SoundEffectType.SOUND_BUTTON, false);
-        MainMenuManager.instance.SwitchScreen(ScreenType.GAME);
+        if (inShopScreen) {
+            ShopScreen.instance.ChangeScreen((int)ScreenType.GAME);
+        } else {
+            MainMenuManager.instance.SwitchScreen(ScreenType.GAME);
+        }
     }
 
     public void OnShareButtonPressed() {
         soundManager.PlaySound(SoundEffectType.SOUND_BUTTON, false);
         GameManager.instance.ShareScreen();
+    }
+
+    public void OnPurchaseableButtonPressed(int index) {
+        soundManager.PlaySound(SoundEffectType.SOUND_BUTTON, false);
+        ShopScreen.instance.PurchaseableObjectSelected(index);
+    }
+    
+    public void OnBuySelectPurchaseable() {
+        soundManager.PlaySound(SoundEffectType.SOUND_BUY_SELECT, false);
+        ShopScreen.instance.BuySelectPurchaseable();
+    }
+
+    public void OnShopSectionButtonPressed(int index) {
+        soundManager.PlaySound(SoundEffectType.SOUND_SECTION_SELECT, false);
+        ShopScreen.instance.ShowSection(index);
     }
 
     public void OnSteerRightButtonPressed() {

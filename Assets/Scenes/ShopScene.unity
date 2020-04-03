@@ -813,8 +813,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1642,6 +1642,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 692240256}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &299948216 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8152445501507334887, guid: e6051bd674d05fc45afb3aec359a945c,
+    type: 3}
+  m_PrefabInstance: {fileID: 467460988}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26decd66b70d5b4a888ba8f01bcc3b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &302067942 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2174627296680213924, guid: 1b9e25e87c1ab1b43bb25c9b6e1709f6,
@@ -1960,8 +1972,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3894,8 +3906,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4314,8 +4326,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4485,6 +4497,7 @@ Transform:
   - {fileID: 146828406}
   - {fileID: 1050833071}
   - {fileID: 467460989}
+  - {fileID: 1237427461}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4646,8 +4659,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5307,8 +5320,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5658,8 +5671,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5818,8 +5831,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6210,8 +6223,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7079,6 +7092,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1237427460 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+    type: 3}
+  m_PrefabInstance: {fileID: 2135535451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87dddf22caf89e1448e99f6964a4a6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1237427461 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+    type: 3}
+  m_PrefabInstance: {fileID: 2135535451}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1265506900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7561,8 +7592,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7901,8 +7932,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8456,8 +8487,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9657,8 +9688,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: ShowSection
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnShopSectionButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15611,8 +15642,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: ShowSection
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnShopSectionButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15756,16 +15787,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: ChangeScreen
-        m_Mode: 3
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPlayButtonPressed
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -15903,8 +15934,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16837,8 +16868,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16995,8 +17026,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: ShowSection
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnShopSectionButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17223,8 +17254,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: BuySelectPurchaseable
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnBuySelectPurchaseable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17382,8 +17413,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 785373994}
-        m_MethodName: PurchaseableObjectSelected
+      - m_Target: {fileID: 1237427460}
+        m_MethodName: OnPurchaseableButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17460,6 +17491,85 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 20, y: -20}
   m_UseGraphicAlpha: 1
+--- !u!1001 &2135535451
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 785373995}
+    m_Modifications:
+    - target: {fileID: 4729085006769714866, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_Name
+      value: Input Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: playStoreManager
+      value: 
+      objectReference: {fileID: 884478005}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 299948216}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3c5463b25f16b0c4e938e2c0980a50af, type: 3}
 --- !u!1 &2144800593
 GameObject:
   m_ObjectHideFlags: 0
