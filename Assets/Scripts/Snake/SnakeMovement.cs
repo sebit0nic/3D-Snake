@@ -35,7 +35,8 @@ public class SnakeMovement : MonoBehaviour {
 
             transform.localRotation = Quaternion.FromToRotation(transform.up, surfaceNorm) * thisRigidbody.rotation;
             transform.localPosition = surfaceNorm * ( ( planet.transform.localScale.x / 2 ) + playerHoverOffset );
-            thisRigidbody.velocity = thisRigidbody.transform.forward * playerVelocity;
+            //thisRigidbody.velocity = thisRigidbody.transform.forward * playerVelocity;
+            //transform.Translate(transform.forward * playerVelocity, Space.World);
 
             //Keyboard Input
             //--------------
@@ -69,6 +70,10 @@ public class SnakeMovement : MonoBehaviour {
     }
 
     private void Update() {
+        if (!stopped) {
+            transform.Translate(transform.forward * Time.deltaTime * playerVelocity, Space.World);
+        }
+
         if (leftDown && rightDown) {
             steerMultiplier = 0;
         } if (rightDown) {
@@ -87,7 +92,6 @@ public class SnakeMovement : MonoBehaviour {
         thisRigidbody.velocity = Vector3.zero;
         transform.parent = planet.transform;
         instantiatedObjects.transform.parent = planet.transform;
-        //planet.SetRotating(true);
     }
 
     public void Resume() {
@@ -95,7 +99,6 @@ public class SnakeMovement : MonoBehaviour {
         thisRigidbody.velocity = thisRigidbody.transform.forward * playerVelocity;
         transform.parent = null;
         instantiatedObjects.transform.parent = null;
-        //planet.SetRotating(false);
     }
 
     public void MoveRight() {

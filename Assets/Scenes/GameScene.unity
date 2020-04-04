@@ -1424,8 +1424,8 @@ MonoBehaviour:
   powerupPrefab: {fileID: 4785664562357847164, guid: 84b58a9c46e29ad45ae75f52728c6468,
     type: 3}
   minimumCollectedFruitToSpawn: 10
-  minSpawnDelay: 25
-  maxSpawnDelay: 40
+  minSpawnDelay: 30
+  maxSpawnDelay: 50
   unspawnDelay: 15
 --- !u!1 &455280995
 GameObject:
@@ -11264,8 +11264,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 0
-  m_Radius: 5.5
-  m_Height: 18
+  m_Radius: 6.5
+  m_Height: 20
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2021505951
@@ -11412,13 +11412,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094974979}
   serializedVersion: 2
-  m_Mass: 20000
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!95 &2094974981
 Animator:
@@ -11471,7 +11471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01cbe16bdc4ba949b1287defbd89298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerVelocity: 6.5
+  playerVelocity: 9
   playerTurnVelocity: 380
   playerHoverOffset: 0.5
   planet: {fileID: 618410611}
@@ -12250,6 +12250,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Input Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: snakeMovement
+      value: 
+      objectReference: {fileID: 2094974985}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: playStoreManager
+      value: 
+      objectReference: {fileID: 616439985}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1133678261}
     - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12305,21 +12320,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
-        type: 3}
-      propertyPath: snakeMovement
-      value: 
-      objectReference: {fileID: 2094974985}
-    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
-        type: 3}
-      propertyPath: playStoreManager
-      value: 
-      objectReference: {fileID: 616439985}
-    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
-        type: 3}
-      propertyPath: soundManager
-      value: 
-      objectReference: {fileID: 1133678261}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c5463b25f16b0c4e938e2c0980a50af, type: 3}
 --- !u!1 &5115284158557607946

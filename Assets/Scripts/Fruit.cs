@@ -33,7 +33,7 @@ public class Fruit : MonoBehaviour {
         fruitRenderer.SetActive(true);
         indicatorRenderer.SetActive(true);
     }
-
+    
     public void SetIgnoreSnakeTailCollision(bool value) {
         ignoreSnakeTailCollision = value;
     } 
