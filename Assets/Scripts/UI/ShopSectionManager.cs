@@ -7,10 +7,12 @@ public class ShopSectionManager : MonoBehaviour {
     public GameObject hatSection, colorSection, powerupSection;
     public Color buttonPressedColor;
     public RectTransform checkMark;
+    public GameObject[] sectionTexts;
 
     private PurchaseableButton[] hatSelectButtons;
     private PurchaseableButton[] colorSelectButtons;
     private PurchaseableButton[] powerupSelectButtons;
+    private ShopSection currentSection;
 
     public void Init(SavedData savedData) {
         hatSelectButtons = hatSection.GetComponentsInChildren<PurchaseableButton>();
@@ -32,17 +34,27 @@ public class ShopSectionManager : MonoBehaviour {
             powerupSelectButtons[i].SetNameText(savedData);
             powerupSelectButtons[i].SetProgressBar(savedData);
         }
+
+        sectionTexts[0].SetActive(true);
+    }
+
+    public void UpdateSectionText(int sectionIndex) {
+        foreach(GameObject go in sectionTexts) {
+            go.SetActive(false);
+        }
+
+        sectionTexts[sectionIndex].SetActive(true);
     }
 
     public void UpdatePurchaseableSelectButton(SavedData savedData, int sectionIndex, int purchaseableIndex) {
-        ShopSection currentSection = (ShopSection) sectionIndex;
+        currentSection = (ShopSection) sectionIndex;
         if (currentSection == ShopSection.POWERUPS) {
             powerupSelectButtons[purchaseableIndex].SetProgressBar(savedData);
         }
     }
 
     public void PurchaseableButtonPressed(int sectionIndex, int purchaseableIndex) {
-        ShopSection currentSection = (ShopSection) sectionIndex;
+        currentSection = (ShopSection) sectionIndex;
         switch (currentSection) {
             case ShopSection.HATS:
                 for (int i = 0; i < hatSelectButtons.Length; i++) {
@@ -66,7 +78,7 @@ public class ShopSectionManager : MonoBehaviour {
     }
 
     public void PurchaseableSelected(int sectionIndex, int purchaseableIndex) {
-        ShopSection currentSection = (ShopSection) sectionIndex;
+        currentSection = (ShopSection) sectionIndex;
         switch ( currentSection ) {
             case ShopSection.HATS:
                 hatSelectButtons[purchaseableIndex].SetSelected(checkMark);

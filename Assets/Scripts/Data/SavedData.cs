@@ -20,7 +20,7 @@ public class SavedData {
         unlockedColors = standardColorObjects;
         unlockedPowerups = standardPowerupObjects;
         highscore = 0;
-        totalScore = 0;
+        totalScore = 200;
         currentHat = PlayerHatTypes.TYPE_DEFAULT;
         currentColor = PlayerColorTypes.COLOR_CLASSIC;
     }
@@ -127,6 +127,28 @@ public class SavedData {
 
     public int GetTotalScore() {
         return totalScore;
+    }
+
+    public bool IsSomethingPurchaseable() {
+        for (int i = 1; i < unlockedHats.Count; i++) {
+            if (unlockedHats[i].GetPrice() <= totalScore && !unlockedHats[i].IsUnlocked()) {
+                return true;
+            }
+        }
+
+        for (int i = 1; i < unlockedColors.Count; i++) {
+            if (unlockedColors[i].GetPrice() <= totalScore && !unlockedColors[i].IsUnlocked()) {
+                return true;
+            }
+        }
+
+        foreach (PowerupObject powerupObject in unlockedPowerups) {
+            if (powerupObject.GetPrice() <= totalScore && !powerupObject.IsUnlocked()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public int GetPurchaseableBoughtCount() {

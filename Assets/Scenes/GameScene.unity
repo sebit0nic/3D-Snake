@@ -1440,6 +1440,7 @@ GameObject:
   - component: {fileID: 455280998}
   - component: {fileID: 455280997}
   - component: {fileID: 455281000}
+  - component: {fileID: 455281001}
   m_Layer: 5
   m_Name: Shop Button
   m_TagString: Untagged
@@ -1572,6 +1573,25 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -25}
   m_UseGraphicAlpha: 1
+--- !u!95 &455281001
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455280995}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5344e5ab27f1b624fb4cb24dc00dcd2c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &465481786
 GameObject:
   m_ObjectHideFlags: 0
@@ -5016,6 +5036,7 @@ MonoBehaviour:
   powerupIcon: {fileID: 349288651}
   powerupDurationImage: {fileID: 750844887}
   collectCircleEffect: {fileID: 1957790316}
+  shopButtonAnimator: {fileID: 455281001}
   touchIndicatorLeft: {fileID: 1434139702}
   touchIndicatorRight: {fileID: 1427599988}
   scoreCountDuration: 1

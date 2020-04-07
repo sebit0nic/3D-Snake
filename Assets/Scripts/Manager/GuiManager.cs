@@ -17,6 +17,7 @@ public class GuiManager : MonoBehaviour {
     public Image powerupIcon;
     public Image powerupDurationImage;
     public Animator collectCircleEffect;
+    public Animator shopButtonAnimator;
     public TouchIndicator touchIndicatorLeft, touchIndicatorRight;
     public float scoreCountDuration;
 
@@ -70,8 +71,9 @@ public class GuiManager : MonoBehaviour {
         powerupDurationImage.gameObject.SetActive(true);
     }
 
-    public void ShowGameOverScreen(SoundManager soundManager, int finalScore, int totalScore, bool newHighscore, bool dailyPlayRewardActive) {
+    public void ShowGameOverScreen(SoundManager soundManager, int finalScore, int totalScore, bool newHighscore, bool dailyPlayRewardActive, bool isSomethingPurchaseable) {
         dailyPlayRewardNotification.gameObject.SetActive(dailyPlayRewardActive);
+        shopButtonAnimator.enabled = isSomethingPurchaseable;
         StartCoroutine(OnWaitForGameOverScreen(soundManager, finalScore, totalScore, newHighscore));
     }
 

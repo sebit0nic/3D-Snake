@@ -86,6 +86,7 @@ public class ShopScreen : MonoBehaviour {
                 break;
         }
 
+        shopSectionManager.UpdateSectionText(index);
         HideAllHatPreviewModels();
         hatPreviewModels[(int)savedData.GetSelectedHatType()].SetActive(true);
         styleManager.Init(savedData);

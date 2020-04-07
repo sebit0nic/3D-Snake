@@ -131,11 +131,11 @@ public class GameManager : MonoBehaviour {
         } else {
             if (scoreManager.CheckDailyPlayReward(saveLoadManager)) {
                 scoreManager.ClaimDailyPlayReward(saveLoadManager, savedData);
-                guiManager.ShowGameOverScreen(soundManager, scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), true);
+                guiManager.ShowGameOverScreen(soundManager, scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), true, savedData.IsSomethingPurchaseable());
             } else {
                 cameraController.Stop();
                 scoreManager.FinalizeScore(savedData);
-                guiManager.ShowGameOverScreen(soundManager, scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), false);
+                guiManager.ShowGameOverScreen(soundManager, scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), false, savedData.IsSomethingPurchaseable());
             }
         }
     }
