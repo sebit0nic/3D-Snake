@@ -15,6 +15,8 @@ public class MainMenuManager : MonoBehaviour {
     private PlayStoreManager playStoreManager;
     private SoundManager soundManager;
 
+    private const string privacyPolicyLink = "https://www.privacypolicygenerator.info/live.php?token=XHLfKYMTFcs0emh5p7caBpGhSZNSlEH2";
+
     private void Awake() {
         if ( instance == null ) {
             instance = this;
@@ -58,5 +60,9 @@ public class MainMenuManager : MonoBehaviour {
     public void ToggleButtonCameraPressed() {
         saveLoadManager.SetCameraStatus(cameraButton.isOn ? 1 : 0);
         soundManager.PlaySound(SoundEffectType.SOUND_BUTTON, false);
+    }
+
+    public void OpenPrivacyPolicyWebsite() {
+        Application.OpenURL(privacyPolicyLink);
     }
 }

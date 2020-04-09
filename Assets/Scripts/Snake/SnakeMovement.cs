@@ -16,6 +16,7 @@ public class SnakeMovement : MonoBehaviour {
     private bool leftDown, rightDown;
     private bool stopped = false;
     private GameObject instantiatedObjects;
+    private RaycastHit downHit;
 
     public void Init(Snake snake) {
         this.snake = snake;
@@ -23,20 +24,18 @@ public class SnakeMovement : MonoBehaviour {
         instantiatedObjects = GameObject.Find("Instantiated Objects");
     }
 
-    private void FixedUpdate() {
+    private void Update() {
         if (!stopped) {
             float distance = Vector3.Distance(planet.transform.position, transform.position);
             Vector3 surfaceNorm = Vector3.zero;
 
-            RaycastHit hit;
-            if ( Physics.Raycast(transform.position, -transform.up, out hit, distance) ) {
-                surfaceNorm = hit.normal;
+            if ( Physics.Raycast(transform.position, -transform.up, out downHit, distance) ) {
+                surfaceNorm = downHit.normal;
             }
 
             transform.localRotation = Quaternion.FromToRotation(transform.up, surfaceNorm) * thisRigidbody.rotation;
             transform.localPosition = surfaceNorm * ( ( planet.transform.localScale.x / 2 ) + playerHoverOffset );
-            //thisRigidbody.velocity = thisRigidbody.transform.forward * playerVelocity;
-            //transform.Translate(transform.forward * playerVelocity, Space.World);
+            transform.Translate(transform.forward * Time.deltaTime * playerVelocity, Space.World);
 
             //Keyboard Input
             //--------------
@@ -55,6 +54,18 @@ public class SnakeMovement : MonoBehaviour {
 
             //Touch Input
             //-----------
+            if ( leftDown && rightDown ) {
+                steerMultiplier = 0;
+            } else if ( rightDown ) {
+                steerMultiplier += Time.deltaTime;
+                steerMultiplier = Mathf.Clamp(steerMultiplier, 0, 1);
+            } else if ( leftDown ) {
+                steerMultiplier -= Time.deltaTime;
+                steerMultiplier = Mathf.Clamp(steerMultiplier, -1, 0);
+            } else {
+                steerMultiplier = 0;
+            }
+
             if ( steerMultiplier != 0 ) {
                 if ( steerMultiplier < 0 ) {
                     evaluatedInput = steeringCurve.Evaluate(-steerMultiplier);
@@ -66,24 +77,6 @@ public class SnakeMovement : MonoBehaviour {
             } else {
                 transform.Rotate(Vector3.zero);
             }
-        }
-    }
-
-    private void Update() {
-        if (!stopped) {
-            transform.Translate(transform.forward * Time.deltaTime * playerVelocity, Space.World);
-        }
-
-        if (leftDown && rightDown) {
-            steerMultiplier = 0;
-        } if (rightDown) {
-            steerMultiplier += Time.deltaTime;
-            steerMultiplier = Mathf.Clamp(steerMultiplier, 0, 1);
-        } else if (leftDown) {
-            steerMultiplier -= Time.deltaTime;
-            steerMultiplier = Mathf.Clamp(steerMultiplier, -1, 0);
-        } else {
-            steerMultiplier = 0;
         }
     }
 

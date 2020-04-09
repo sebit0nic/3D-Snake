@@ -126,11 +126,13 @@ public class GameManager : MonoBehaviour {
         soundManager.StopSound(SoundEffectType.SOUND_SLITHER);
         soundManager.PlaySound(SoundEffectType.SOUND_TAIL_EAT, false);
 
-        if (scoreManager.GetCurrentScore() > scoreManager.GetMinRevivalScore() && adManager.IsAdAvailable()) {
+        if (scoreManager.GetCurrentScore() > scoreManager.GetMinRevivalScore() && adManager.IsAdAvailable() && saveLoadManager.GetTutorialStatus()) {
             guiManager.ShowAdScreen();
         } else {
             if (scoreManager.CheckDailyPlayReward(saveLoadManager)) {
+                cameraController.Stop();
                 scoreManager.ClaimDailyPlayReward(saveLoadManager, savedData);
+                scoreManager.FinalizeScore(savedData);
                 guiManager.ShowGameOverScreen(soundManager, scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), true, savedData.IsSomethingPurchaseable());
             } else {
                 cameraController.Stop();

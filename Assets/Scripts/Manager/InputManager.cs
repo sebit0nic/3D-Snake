@@ -66,6 +66,10 @@ public class InputManager : MonoBehaviour {
         ShopScreen.instance.ShowSection(index);
     }
 
+    public void OnPrivacyPolicyButtonPressed() {
+        MainMenuManager.instance.OpenPrivacyPolicyWebsite();
+    }
+
     public void OnSteerRightButtonPressed() {
         snakeMovement.MoveRight();
     }
