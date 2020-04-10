@@ -20,7 +20,7 @@ public class SavedData {
         unlockedColors = standardColorObjects;
         unlockedPowerups = standardPowerupObjects;
         highscore = 0;
-        totalScore = 200;
+        totalScore = 9999;
         currentHat = PlayerHatTypes.TYPE_DEFAULT;
         currentColor = PlayerColorTypes.COLOR_CLASSIC;
     }

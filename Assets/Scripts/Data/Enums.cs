@@ -32,10 +32,10 @@ public enum PlayerHatTypes {
 public enum PlayerColorTypes {
     COLOR_CLASSIC,
     COLOR_BLACKWHITE,
-    COLOR_PLAYFUL,
-    COLOR_ARCTIC,
-    COLOR_AUTUMN,
-    COLOR_DARK
+    COLOR_SUMMER,
+    COLOR_WINTER,
+    COLOR_SWAMP,
+    COLOR_AUTUMN
 }
 
 public enum PlayerPowerupTypes {
