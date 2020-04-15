@@ -1773,6 +1773,18 @@ RectTransform:
   m_AnchoredPosition: {x: 180, y: -180}
   m_SizeDelta: {x: 275, y: 275}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &486923339 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1805992717277271972}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821850e6248fa39489dfa65c3b7bd1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &487387874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3716,6 +3728,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3f6ae39438b2749baf562e6e48bda7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snake: {fileID: 2094974988}
+  cameraController: {fileID: 486923339}
 --- !u!4 &1131701161
 Transform:
   m_ObjectHideFlags: 0
@@ -5039,6 +5053,7 @@ MonoBehaviour:
   shopButtonAnimator: {fileID: 455281001}
   touchIndicatorLeft: {fileID: 1434139702}
   touchIndicatorRight: {fileID: 1427599988}
+  cameraTransform: {fileID: 534669905}
   scoreCountDuration: 1
   powerupInvincibilityIcon: {fileID: 21300058, guid: f42c3fa4806042f4c9f1c1f5075dca45,
     type: 3}
@@ -11492,7 +11507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01cbe16bdc4ba949b1287defbd89298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerVelocity: 9
+  playerVelocity: 7
   playerTurnVelocity: 380
   playerHoverOffset: 0.5
   planet: {fileID: 618410611}
@@ -11540,6 +11555,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  instantiatedObjects: {fileID: 2119835969}
 --- !u!114 &2094974986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11553,6 +11569,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupCourtesyDelay: 0.5
+  fruitCollectParticle: {fileID: 9182503311602401985}
+  magnetPowerupParticle: {fileID: 1898889465}
+  snakeHeadAnimator: {fileID: 5115284158557607949}
 --- !u!114 &2094974987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11573,6 +11592,8 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: 6c888bf575e6fe2488d7628d5e8025ae, type: 2}
   invincibiltyMaterial: {fileID: 2100000, guid: 54fa9113aea6c1f44a1c8eec31dc6d1b,
     type: 2}
+  snakeHeadLowerMeshRenderer: {fileID: 5115284158559602380}
+  snakeHeadUpperRenderer: {fileID: 5115284158559602382}
 --- !u!114 &2094974988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11632,7 +11653,8 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 2639029446847104498, guid: c7da1818f900a164e8888dcba3d15560,
     type: 3}
-  amountToPool: 300
+  instantiatedObjects: {fileID: 2119835969}
+  amountToPool: 500
 --- !u!1 &2119835969
 GameObject:
   m_ObjectHideFlags: 0
@@ -11961,6 +11983,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 2094974984}
+    - target: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
+        type: 3}
+      propertyPath: planet
+      value: 
+      objectReference: {fileID: 618410611}
+    - target: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
+        type: 3}
+      propertyPath: secondaryRotationSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
+        type: 3}
+      propertyPath: secondaryTrackingSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1805992717400899061, guid: b1a19507b8811334ba31b04437b5978a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12015,26 +12057,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 2094974984}
-    - target: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
-        type: 3}
-      propertyPath: planet
-      value: 
-      objectReference: {fileID: 618410611}
-    - target: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
-        type: 3}
-      propertyPath: secondaryRotationSpeed
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1805992717400899062, guid: b1a19507b8811334ba31b04437b5978a,
-        type: 3}
-      propertyPath: secondaryTrackingSpeed
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1805992717400899063, guid: b1a19507b8811334ba31b04437b5978a,
         type: 3}

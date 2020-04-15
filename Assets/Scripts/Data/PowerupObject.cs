@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Holds the data for a powerup object
+/// </summary>
 [System.Serializable]
 public class PowerupObject {
 
@@ -12,7 +15,7 @@ public class PowerupObject {
     public PlayerPowerupTypes type;
 
     public void Unlock() {
-        if (currentLevel < maxLevel) {
+        if( currentLevel < maxLevel ) {
             currentLevel++;
         }
     }

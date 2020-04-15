@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the movement of the camera during gameplay and on menus
+/// </summary>
 public class CameraController : MonoBehaviour {
 
     public Transform target;
@@ -21,31 +24,31 @@ public class CameraController : MonoBehaviour {
 
     private Quaternion targetRotation;
 
-    public void Init(CameraStatus cameraStatus) {
+    public void Init( CameraStatus cameraStatus ) {
         this.cameraStatus = cameraStatus;
     }
 
     private void LateUpdate() {
-        if (!stopped) {
-            if (cameraStatus == CameraStatus.CAMERA_NO_ROTATION) {
+        if( !stopped ) {
+            if( cameraStatus == CameraStatus.CAMERA_NO_ROTATION ) {
                 v3To = target.position - target.forward * backDistance + target.up * upDistance;
-                transform.position = Vector3.Lerp(transform.position, v3To, trackingSpeed * Time.deltaTime);
-                qTo = Quaternion.LookRotation(target.position - transform.position, transform.up);
-                transform.localRotation = Quaternion.Slerp(transform.rotation, qTo, rotationSpeed * Time.deltaTime);
-            } else if (cameraStatus == CameraStatus.CAMERA_ROTATE) {
+                transform.position = Vector3.Lerp( transform.position, v3To, trackingSpeed * Time.deltaTime );
+                qTo = Quaternion.LookRotation( target.position - transform.position, transform.up );
+                transform.localRotation = Quaternion.Slerp( transform.rotation, qTo, rotationSpeed * Time.deltaTime );
+            } else if( cameraStatus == CameraStatus.CAMERA_ROTATE ) {
                 v3To = target.position - target.forward * backDistance + target.up * upDistance;
-                transform.position = Vector3.Lerp(transform.position, v3To, secondaryTrackingSpeed * Time.deltaTime);
-                qTo = Quaternion.LookRotation(target.position - transform.position, transform.forward);
-                transform.localRotation = Quaternion.Slerp(transform.rotation, qTo, secondaryRotationSpeed * Time.deltaTime);
+                transform.position = Vector3.Lerp( transform.position, v3To, secondaryTrackingSpeed * Time.deltaTime );
+                qTo = Quaternion.LookRotation( target.position - transform.position, transform.forward );
+                transform.localRotation = Quaternion.Slerp( transform.rotation, qTo, secondaryRotationSpeed * Time.deltaTime );
             }
         } else {
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * panSpeed);
+            transform.rotation = Quaternion.Slerp( transform.rotation, targetRotation, Time.deltaTime * panSpeed );
         }
     }
 
     public void Stop() {
-        targetRotation = Quaternion.LookRotation(Vector3.zero - transform.position, transform.up);
-        planet.SetRotating(true);
+        targetRotation = Quaternion.LookRotation( Vector3.zero - transform.position, transform.up );
+        planet.SetRotating( true );
         stopped = true;
     }
 }

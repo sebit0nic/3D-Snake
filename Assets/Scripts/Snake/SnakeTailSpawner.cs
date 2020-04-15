@@ -9,68 +9,123 @@ public class SnakeTailSpawner : MonoBehaviour {
     public float lengthIncreaseFactor = 0.4f, thinSize = 0.5f;
     public Color gameOverColor;
     public Material normalMaterial, invincibiltyMaterial;
+    public MeshRenderer snakeHeadLowerMeshRenderer, snakeHeadUpperRenderer;
 
     private Snake snake;
     private const float lifespan = 0.1f;
     private List<SnakeTail> snakeTailList;
     private bool thinPowerupEnabled = false, currentTailThin = false, lastTailThin = false;
-    private MeshRenderer snakeHeadLowerMeshRenderer, snakeHeadUpperRenderer;
     private Animator snakeThinAnimator;
     private bool invincible = false;
     private Color initialColor;
+    private SnakeTail newSnakeTail;
+    private Vector3 thinSizeVector;
 
-    public void Init(Snake snake) {
+    private const string popTailKey = "PopTail";
+    private const string spawnColliderKey = "SpawnCollider";
+    private const string thinOnTrigger = "ThinOn";
+    private const string thinOffTrigger = "ThinOff";
+
+    public void Init( Snake snake ) {
         this.snake = snake;
         snakeTailList = new List<SnakeTail>();
-        snakeHeadLowerMeshRenderer = transform.Find("Head").Find("Lower Head").GetComponent<MeshRenderer>();
-        snakeHeadUpperRenderer = transform.Find("Head").Find("Upper Head").GetComponent<MeshRenderer>();
         snakeThinAnimator = GetComponent<Animator>();
         initialColor = snakeHeadLowerMeshRenderer.material.color;
+        thinSizeVector = new Vector3( thinSize, thinSize, thinSize );
 
-        InvokeRepeating("SpawnCollider", tailRepeatFactor, tailRepeatFactor);
-        InvokeRepeating("PopTail", startLength, lifespan);
+        InvokeRepeating( spawnColliderKey, tailRepeatFactor, tailRepeatFactor );
+        InvokeRepeating( popTailKey, startLength, lifespan );
     }
 
-    public void ThinPowerupActive(float duration) {
-        StartCoroutine(WaitForThinPowerupDuration(duration));
+    /// <summary>
+    /// This method is repeated every few seconds and spawns a new snake tail from the object pool.
+    /// </summary>
+    private void SpawnCollider() {
+        newSnakeTail = ObjectPool.sharedInstance.GetPooledObject().GetComponent<SnakeTail>();
+        newSnakeTail.transform.position = transform.position;
+        newSnakeTail.transform.rotation = transform.rotation;
+        newSnakeTail.gameObject.SetActive( true );
+        newSnakeTail.Init( thinPowerupEnabled, invincible );
+        snakeTailList.Add( newSnakeTail );
     }
 
-    public void InvincibilityPowerupActive(float duration) {
-        StartCoroutine(WaitForInvincibilityPowerupDuration(duration));
+    /// <summary>
+    /// This method is repeated every few seconds and removes the tail at the end and moves it back to the object pool.
+    /// </summary>
+    private void PopTail() {
+        currentTailThin = snakeTailList[0].IsInThinMode();
+        snakeTailList[0].gameObject.SetActive( false );
+        snakeTailList.RemoveAt( 0 );
+
+        //Check if there was a change between normal tail and thin tail so that the speed at which tails are popped can be adjusted.
+        if( currentTailThin != lastTailThin ) {
+            if( currentTailThin ) {
+                CancelInvoke( popTailKey );
+                InvokeRepeating( popTailKey , 0, lifespan / 2 );
+            } else {
+                CancelInvoke( popTailKey );
+                InvokeRepeating( popTailKey , 0, lifespan );
+            }
+        }
+
+        lastTailThin = currentTailThin;
     }
 
+    /// <summary>
+    /// Increase the length of the snake by pausing the PopTail method for a given amount.
+    /// </summary>
     public void IncreaseSnakeLength() {
-        CancelInvoke("PopTail");
-        if (currentTailThin) {
-            InvokeRepeating("PopTail", lengthIncreaseFactor, lifespan / 2);
+        CancelInvoke( popTailKey );
+        if( currentTailThin ) {
+            InvokeRepeating( popTailKey, lengthIncreaseFactor, lifespan / 2 );
         } else {
-            InvokeRepeating("PopTail", lengthIncreaseFactor, lifespan);
+            InvokeRepeating( popTailKey, lengthIncreaseFactor, lifespan );
         }
     }
 
+    /// <summary>
+    /// Thin powerup is active, so start a coroutine to handle that.
+    /// </summary>
+    public void ThinPowerupActive( float duration ) {
+        StartCoroutine( WaitForThinPowerupDuration( duration ) );
+    }
+
+    /// <summary>
+    /// Invincibility powerup is active, so start a coroutine to handle that.
+    /// </summary>
+    public void InvincibilityPowerupActive( float duration ) {
+        StartCoroutine( WaitForInvincibilityPowerupDuration( duration ) );
+    }
+
+    /// <summary>
+    /// Stop everything on game over.
+    /// </summary>
     public void Stop() {
         snakeThinAnimator.enabled = false;
         StartGameOverAnimation();
-        CancelInvoke("SpawnCollider");
-        CancelInvoke("PopTail");
-        snakeThinAnimator.SetTrigger("ThinOff");
-        snake.NotifyPowerupWoreOff(false);
+        CancelInvoke( spawnColliderKey );
+        CancelInvoke( popTailKey );
+        snakeThinAnimator.SetTrigger( thinOffTrigger );
+        snake.NotifyPowerupWoreOff( false );
         thinPowerupEnabled = false;
         StopAllCoroutines();
     }
 
+    /// <summary>
+    /// Resume after player has watched ad to revive.
+    /// </summary>
     public void Resume() {
         snakeThinAnimator.enabled = true;
-        CancelInvoke("SpawnCollider");
-        CancelInvoke("PopTail");
-        InvokeRepeating("SpawnCollider", 0, tailRepeatFactor);
-        InvokeRepeating("PopTail", 0, lifespan);
-        transform.localScale = new Vector3(1f, 1f, 1f);
+        CancelInvoke( spawnColliderKey );
+        CancelInvoke( popTailKey );
+        InvokeRepeating( spawnColliderKey, 0, tailRepeatFactor );
+        InvokeRepeating( popTailKey, 0, lifespan );
+        transform.localScale = Vector3.one;
 
         snakeHeadLowerMeshRenderer.material.color = initialColor;
         snakeHeadUpperRenderer.material.color = initialColor;
-        foreach (SnakeTail snakeTail in snakeTailList) {
-            snakeTail.StartGameOverAnimation(initialColor);
+        foreach( SnakeTail snakeTail in snakeTailList ) {
+            snakeTail.StartGameOverAnimation( initialColor );
         }
     }
 
@@ -78,74 +133,58 @@ public class SnakeTailSpawner : MonoBehaviour {
         return thinPowerupEnabled;
     }
 
+    /// <summary>
+    /// Return the tail transform at the end of the snake.
+    /// </summary>
     public Transform GetLastTailTransform() {
         return snakeTailList[0].transform;
     }
 
-    private void SpawnCollider() {
-        //TODO: could be improved somehow by not using GetComponent
-        SnakeTail newSnakeTail = ObjectPool.sharedInstance.GetPooledObject().GetComponent<SnakeTail>();
-        newSnakeTail.transform.position = transform.position;
-        newSnakeTail.transform.rotation = transform.rotation;
-        newSnakeTail.gameObject.SetActive(true);
-        newSnakeTail.Init(thinPowerupEnabled, invincible);
-        snakeTailList.Add(newSnakeTail);
-    }
-
-    private void PopTail() {
-        currentTailThin = snakeTailList[0].IsInThinMode();
-        snakeTailList[0].gameObject.SetActive(false);
-        snakeTailList.RemoveAt(0);
-
-        if (currentTailThin != lastTailThin) {
-            if (currentTailThin) {
-                CancelInvoke("PopTail");
-                InvokeRepeating("PopTail", 0, lifespan / 2);
-            } else {
-                CancelInvoke("PopTail");
-                InvokeRepeating("PopTail", 0, lifespan);
-            }
-        }
-
-        lastTailThin = currentTailThin;
-    }
-
+    /// <summary>
+    /// Game over for player, so notify each snake tail to change color.
+    /// </summary>
     private void StartGameOverAnimation() {
         snakeHeadLowerMeshRenderer.material.color = gameOverColor;
         snakeHeadUpperRenderer.material.color = gameOverColor;
-        foreach (SnakeTail snakeTail in snakeTailList) {
-            snakeTail.StartGameOverAnimation(gameOverColor);
+        foreach( SnakeTail snakeTail in snakeTailList ) {
+            snakeTail.StartGameOverAnimation( gameOverColor );
         }
     }
 
-    private IEnumerator WaitForThinPowerupDuration(float duration) {
+    /// <summary>
+    /// Coroutine to do everything necessary before and after thin powerup is active.
+    /// </summary>
+    private IEnumerator WaitForThinPowerupDuration( float duration ) {
         thinPowerupEnabled = true;
-        snakeThinAnimator.SetTrigger("ThinOn");
-        transform.localScale = new Vector3(thinSize, thinSize, thinSize);
-        CancelInvoke("SpawnCollider");
-        InvokeRepeating("SpawnCollider", 0, tailRepeatFactor / 2);
+        snakeThinAnimator.SetTrigger( thinOnTrigger );
+        transform.localScale = thinSizeVector;
+        CancelInvoke( spawnColliderKey );
+        InvokeRepeating( spawnColliderKey, 0, tailRepeatFactor / 2 );
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds( duration );
 
-        CancelInvoke("SpawnCollider");
-        InvokeRepeating("SpawnCollider", 0, tailRepeatFactor);
-        snakeThinAnimator.SetTrigger("ThinOff");
+        CancelInvoke( spawnColliderKey );
+        InvokeRepeating( spawnColliderKey, 0, tailRepeatFactor );
+        snakeThinAnimator.SetTrigger( thinOffTrigger );
         thinPowerupEnabled = false;
-        transform.localScale = new Vector3(1f, 1f, 1f);
-        snake.NotifyPowerupWoreOff(true);
+        transform.localScale = Vector3.one;
+        snake.NotifyPowerupWoreOff( true );
     }
 
-    private IEnumerator WaitForInvincibilityPowerupDuration(float duration) {
+    /// <summary>
+    /// Coroutine to do everything necessary before and after invincibility powerup is active.
+    /// </summary>
+    private IEnumerator WaitForInvincibilityPowerupDuration( float duration ) {
         invincible = true;
         snakeHeadUpperRenderer.material = invincibiltyMaterial;
         snakeHeadLowerMeshRenderer.material = invincibiltyMaterial;
-        foreach ( SnakeTail snakeTail in snakeTailList ) {
+        foreach( SnakeTail snakeTail in snakeTailList ) {
             snakeTail.StartInvincibilityMaterial();
         }
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds( duration );
 
-        foreach ( SnakeTail snakeTail in snakeTailList ) {
+        foreach( SnakeTail snakeTail in snakeTailList ) {
             snakeTail.StopInvincibilityMaterial();
         }
         snakeHeadLowerMeshRenderer.material = normalMaterial;

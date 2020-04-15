@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles the logic behind the spawning of new fruit objects.
+/// </summary>
 public class FruitSpawner : MonoBehaviour {
 
     public GameObject fruitPrefab;
@@ -32,73 +35,93 @@ public class FruitSpawner : MonoBehaviour {
     private int collectedFruit;
     private bool moveFruitTowardsPlayer = false;
     private bool stopped = false, initiated = false;
+    private int randomDirection;
+    private float randomRotation;
+    private float randomRotationSmall;
+
+    private void Awake() {
+        Vector3 fruitRotation = new Vector3();
+        fruitRotation.Set( Random.Range( minRandomRotation, maxRandomRotation ), Random.Range( minRandomRotation, maxRandomRotation ), Random.Range( minRandomRotation, maxRandomRotation ) );
+        fruitGameobject = Instantiate( fruitPrefab, Vector3.zero, Quaternion.Euler( fruitRotation ) );
+        fruit = fruitGameobject.GetComponent<Fruit>();
+        fruitGameobject.SetActive( false );
+    }
 
     public void Init() {
-        Vector3 fruitRotation = new Vector3();
-        fruitRotation.Set(Random.Range(minRandomRotation, maxRandomRotation), Random.Range(minRandomRotation, maxRandomRotation), Random.Range(minRandomRotation, maxRandomRotation));
-        fruitGameobject = Instantiate(fruitPrefab, Vector3.zero, Quaternion.Euler(fruitRotation));
-        fruit = fruitGameobject.GetComponent<Fruit>();
+        fruitGameobject.SetActive( true );
         initiated = true;
     }
 
     private void Update() {
-        if (initiated) {
-            if ( !stopped ) {
-                if ( moveFruitTowardsPlayer ) {
-                    fruitGameobject.transform.rotation = Quaternion.Lerp(fruitGameobject.transform.rotation, GameManager.instance.GetCurrentSnakePosition().rotation, Time.deltaTime * moveTowardsPlayerSpeed);
+        if( initiated ) {
+            if( !stopped ) {
+                if( moveFruitTowardsPlayer ) {
+                    fruitGameobject.transform.rotation = Quaternion.Lerp( fruitGameobject.transform.rotation, GameManager.instance.GetCurrentSnakePosition().rotation, Time.deltaTime * moveTowardsPlayerSpeed );
                 }
             }
         }
     }
 
-    public void SpawnNewFruit(bool correction) {
-        if (!stopped) {
-            if ( correction ) {
-                fruitGameobject.transform.Rotate(Random.Range(minRandomRotationCorrection, maxRandomRotationCorrection), 0, Random.Range(minRandomRotationCorrection, maxRandomRotationCorrection));
+    /// <summary>
+    /// Spawn new fruit at random position, set "correction" if the fruit spawned inside the player to correct the position a little bit.
+    /// </summary>
+    public void SpawnNewFruit( bool correction ) {
+        if( !stopped ) {
+            if( correction ) {
+                fruitGameobject.transform.Rotate( Random.Range( minRandomRotationCorrection, maxRandomRotationCorrection ), 0, Random.Range( minRandomRotationCorrection, maxRandomRotationCorrection ) );
             } else {
-                int randomDirection = Random.Range(0, 2);
-                float randomRotation = Random.Range(minRandomRotation, maxRandomRotation);
-                float randomRotationSmall = Random.Range(minRandomRotationSmall, maxRandomRotationSmall);
-                switch ( randomDirection ) {
+                randomDirection = Random.Range( 0, 2 );
+                randomRotation = Random.Range( minRandomRotation, maxRandomRotation );
+                randomRotationSmall = Random.Range( minRandomRotationSmall, maxRandomRotationSmall );
+
+                // Logic: either X or Z axis is randomly selected for a larger random rotation, the other axis for a smaller random rotation.
+                switch( randomDirection ) {
                     case 0:
-                        fruitGameobject.transform.Rotate(randomRotation, 0, randomRotationSmall);
+                        fruitGameobject.transform.Rotate( randomRotation, 0, randomRotationSmall );
                         break;
                     case 1:
-                        fruitGameobject.transform.Rotate(randomRotationSmall, 0, randomRotation);
+                        fruitGameobject.transform.Rotate( randomRotationSmall, 0, randomRotation );
                         break;
                 }
 
                 collectedFruit++;
 
-                if ( collectedFruit % increaseDifficultyFrequency == 0 ) {
+                // Logic: every "increaseDifficultyFrequency" the random rotation values are increased so that the fruit spawns further and further away from the player, making it harder.
+                if( collectedFruit % increaseDifficultyFrequency == 0 ) {
                     minRandomRotation += increaseDifficultyRate;
                     maxRandomRotation += increaseDifficultyRate;
                     minRandomRotationSmall -= increaseDifficultyRate;
                     maxRandomRotationSmall += increaseDifficultyRate;
 
-                    minRandomRotation = Mathf.Clamp(minRandomRotation, 0, minRandomRotationClamp);
-                    maxRandomRotation = Mathf.Clamp(maxRandomRotation, 0, maxRandomRotationClamp);
-                    minRandomRotationSmall = Mathf.Clamp(minRandomRotationSmall, minRandomRotationSmallClamp, 0);
-                    maxRandomRotationSmall = Mathf.Clamp(maxRandomRotationSmall, 0, maxRandomRotationSmallClamp);
+                    minRandomRotation = Mathf.Clamp( minRandomRotation, 0, minRandomRotationClamp );
+                    maxRandomRotation = Mathf.Clamp( maxRandomRotation, 0, maxRandomRotationClamp );
+                    minRandomRotationSmall = Mathf.Clamp( minRandomRotationSmall, minRandomRotationSmallClamp, 0 );
+                    maxRandomRotationSmall = Mathf.Clamp( maxRandomRotationSmall, 0, maxRandomRotationSmallClamp );
                 }
             }
 
-            fruit.Respawn(correction);
+            fruit.Respawn( correction );
         }
     }
 
+    /// <summary>
+    /// Stop everything on game over.
+    /// </summary>
     public void Stop() {
         stopped = true;
-        fruit.gameObject.SetActive(false);
+        fruit.gameObject.SetActive( false );
     }
 
+    /// <summary>
+    /// Resume after player has watched ad to revive.
+    /// </summary>
     public void Resume() {
         stopped = false;
-        fruit.gameObject.SetActive(true);
+        fruit.gameObject.SetActive( true );
     }
 
-    public void SetMoveFruitTowardsPlayer(bool value) {
+    public void SetMoveFruitTowardsPlayer( bool value ) {
         moveFruitTowardsPlayer = value;
-        fruit.SetIgnoreSnakeTailCollision(value);
+        fruit.SetIgnoreSnakeTailCollision( value );
     }
 }

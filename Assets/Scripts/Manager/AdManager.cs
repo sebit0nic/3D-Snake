@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles all incoming requests for Ad placement.
+/// </summary>
 public class AdManager : MonoBehaviour, IUnityAdsListener {
 
     public Button adButton;
@@ -15,46 +18,53 @@ public class AdManager : MonoBehaviour, IUnityAdsListener {
     private void Start() {
         adAvailable = true;
 
-        adButton.interactable = Advertisement.IsReady(myPlacementId);
-        if (adButton) {
-            adButton.onClick.AddListener(ShowRewardedVideo);
+        adButton.interactable = Advertisement.IsReady( myPlacementId );
+        if( adButton ) {
+            adButton.onClick.AddListener( ShowRewardedVideo );
         }
 
-        Advertisement.AddListener(this);
-        Advertisement.Initialize(gameId);
+        Advertisement.AddListener( this );
+        Advertisement.Initialize( gameId );
     }
 
+    /// <summary>
+    /// Play the rewarded ad.
+    /// </summary>
     private void ShowRewardedVideo() {
-        Advertisement.Show(myPlacementId);
+        Advertisement.Show( myPlacementId );
     }
     
-    public void OnUnityAdsReady(string placementId) {
-        if (placementId == myPlacementId) {
+    /// <summary>
+    /// Check if ad is ready and if so, set the ad button enabled.
+    /// </summary>
+    public void OnUnityAdsReady( string placementId ) {
+        if( placementId == myPlacementId ) {
             adButton.interactable = true;
         }
     }
 
-    public void OnUnityAdsDidFinish(string placementId, ShowResult showResult) {
-        if (showResult == ShowResult.Finished) {
+    /// <summary>
+    /// Rewarded ad has finished playing, so check if it was successful.
+    /// </summary>
+    public void OnUnityAdsDidFinish( string placementId, ShowResult showResult ) {
+        adAvailable = false;
+
+        if( showResult == ShowResult.Finished ) {
             GameManager.instance.GameResumedAfterAd();
-        } else if (showResult == ShowResult.Skipped || showResult == ShowResult.Failed) {
+        } else if( showResult == ShowResult.Skipped || showResult == ShowResult.Failed ) {
             GameManager.instance.AdSkippedOrFailed();
         }
     }
 
-    public void OnUnityAdsDidError(string message) {
-        Debug.LogWarning("The ad did not finish due to an error.");
+    public void OnUnityAdsDidError( string message ) {
+        return;
     }
 
-    public void OnUnityAdsDidStart(string placementId) {
-        Debug.LogWarning("Ad started.");
+    public void OnUnityAdsDidStart( string placementId ) {
+        return;
     }
 
     public bool IsAdAvailable() {
         return adAvailable;
-    }
-
-    public void SetAdAvailable(bool value) {
-        adAvailable = value;
     }
 }

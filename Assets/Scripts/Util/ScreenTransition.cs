@@ -3,21 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Handles the screen transition elements in each scene
+/// </summary>
 public class ScreenTransition : MonoBehaviour {
 
     private Animator animator;
     private int toSceneID;
+    private const string transitionAnimationName = "OnTransition";
 
     private void Awake() {
         animator = GetComponent<Animator>();
     }
 
-    public void StartScreenTransition(int sceneID) {
+    /// <summary>
+    /// Trigger the animation using the given sceneID
+    /// </summary>
+    public void StartScreenTransition( int sceneID ) {
         toSceneID = sceneID;
-        animator.SetTrigger("OnTransition");
+        animator.SetTrigger( transitionAnimationName );
     }
 
+    /// <summary>
+    /// Load scene after animation has finished
+    /// </summary>
     public void ScreenTransitionFinished() {
-        SceneManager.LoadScene(toSceneID);
+        SceneManager.LoadScene( toSceneID );
     }
 }

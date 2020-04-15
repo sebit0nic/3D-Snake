@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Holds the data for a hat object
+/// </summary>
 [System.Serializable]
 public class HatObject {
 

@@ -2462,6 +2462,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1380895244}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1649706587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 248659782348332843, guid: cc32790abb961d44ea6e3a8a42040f59,
+    type: 3}
+  m_PrefabInstance: {fileID: 1380895244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a517696d16a4ff340b66d46970fb9cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &1649899545 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7785748613548981804, guid: 1b9e25e87c1ab1b43bb25c9b6e1709f6,
@@ -2951,6 +2963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c38206dfd7a4f41838ae1a2a454cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screenTransition: {fileID: 1649706587}
   soundButton: {fileID: 515810770}
   cameraButton: {fileID: 1037445420}
 --- !u!1001 &2925195634461594769
