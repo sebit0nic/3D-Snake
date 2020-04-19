@@ -20,6 +20,10 @@ public class GameUIColorManager : MonoBehaviour, IUIColorManager {
             img.color = color;
         }
 
+        foreach( Text text in uiButtonTexts ) {
+            text.color = color;
+        }
+
         screenTransitionImage.color = color;
         pauseScreenImage.color = new Color( color.r, color.g, color.b, pauseScreenAlpha );
     }

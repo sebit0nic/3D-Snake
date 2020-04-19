@@ -44,6 +44,7 @@ public class ShopScreen : MonoBehaviour {
     }
 
     private void Start() {
+        Application.targetFrameRate = 60;
         saveLoadManager = GetComponentInChildren<SaveLoadManager>();
         savedData = saveLoadManager.LoadData();
         shopSectionManager.Init( savedData );
@@ -57,11 +58,11 @@ public class ShopScreen : MonoBehaviour {
         soundManager.PlaySound( SoundEffectType.SOUND_AMBIENCE, false );
 
         selectedPurchaseableIndex = 0;
-        selectedSectionIndex = 0;
+        selectedSectionIndex = -1;
         totalScoreText.text = savedData.totalScore.ToString().PadLeft( padLeftAmount, padChar );
         hatPreviewModels[(int) savedData.GetSelectedHatType()].SetActive( true );
         shopSectionManager.PurchaseableSelected( selectedSectionIndex, (int) savedData.GetSelectedHatType() );
-        ShowSection( selectedSectionIndex );
+        ShowSection( 0 );
         CheckAchievementConditions();
     }
 
@@ -69,6 +70,10 @@ public class ShopScreen : MonoBehaviour {
     /// Show the selected section with its purchaseables.
     /// </summary>
     public void ShowSection( int index ) {
+        if( selectedSectionIndex == index ) {
+            return;
+        }
+
         selectedSectionIndex = index;
         selectedShopSection = (ShopSection) index;
         DisableAllSections();

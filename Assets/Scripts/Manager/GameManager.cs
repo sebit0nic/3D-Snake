@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
+        Application.targetFrameRate = 60;
         saveLoadManager = GetComponentInChildren<SaveLoadManager>();
         savedData = saveLoadManager.LoadData();
 

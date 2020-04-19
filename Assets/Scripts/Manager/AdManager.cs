@@ -67,4 +67,8 @@ public class AdManager : MonoBehaviour, IUnityAdsListener {
     public bool IsAdAvailable() {
         return adAvailable;
     }
+
+    public void SetAdAvailable( bool value ) {
+        adAvailable = value;
+    }
 }

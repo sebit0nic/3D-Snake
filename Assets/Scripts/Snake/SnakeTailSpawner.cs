@@ -156,6 +156,7 @@ public class SnakeTailSpawner : MonoBehaviour {
     /// </summary>
     private IEnumerator WaitForThinPowerupDuration( float duration ) {
         thinPowerupEnabled = true;
+        snakeThinAnimator.ResetTrigger( thinOffTrigger );
         snakeThinAnimator.SetTrigger( thinOnTrigger );
         transform.localScale = thinSizeVector;
         CancelInvoke( spawnColliderKey );

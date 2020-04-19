@@ -24,7 +24,7 @@ public class SnakeMovement : MonoBehaviour {
     private float evaluatedInput;
     private const string horizontalAxisKey = "Horizontal";
 
-    public void Init(Snake snake) {
+    public void Init( Snake snake ) {
         this.snake = snake;
         thisRigidbody = GetComponent<Rigidbody>();
         surfaceNorm = Vector3.zero;
@@ -91,6 +91,9 @@ public class SnakeMovement : MonoBehaviour {
         stopped = true;
         transform.parent = planet.transform;
         instantiatedObjects.transform.parent = this.transform;
+
+        leftDown = false;
+        rightDown = false;
     }
 
     /// <summary>

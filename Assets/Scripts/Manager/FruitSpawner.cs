@@ -118,6 +118,7 @@ public class FruitSpawner : MonoBehaviour {
     public void Resume() {
         stopped = false;
         fruit.gameObject.SetActive( true );
+        SpawnNewFruit( false );
     }
 
     public void SetMoveFruitTowardsPlayer( bool value ) {
