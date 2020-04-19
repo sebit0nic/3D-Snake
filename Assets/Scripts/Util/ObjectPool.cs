@@ -9,8 +9,8 @@ public class ObjectPool : MonoBehaviour {
 
     public static ObjectPool sharedInstance;
 
-    public List<GameObject> pooledObjects;
-    public GameObject objectToPool;
+    public List<SnakeTail> pooledObjects;
+    public SnakeTail objectToPool;
     public GameObject instantiatedObjects;
     public int amountToPool;
 
@@ -19,26 +19,26 @@ public class ObjectPool : MonoBehaviour {
     }
 
     private void Start() {
-        pooledObjects = new List<GameObject>();
+        pooledObjects = new List<SnakeTail>();
         for( int i = 0; i < amountToPool; i++ ) {
-            GameObject obj = (GameObject) Instantiate( objectToPool );
-            obj.SetActive( false );
-            pooledObjects.Add( obj );
-            obj.transform.parent = instantiatedObjects.transform;
+            SnakeTail snakeTail = Instantiate( objectToPool );
+            snakeTail.gameObject.SetActive( false );
+            pooledObjects.Add( snakeTail );
+            snakeTail.transform.parent = instantiatedObjects.transform;
         }
     }
 
-    public GameObject GetPooledObject() {
+    public SnakeTail GetPooledObject() {
         for( int i = 0; i< pooledObjects.Count; i++ ) {
-            if( !pooledObjects[i].activeInHierarchy ) {
+            if( !pooledObjects[i].gameObject.activeInHierarchy ) {
                 return pooledObjects[i];
             }
         }
 
-        GameObject obj = (GameObject) Instantiate( objectToPool );
-        obj.SetActive( false );
-        pooledObjects.Add( obj );
-        obj.transform.parent = instantiatedObjects.transform;
-        return obj;
+        SnakeTail snakeTail = Instantiate( objectToPool );
+        snakeTail.gameObject.SetActive( false );
+        pooledObjects.Add( snakeTail );
+        snakeTail.transform.parent = instantiatedObjects.transform;
+        return snakeTail;
     }
 }

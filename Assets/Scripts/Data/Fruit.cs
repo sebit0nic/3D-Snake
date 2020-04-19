@@ -39,6 +39,7 @@ public class Fruit : MonoBehaviour {
     /// </summary>
     private IEnumerator WaitForShowDelay() {
         fruitRenderer.SetActive( false );
+        fruitRenderer.transform.localScale = Vector3.one;
         indicatorRenderer.SetActive( false );
 
         yield return new WaitForSeconds( rendererShowDelay );

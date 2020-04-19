@@ -23,7 +23,7 @@ public class SavedData {
         colorObjectList = standardColorObjects;
         powerupObjectList = standardPowerupObjects;
         highscore = 0;
-        totalScore = 999;
+        totalScore = 0;
         currentHat = PlayerHatTypes.TYPE_DEFAULT;
         currentColor = PlayerColorTypes.COLOR_CLASSIC;
     }

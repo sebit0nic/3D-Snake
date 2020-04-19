@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour {
     private bool stopped = false;
 
     private Quaternion targetRotation;
+    private const float resumeDelay = 0.5f;
 
     public void Init( CameraStatus cameraStatus ) {
         this.cameraStatus = cameraStatus;
@@ -46,9 +47,30 @@ public class CameraController : MonoBehaviour {
         }
     }
 
-    public void Stop() {
+    /// <summary>
+    /// Stop everything on game over.
+    /// </summary>
+    public void Stop( bool stopForAd ) {
         targetRotation = Quaternion.LookRotation( Vector3.zero - transform.position, transform.up );
-        planet.SetRotating( true );
         stopped = true;
+
+        if( !stopForAd ) {
+            planet.SetRotating(true);
+        }
+    }
+
+    /// <summary>
+    /// Resume after player has watched ad to revive.
+    /// </summary>
+    public void Resume() {
+        StartCoroutine( WaitForResumeDelay() );
+    }
+
+    /// <summary>
+    /// Coroutine to wait a few seconds before resuming the camera.
+    /// </summary>
+    private IEnumerator WaitForResumeDelay() {
+        yield return new WaitForSeconds( resumeDelay );
+        stopped = false;
     }
 }

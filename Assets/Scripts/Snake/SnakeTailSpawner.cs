@@ -41,7 +41,7 @@ public class SnakeTailSpawner : MonoBehaviour {
     /// This method is repeated every few seconds and spawns a new snake tail from the object pool.
     /// </summary>
     private void SpawnCollider() {
-        newSnakeTail = ObjectPool.sharedInstance.GetPooledObject().GetComponent<SnakeTail>();
+        newSnakeTail = ObjectPool.sharedInstance.GetPooledObject();
         newSnakeTail.transform.position = transform.position;
         newSnakeTail.transform.rotation = transform.rotation;
         newSnakeTail.gameObject.SetActive( true );

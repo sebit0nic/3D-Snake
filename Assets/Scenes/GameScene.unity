@@ -11651,7 +11651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObjects: []
-  objectToPool: {fileID: 2639029446847104498, guid: c7da1818f900a164e8888dcba3d15560,
+  objectToPool: {fileID: 2639029446847104497, guid: c7da1818f900a164e8888dcba3d15560,
     type: 3}
   instantiatedObjects: {fileID: 2119835969}
   amountToPool: 500
@@ -12293,6 +12293,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Input Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: snakeMovement
+      value: 
+      objectReference: {fileID: 2094974985}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: playStoreManager
+      value: 
+      objectReference: {fileID: 616439985}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1133678261}
     - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12348,21 +12363,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
-        type: 3}
-      propertyPath: snakeMovement
-      value: 
-      objectReference: {fileID: 2094974985}
-    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
-        type: 3}
-      propertyPath: playStoreManager
-      value: 
-      objectReference: {fileID: 616439985}
-    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
-        type: 3}
-      propertyPath: soundManager
-      value: 
-      objectReference: {fileID: 1133678261}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c5463b25f16b0c4e938e2c0980a50af, type: 3}
 --- !u!1 &5115284158557607946

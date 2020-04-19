@@ -135,15 +135,16 @@ public class GameManager : MonoBehaviour {
         soundManager.PlaySound( SoundEffectType.SOUND_TAIL_EAT, false );
 
         if( scoreManager.GetCurrentScore() > scoreManager.GetMinRevivalScore() && adManager.IsAdAvailable() && saveLoadManager.GetTutorialStatus() ) {
+            cameraController.Stop( true );
             guiManager.ShowAdScreen();
         } else {
             if( scoreManager.CheckDailyPlayReward( saveLoadManager ) ) {
-                cameraController.Stop();
+                cameraController.Stop( false );
                 scoreManager.ClaimDailyPlayReward( saveLoadManager, savedData );
                 scoreManager.FinalizeScore( savedData );
                 guiManager.ShowGameOverScreen( soundManager, scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), true, savedData.IsSomethingPurchaseable() );
             } else {
-                cameraController.Stop();
+                cameraController.Stop( false );
                 scoreManager.FinalizeScore( savedData );
                 guiManager.ShowGameOverScreen( soundManager, scoreManager.GetCurrentScore(), scoreManager.GetTotalScore(), scoreManager.IsNewHighscore(), false, savedData.IsSomethingPurchaseable() );
             }
@@ -196,6 +197,8 @@ public class GameManager : MonoBehaviour {
     /// Ad has been watched by player so resume the game.
     /// </summary>
     public void GameResumedAfterAd() {
+        soundManager.PlaySound( SoundEffectType.SOUND_INVINCIBILITY, false );
+        cameraController.Resume();
         guiManager.HideAdScreen();
         guiManager.ToggleHUD(true);
         fruitSpawner.Resume();
