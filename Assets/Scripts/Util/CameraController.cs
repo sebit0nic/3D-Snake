@@ -25,8 +25,11 @@ public class CameraController : MonoBehaviour {
     private Quaternion targetRotation;
     private const float resumeDelay = 0.5f;
 
+    private WaitForSeconds resumeWaitForSeconds;
+
     public void Init( CameraStatus cameraStatus ) {
         this.cameraStatus = cameraStatus;
+        resumeWaitForSeconds = new WaitForSeconds( resumeDelay );
     }
 
     private void LateUpdate() {
@@ -70,7 +73,7 @@ public class CameraController : MonoBehaviour {
     /// Coroutine to wait a few seconds before resuming the camera.
     /// </summary>
     private IEnumerator WaitForResumeDelay() {
-        yield return new WaitForSeconds( resumeDelay );
+        yield return resumeWaitForSeconds;
         stopped = false;
     }
 }

@@ -37,6 +37,8 @@ public class ShopScreen : MonoBehaviour {
     private const string hatAnimatorTrigger = "OnShow";
     private const int totalScoreDecreaseSpeed = 20;
 
+    private WaitForFixedUpdate totalScoreWaitForFixedUpdate;
+
     private void Awake() {
         if( instance == null ) {
             instance = this;
@@ -56,6 +58,7 @@ public class ShopScreen : MonoBehaviour {
         soundManager = GetComponentInChildren<SoundManager>();
         soundManager.Init( saveLoadManager );
         soundManager.PlaySound( SoundEffectType.SOUND_AMBIENCE, false );
+        totalScoreWaitForFixedUpdate = new WaitForFixedUpdate();
 
         selectedPurchaseableIndex = 0;
         selectedSectionIndex = -1;
@@ -265,7 +268,7 @@ public class ShopScreen : MonoBehaviour {
             totalScoreString = totalScore.ToString();
             totalScoreText.text = totalScoreString.PadLeft( padLeftAmount, padChar );
             soundManager.PlaySound( SoundEffectType.SOUND_TOTAL_POINTS_UP, false );
-            yield return new WaitForFixedUpdate();
+            yield return totalScoreWaitForFixedUpdate;
         }
 
         totalScoreString = newTotalScore.ToString();

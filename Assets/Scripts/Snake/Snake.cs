@@ -15,6 +15,8 @@ public class Snake : MonoBehaviour {
     private const float waitToReviveDelay = 0.5f;
     private const float reviveInvincibilityDuration = 3f;
 
+    private WaitForSeconds waitAfterResumeWaitForSeconds;
+
     [Header("Debug Settings")]
     public bool invincible = false;
 
@@ -28,6 +30,8 @@ public class Snake : MonoBehaviour {
         snakeCollision.Init( this );
         snakeTailSpawner.Init( this );
         snakeHatChooser.Init( GameManager.instance.GetSavedData() );
+
+        waitAfterResumeWaitForSeconds = new WaitForSeconds( waitToReviveDelay );
     }
 
     /// <summary>
@@ -107,7 +111,7 @@ public class Snake : MonoBehaviour {
     /// Wait a few seconds after game over to resume.
     /// </summary>
     private IEnumerator WaitAfterResume() {
-        yield return new WaitForSeconds( waitToReviveDelay );
+        yield return waitAfterResumeWaitForSeconds;
         snakeTailSpawner.InvincibilityPowerupActive( reviveInvincibilityDuration );
         snakeCollision.InvincibilityPowerupActive( reviveInvincibilityDuration );
         snakeMovement.Resume();

@@ -19,11 +19,14 @@ public class PowerupSpawner : MonoBehaviour {
     private const string waitForSpawnDelayMethod = "WaitForSpawnDelay";
     private const string waitForUnspawnDelayMethod = "WaitForUnspawnDelay";
 
+    private WaitForSeconds unspawnWaitForSeconds;
+
     public void Init( SavedData savedData ) {
         powerupGameObject = Instantiate( powerupPrefab, Vector3.zero, Quaternion.identity );
         powerup = powerupGameObject.GetComponent<Powerup>();
         powerupGameObject.SetActive( false );
         unlockedPowerups = new List<PowerupObject>();
+        unspawnWaitForSeconds = new WaitForSeconds( unspawnDelay );
 
         int unlockedPowerupCount = 0;
         foreach( PowerupObject powerupObject in savedData.GetUnlockedPowerups() ) {
@@ -108,7 +111,7 @@ public class PowerupSpawner : MonoBehaviour {
     /// Coroutine to wait a certain amount of time before unspawning the current powerup.
     /// </summary>
     private IEnumerator WaitForUnspawnDelay() {
-        yield return new WaitForSeconds( unspawnDelay );
+        yield return unspawnWaitForSeconds;
         powerupGameObject.SetActive( false );
         StartCoroutine( waitForSpawnDelayMethod );
     }

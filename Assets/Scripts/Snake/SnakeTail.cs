@@ -16,10 +16,13 @@ public class SnakeTail : MonoBehaviour {
     private MeshRenderer thisRenderer;
     private bool thinMode;
 
+    private WaitForSeconds safetyRoutineWaitForSeconds;
+
     private void Awake() {
         thisCollider = GetComponent<SphereCollider>();
         thinPowerupScale = new Vector3( thinSize, thinSize, thinSize );
         thisRenderer = GetComponentInChildren<MeshRenderer>();
+        safetyRoutineWaitForSeconds = new WaitForSeconds( safetyspan );
     }
 
     public void Init( bool thinPowerupEnabled, bool invincibilityPowerupEnabled ) {
@@ -78,7 +81,7 @@ public class SnakeTail : MonoBehaviour {
     /// immediately collide with the new tail.
     /// </summary>
     public IEnumerator WaitSafetyRoutine() {
-        yield return new WaitForSeconds( safetyspan );
+        yield return safetyRoutineWaitForSeconds;
         thisCollider.enabled = true;
     }
 }

@@ -15,12 +15,15 @@ public class Fruit : MonoBehaviour {
     private const string gameManagerKey = "Game Manager";
     private const string snakeTailTag = "Snake Tail";
 
+    private WaitForSeconds showDelayWaitForSeconds;
+
     private void Awake() {
         fruitSpawner = GameObject.Find( gameManagerKey ).GetComponentInChildren<FruitSpawner>();
+        showDelayWaitForSeconds = new WaitForSeconds( rendererShowDelay );
     }
 
     private void OnTriggerStay( Collider other ) {
-        if( other.gameObject.tag.Equals( snakeTailTag ) && !ignoreSnakeTailCollision ) {
+        if( other.CompareTag( snakeTailTag ) && !ignoreSnakeTailCollision ) {
             fruitSpawner.SpawnNewFruit(true);
         }
     }
@@ -35,6 +38,14 @@ public class Fruit : MonoBehaviour {
     }
 
     /// <summary>
+    /// Check if fruit should ignore collision with snake tail objects because magnet powerup is active. Otherwise it might
+    /// get stuck while moving towards the player.
+    /// </summary>
+    public void SetIgnoreSnakeTailCollision(bool value) {
+        ignoreSnakeTailCollision = value;
+    }
+
+    /// <summary>
     /// Coroutine which waits for a few milliseconds before showing the newly spawned fruit.
     /// </summary>
     private IEnumerator WaitForShowDelay() {
@@ -42,17 +53,9 @@ public class Fruit : MonoBehaviour {
         fruitRenderer.transform.localScale = Vector3.one;
         indicatorRenderer.SetActive( false );
 
-        yield return new WaitForSeconds( rendererShowDelay );
+        yield return showDelayWaitForSeconds;
 
         fruitRenderer.SetActive( true );
         indicatorRenderer.SetActive( true );
     }
-    
-    /// <summary>
-    /// Check if fruit should ignore collision with snake tail objects because magnet powerup is active. Otherwise it might
-    /// get stuck while moving towards the player.
-    /// </summary>
-    public void SetIgnoreSnakeTailCollision( bool value ) {
-        ignoreSnakeTailCollision = value;
-    } 
 }

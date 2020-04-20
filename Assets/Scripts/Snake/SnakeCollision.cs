@@ -19,9 +19,12 @@ public class SnakeCollision : MonoBehaviour {
     private const string powerupTag = "Powerup";
     private const string snakeTailTag = "Snake Tail";
     private const string onEatTrigger = "OnEat";
+    
+    private WaitForSeconds courtesyPowerupWaitForSeconds;
 
     public void Init( Snake snake ) {
         this.snake = snake;
+        courtesyPowerupWaitForSeconds = new WaitForSeconds( powerupCourtesyDelay );
 
         SnakeCollider[] colliderList = GetComponentsInChildren<SnakeCollider>();
         foreach( SnakeCollider col in colliderList ) {
@@ -101,7 +104,9 @@ public class SnakeCollision : MonoBehaviour {
     /// </summary>
     private IEnumerator WaitForInvincibilityPowerupDuration( float duration ) {
         invincible = true;
+
         yield return new WaitForSeconds( duration );
+
         snake.NotifyPowerupWoreOff( true );
         StartCoroutine( WaitForCourtesyPowerupDuration() );
     }
@@ -111,7 +116,8 @@ public class SnakeCollision : MonoBehaviour {
     /// so it doesn't seem unfair if the player touches the tail the last second.
     /// </summary>
     private IEnumerator WaitForCourtesyPowerupDuration() {
-        yield return new WaitForSeconds( powerupCourtesyDelay );
+        yield return courtesyPowerupWaitForSeconds;
+
         invincible = false;
     }
 

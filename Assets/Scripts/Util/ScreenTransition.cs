@@ -28,6 +28,7 @@ public class ScreenTransition : MonoBehaviour {
     /// Load scene after animation has finished
     /// </summary>
     public void ScreenTransitionFinished() {
+        System.GC.Collect();
         SceneManager.LoadScene( toSceneID );
     }
 }

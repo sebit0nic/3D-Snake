@@ -17,9 +17,12 @@ public class TouchIndicator : MonoBehaviour {
     private GuiManager guiManager;
     private const string touchIndicatorActiveKey = "OnTouchIndicatorActive";
 
+    private WaitForFixedUpdate touchIndicatorActiveFixedUpdate;
+
     public void Init(GuiManager guiManager, bool tutorialDone) {
         fillLevelTransform.localScale = Vector3.zero;
         fillLevelIncreaseFactor = new Vector3( Time.fixedDeltaTime / minTouchdownTime, Time.fixedDeltaTime / minTouchdownTime, Time.fixedDeltaTime / minTouchdownTime );
+        touchIndicatorActiveFixedUpdate = new WaitForFixedUpdate();
 
         this.guiManager = guiManager;
         this.tutorialDone = tutorialDone;
@@ -47,7 +50,7 @@ public class TouchIndicator : MonoBehaviour {
     /// </summary>
     private IEnumerator OnTouchIndicatorActive() {
         while( fillLevelTransform.localScale.x <= 1 ) {
-            yield return new WaitForFixedUpdate();
+            yield return touchIndicatorActiveFixedUpdate;
             fillLevelTransform.localScale += fillLevelIncreaseFactor;
         }
 
