@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour {
         scoreManager.IncreaseScore();
         powerupSpawner.UpdateActualCollectedFruit( scoreManager.GetCurrentScore() );
         fruitSpawner.SetMoveFruitTowardsPlayer( false );
-        guiManager.FruitCollected();
+        guiManager.FruitCollected( scoreManager.GetCurrentScore() );
         achievementManager.NotifyCurrentScoreIncreased( scoreManager.GetCurrentScore() );
         soundManager.PlaySound( SoundEffectType.SOUND_EAT, true );
     }

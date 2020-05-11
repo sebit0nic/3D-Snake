@@ -17,10 +17,12 @@ public class GuiManager : MonoBehaviour {
     public GameObject newHighscoreCrown;
     public ScreenTransition screenTransition;
     public Text finalScoreText, totalScoreText;
+    public Text currentScoreText;
     public Image powerupIcon;
     public Image powerupDurationImage;
     public Animator collectCircleEffect;
     public Animator shopButtonAnimator;
+    public Animator currentScoreAnimator;
     public TouchIndicator touchIndicatorLeft, touchIndicatorRight;
     public Transform cameraTransform;
     public float scoreCountDuration;
@@ -31,7 +33,7 @@ public class GuiManager : MonoBehaviour {
     public Sprite powerupMagnetIcon;
 
     private float powerupDuration, currentPowerupDuration;
-    private string finalScoreString, totalScoreString;
+    private string finalScoreString, totalScoreString, currentScoreString;
     private int tutorialsDone;
 
     private const char padChar = '0';
@@ -41,6 +43,7 @@ public class GuiManager : MonoBehaviour {
     private const float waitForScreenDuration = 1f;
     private const string collectCircleCollectedTrigger = "OnCollected";
     private const string adScreenHideTrigger = "OnHide";
+    private const string currentScoreIncreaseTrigger = "OnIncrease";
 
     public void Init( bool tutorialDone ) {
         powerupIcon.enabled = false;
@@ -61,9 +64,13 @@ public class GuiManager : MonoBehaviour {
     /// <summary>
     /// Fruit has been collected by player.
     /// </summary>
-    public void FruitCollected() {
+    public void FruitCollected( int currentScore ) {
         collectCircleEffect.transform.LookAt( cameraTransform );
         collectCircleEffect.SetTrigger( collectCircleCollectedTrigger );
+
+        currentScoreString = currentScore.ToString();
+        currentScoreText.text = currentScoreString.PadLeft( padLengthFinalScore, padChar );
+        currentScoreAnimator.SetTrigger( currentScoreIncreaseTrigger );
     }
 
     /// <summary>
@@ -82,6 +89,7 @@ public class GuiManager : MonoBehaviour {
         steerLeftButton.SetActive( value );
         powerupIcon.gameObject.SetActive( value );
         powerupDurationImage.gameObject.SetActive( value );
+        currentScoreText.gameObject.SetActive( value );
     }
 
     /// <summary>
