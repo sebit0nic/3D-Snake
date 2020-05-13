@@ -47,10 +47,10 @@ public class GameManager : MonoBehaviour {
         scoreManager = GetComponentInChildren<ScoreManager>();
         scoreManager.Init( savedData );
         guiManager = GetComponentInChildren<GuiManager>();
-        guiManager.Init( saveLoadManager.GetTutorialStatus() );
+        guiManager.Init( saveLoadManager );
         powerupSpawner = GetComponentInChildren<PowerupSpawner>();
         powerupSpawner.Init( savedData );
-        cameraController.Init( (CameraStatus) saveLoadManager.GetCameraStatus() );
+        cameraController.Init( (CameraStatus) saveLoadManager.GetCameraStatus(), saveLoadManager.GetScreenOrientationStatus() );
         styleManager = GetComponentInChildren<StyleManager>();
         styleManager.Init( savedData );
         playStoreManager = GetComponentInChildren<PlayStoreManager>();

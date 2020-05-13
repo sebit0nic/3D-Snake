@@ -27,6 +27,15 @@ public class GuiManager : MonoBehaviour {
     public Transform cameraTransform;
     public float scoreCountDuration;
 
+    [Header("Portrait Variants")]
+    public GameObject gameOverScreenPortrait;
+    public GameObject dailyPlayRewardNotificationPortrait;
+    public GameObject newHighscoreCrownPortrait;
+    public Text finalScoreTextPortrait, totalScoreTextPortrait;
+    public Animator shopButtonPortraitAnimator;
+    public GameObject adScreenPortrait;
+    public Animator adScreenAnimatorPortrait;
+
     [Header("Powerup Icons")]
     public Sprite powerupInvincibilityIcon;
     public Sprite powerupThinIcon;
@@ -35,6 +44,7 @@ public class GuiManager : MonoBehaviour {
     private float powerupDuration, currentPowerupDuration;
     private string finalScoreString, totalScoreString, currentScoreString;
     private int tutorialsDone;
+    private int screenOrientation;
 
     private const char padChar = '0';
     private const int padLengthFinalScore = 3;
@@ -45,12 +55,13 @@ public class GuiManager : MonoBehaviour {
     private const string adScreenHideTrigger = "OnHide";
     private const string currentScoreIncreaseTrigger = "OnIncrease";
 
-    public void Init( bool tutorialDone ) {
+    public void Init( SaveLoadManager saveLoadManager ) {
         powerupIcon.enabled = false;
         powerupDurationImage.fillAmount = 0f;
+        screenOrientation = saveLoadManager.GetScreenOrientationStatus();
 
-        touchIndicatorLeft.Init( this, tutorialDone );
-        touchIndicatorRight.Init( this, tutorialDone );
+        touchIndicatorLeft.Init( this, saveLoadManager.GetTutorialStatus() );
+        touchIndicatorRight.Init( this, saveLoadManager.GetTutorialStatus() );
     }
 
     private void Update() {
@@ -96,8 +107,14 @@ public class GuiManager : MonoBehaviour {
     /// Player touched tail and has no ad left to watch so show game over screen.
     /// </summary>
     public void ShowGameOverScreen( SoundManager soundManager, int finalScore, int totalScore, bool newHighscore, bool dailyPlayRewardActive, bool isSomethingPurchaseable ) {
-        dailyPlayRewardNotification.gameObject.SetActive( dailyPlayRewardActive );
-        shopButtonAnimator.enabled = isSomethingPurchaseable;
+        if( screenOrientation == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            dailyPlayRewardNotification.gameObject.SetActive( dailyPlayRewardActive );
+            shopButtonAnimator.enabled = isSomethingPurchaseable;
+        } else {
+            shopButtonPortraitAnimator.enabled = isSomethingPurchaseable;
+            dailyPlayRewardNotificationPortrait.gameObject.SetActive( dailyPlayRewardActive );
+        }
+        
         StartCoroutine( OnWaitForGameOverScreen( soundManager, finalScore, totalScore, newHighscore ) );
     }
 
@@ -155,7 +172,11 @@ public class GuiManager : MonoBehaviour {
     /// Hide the ad decision screen after the player has watched it.
     /// </summary>
     public void HideAdScreen() {
-        adScreenAnimator.SetTrigger( adScreenHideTrigger );
+        if( screenOrientation == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            adScreenAnimator.SetTrigger( adScreenHideTrigger );
+        } else {
+            adScreenAnimatorPortrait.SetTrigger( adScreenHideTrigger );
+        }
     }
 
     /// <summary>
@@ -173,7 +194,12 @@ public class GuiManager : MonoBehaviour {
     /// </summary>
     private IEnumerator OnWaitForGameOverScreen( SoundManager soundManager, int finalScore, int totalScore, bool newHighscore ) {
         yield return new WaitForSeconds( waitForScreenDuration );
-        gameOverScreen.SetActive( true );
+        if( screenOrientation == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            gameOverScreen.SetActive(true);
+        } else {
+            gameOverScreenPortrait.SetActive(true);
+        }
+        
         GameManager.instance.GameOverScreenShown();
         StartCoroutine( OnShowFinalScore( soundManager, finalScore, totalScore, newHighscore ) );
     }
@@ -183,7 +209,11 @@ public class GuiManager : MonoBehaviour {
     /// </summary>
     private IEnumerator OnWaitForAdScreen() {
         yield return new WaitForSeconds( waitForScreenDuration );
-        adScreen.SetActive( true );
+        if( screenOrientation == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            adScreen.SetActive(true);
+        } else {
+            adScreenPortrait.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -192,23 +222,41 @@ public class GuiManager : MonoBehaviour {
     private IEnumerator OnShowFinalScore( SoundManager soundManager, int finalScore, int totalScore, bool newHighscore ) {
         int tempTotalScore = totalScore - finalScore;
         totalScoreString = tempTotalScore.ToString();
-        totalScoreText.text = totalScoreString.PadLeft( padLengthTotalScore, padChar );
-
+        if( screenOrientation == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            totalScoreText.text = totalScoreString.PadLeft( padLengthTotalScore, padChar );
+        } else {
+            totalScoreTextPortrait.text = totalScoreString.PadLeft( padLengthTotalScore, padChar );
+        }
+        
         int tempScore = 0;
         float countTempo = scoreCountDuration / finalScore;
         while( tempScore < finalScore ) {
             tempScore++;
             finalScoreString = tempScore.ToString();
-            finalScoreText.text = finalScoreString.PadLeft( padLengthFinalScore, padChar );
+            if( screenOrientation == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+                finalScoreText.text = finalScoreString.PadLeft( padLengthFinalScore, padChar );
+            } else {
+                finalScoreTextPortrait.text = finalScoreString.PadLeft( padLengthFinalScore, padChar );
+            }
             soundManager.PlaySoundWithPitch( SoundEffectType.SOUND_POINTS_UP, baseSoundPitch + countTempo * tempScore );
             yield return new WaitForSeconds( countTempo );
         }
 
         tempScore = finalScore;
         finalScoreString = tempScore.ToString();
-        finalScoreText.text = finalScoreString.PadLeft( padLengthFinalScore, padChar );
+        if( screenOrientation == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            finalScoreText.text = finalScoreString.PadLeft( padLengthFinalScore, padChar );
+        } else {
+            finalScoreTextPortrait.text = finalScoreString.PadLeft( padLengthFinalScore, padChar );
+        }
+        
         if( newHighscore ) {
-            newHighscoreCrown.SetActive( true );
+            if( screenOrientation == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+                newHighscoreCrown.SetActive( true );
+            } else {
+                newHighscoreCrownPortrait.SetActive( true );
+            }
+            
             soundManager.PlaySound( SoundEffectType.SOUND_NEW_HIGHSCORE, false );
         }
 
@@ -224,13 +272,21 @@ public class GuiManager : MonoBehaviour {
         while( tempScore < totalScore ) {
             tempScore++;
             totalScoreString = tempScore.ToString();
-            totalScoreText.text = totalScoreString.PadLeft( padLengthTotalScore, padChar );
+            if( screenOrientation == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+                totalScoreText.text = totalScoreString.PadLeft(padLengthTotalScore, padChar);
+            } else {
+                totalScoreTextPortrait.text = totalScoreString.PadLeft(padLengthTotalScore, padChar);
+            }
             soundManager.PlaySoundWithPitch( SoundEffectType.SOUND_TOTAL_POINTS_UP, baseSoundPitch + countTempo * tempScore );
             yield return new WaitForSeconds( countTempo );
         }
 
         tempScore = totalScore;
         totalScoreString = tempScore.ToString();
-        totalScoreText.text = totalScoreString.PadLeft( padLengthTotalScore, padChar );
+        if( screenOrientation == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            totalScoreText.text = totalScoreString.PadLeft(padLengthTotalScore, padChar);
+        } else {
+            totalScoreTextPortrait.text = totalScoreString.PadLeft(padLengthTotalScore, padChar);
+        }
     }
 }

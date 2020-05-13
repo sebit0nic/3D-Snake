@@ -100,9 +100,12 @@ MonoBehaviour:
   target: {fileID: 0}
   planet: {fileID: 0}
   upDistance: 13
+  upDistancePortrait: 25
   backDistance: 0
   trackingSpeed: 12
   rotationSpeed: 10
+  secondaryRotationSpeed: 15
+  secondaryTrackingSpeed: 10
   panSpeed: 3
 --- !u!114 &1805992717400899063
 MonoBehaviour:

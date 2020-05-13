@@ -10,19 +10,10 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayStoreManager : MonoBehaviour {
 
-    public Animator playStoreNotification;
-
-    private Text playStoreNotificationText;
-
     private const string highscoreTag = "CgkIv_LIqYYREAIQAQ";
     private const string totalscoreTag = "CgkIv_LIqYYREAIQAg";
 
-    private const string animationShowToken = "OnShow";
-    private const string loginFailString = "Login to Google Play failed...";
-    private const string postFailString = "Could not post score....";
-
     public void Init() {
-        playStoreNotificationText = playStoreNotification.GetComponentInChildren<Text>();
         PlayGamesPlatform.Activate();
     }
 
@@ -30,12 +21,7 @@ public class PlayStoreManager : MonoBehaviour {
     /// Sign in to Google Play (preferably on startup of the game).
     /// </summary>
     public void SignIn() {
-        Social.localUser.Authenticate( ( bool success ) => {
-            if( !success ) {
-                playStoreNotificationText.text = loginFailString;
-                playStoreNotification.SetTrigger( animationShowToken );
-            }
-        } );
+        Social.localUser.Authenticate( ( bool success ) => { if( !success ) { } } );
     }
 
     /// <summary>
@@ -49,18 +35,8 @@ public class PlayStoreManager : MonoBehaviour {
     /// Post the highscore on Google Play leaderboards (does not matter if it's a new highscore, Google checks that in the background).
     /// </summary>
     public void PostScore( int highscore, int totalscore ) {
-        Social.ReportScore( highscore, highscoreTag, ( bool success ) => {
-            if( !success ) {
-                playStoreNotificationText.text = postFailString;
-                playStoreNotification.SetTrigger( animationShowToken );
-            }
-        } );
-        Social.ReportScore( totalscore, totalscoreTag, ( bool success ) => {
-            if( !success ) {
-                playStoreNotificationText.text = postFailString;
-                playStoreNotification.SetTrigger( animationShowToken );
-            }
-        } );
+        Social.ReportScore( highscore, highscoreTag, ( bool success ) => { if( !success ) {} } );
+        Social.ReportScore( totalscore, totalscoreTag, ( bool success ) => { if( !success ) { } } );
     }
 
     /// <summary>

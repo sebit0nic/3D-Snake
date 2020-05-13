@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour {
     public Transform target;
     public Planet planet;
     public float upDistance = 7.0f;
+    public float upDistancePortrait = 25.0f;
     public float backDistance = 10.0f;
     public float trackingSpeed = 3.0f;
     public float rotationSpeed = 9.0f;
@@ -21,26 +22,33 @@ public class CameraController : MonoBehaviour {
     private Quaternion qTo;
     private CameraStatus cameraStatus;
     private bool stopped = false;
+    private float currentUpDistance;
 
     private Quaternion targetRotation;
     private const float resumeDelay = 0.5f;
 
     private WaitForSeconds resumeWaitForSeconds;
 
-    public void Init( CameraStatus cameraStatus ) {
+    public void Init( CameraStatus cameraStatus, int screenOrientation ) {
         this.cameraStatus = cameraStatus;
         resumeWaitForSeconds = new WaitForSeconds( resumeDelay );
+
+        if( screenOrientation == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            currentUpDistance = upDistance;
+        } else {
+            currentUpDistance = upDistancePortrait;
+        }
     }
 
     private void LateUpdate() {
         if( !stopped ) {
             if( cameraStatus == CameraStatus.CAMERA_NO_ROTATION ) {
-                v3To = target.position - target.forward * backDistance + target.up * upDistance;
+                v3To = target.position - target.forward * backDistance + target.up * currentUpDistance;
                 transform.position = Vector3.Lerp( transform.position, v3To, trackingSpeed * Time.deltaTime );
                 qTo = Quaternion.LookRotation( target.position - transform.position, transform.up );
                 transform.localRotation = Quaternion.Slerp( transform.rotation, qTo, rotationSpeed * Time.deltaTime );
             } else if( cameraStatus == CameraStatus.CAMERA_ROTATE ) {
-                v3To = target.position - target.forward * backDistance + target.up * upDistance;
+                v3To = target.position - target.forward * backDistance + target.up * currentUpDistance;
                 transform.position = Vector3.Lerp( transform.position, v3To, secondaryTrackingSpeed * Time.deltaTime );
                 qTo = Quaternion.LookRotation( target.position - transform.position, transform.forward );
                 transform.localRotation = Quaternion.Slerp( transform.rotation, qTo, secondaryRotationSpeed * Time.deltaTime );
