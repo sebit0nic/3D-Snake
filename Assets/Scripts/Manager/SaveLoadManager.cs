@@ -19,6 +19,7 @@ public class SaveLoadManager : MonoBehaviour {
     private const string cameraStatusKey = "CameraStatus";
     private const string tutorialStatusKey = "TutorialStatus";
     private const string lastRewardTimeKey = "LastRewardTime";
+    private const string screenOrientationKey = "ScreenOrientation";
     private const string defaultLastRewardTime = "01.01.2000 00:00:00";
 
     /// <summary>
@@ -78,5 +79,13 @@ public class SaveLoadManager : MonoBehaviour {
 
     public void SetLastRewardTime( string lastRewardTime ) {
         PlayerPrefs.SetString( lastRewardTimeKey, lastRewardTime );
+    }
+
+    public int GetScreenOrientationStatus() {
+        return PlayerPrefs.GetInt( screenOrientationKey, (int) ScreenOrientationStatus.SCREEN_LANDSCAPE );
+    }
+
+    public void SetScreenOrientationStatus( int value ) {
+        PlayerPrefs.SetInt( screenOrientationKey, value );
     }
 }

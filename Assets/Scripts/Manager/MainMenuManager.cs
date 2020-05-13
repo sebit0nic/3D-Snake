@@ -10,7 +10,10 @@ public class MainMenuManager : MonoBehaviour {
 
     public static MainMenuManager instance = null;
     public ScreenTransition screenTransition;
-    public Toggle soundButton, cameraButton;
+    public Toggle soundButton, cameraButton, orientationButton;
+    public Toggle soundButton_portrait, cameraButton_portrait, orientationButton_portrait;
+    public GameObject landscapeCamera, portraitCamera;
+    public GameObject landscapeGUI, portraitGUI;
     
     private SaveLoadManager saveLoadManager;
     private StyleManager styleManager;
@@ -38,9 +41,23 @@ public class MainMenuManager : MonoBehaviour {
 
         soundButton.isOn = saveLoadManager.GetSoundStatus() != 0;
         cameraButton.isOn = saveLoadManager.GetCameraStatus() != 0;
+        orientationButton.isOn = saveLoadManager.GetScreenOrientationStatus() != 0;
+        soundButton_portrait.isOn = saveLoadManager.GetSoundStatus() != 0;
+        cameraButton_portrait.isOn = saveLoadManager.GetCameraStatus() != 0;
+        orientationButton_portrait.isOn = saveLoadManager.GetScreenOrientationStatus() != 0;
 
         playStoreManager.Init();
         playStoreManager.SignIn();
+
+        if( saveLoadManager.GetScreenOrientationStatus() == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            Screen.orientation = ScreenOrientation.Landscape;
+            landscapeCamera.SetActive( true );
+            landscapeGUI.SetActive( true );
+        } else {
+            Screen.orientation = ScreenOrientation.Portrait;
+            portraitCamera.SetActive( true );
+            portraitGUI.SetActive( true );
+        }
     }
 
     /// <summary>
@@ -54,13 +71,18 @@ public class MainMenuManager : MonoBehaviour {
     /// Toggle the sound on or off.
     /// </summary>
     public void ToggleButtonSoundPressed() {
-        saveLoadManager.SetSoundStatus( soundButton.isOn ? 1 : 0 );
+        if( saveLoadManager.GetScreenOrientationStatus() == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            saveLoadManager.SetSoundStatus( soundButton.isOn ? 1 : 0 );
+        } else {
+            saveLoadManager.SetSoundStatus( soundButton_portrait.isOn ? 1 : 0 );
+        }
+        
         soundManager.Init( saveLoadManager );
         soundManager.PlaySound( SoundEffectType.SOUND_BUTTON, false );
 
-        if ( (SoundStatus) saveLoadManager.GetSoundStatus() == SoundStatus.SOUND_OFF ) {
+        if( (SoundStatus) saveLoadManager.GetSoundStatus() == SoundStatus.SOUND_OFF ) {
             soundManager.StopAllSound();
-        }  else {
+        } else {
             soundManager.PlaySound( SoundEffectType.SOUND_AMBIENCE, false );
         }
     }
@@ -69,7 +91,41 @@ public class MainMenuManager : MonoBehaviour {
     /// Toggle the camera rotation on or off.
     /// </summary>
     public void ToggleButtonCameraPressed() {
-        saveLoadManager.SetCameraStatus( cameraButton.isOn ? 1 : 0 );
+        if( saveLoadManager.GetScreenOrientationStatus() == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            saveLoadManager.SetCameraStatus( cameraButton.isOn ? 1 : 0 );
+        } else {
+            saveLoadManager.SetCameraStatus( cameraButton_portrait.isOn ? 1 : 0 );
+        }
+        
+        soundManager.PlaySound( SoundEffectType.SOUND_BUTTON, false );
+    }
+
+    /// <summary>
+    /// Toggle the screen orientation between landscape and portrait.
+    /// </summary>
+    public void ToggleScreenRotation() {
+        if( saveLoadManager.GetScreenOrientationStatus() == (int) ScreenOrientationStatus.SCREEN_LANDSCAPE ) {
+            Screen.orientation = ScreenOrientation.Portrait;
+            saveLoadManager.SetScreenOrientationStatus( (int) ScreenOrientationStatus.SCREEN_PORTRAIT );
+            landscapeCamera.SetActive( false );
+            landscapeGUI.SetActive( false );
+            portraitCamera.SetActive( true );
+            portraitGUI.SetActive( true );
+            soundButton_portrait.isOn = saveLoadManager.GetSoundStatus() != 0;
+            cameraButton_portrait.isOn = saveLoadManager.GetCameraStatus() != 0;
+            orientationButton_portrait.isOn = saveLoadManager.GetScreenOrientationStatus() != 0;
+        } else {
+            Screen.orientation = ScreenOrientation.Landscape;
+            saveLoadManager.SetScreenOrientationStatus( (int) ScreenOrientationStatus.SCREEN_LANDSCAPE );
+            portraitCamera.SetActive( false );
+            portraitGUI.SetActive( false );
+            landscapeCamera.SetActive( true );
+            landscapeGUI.SetActive( true );
+            soundButton.isOn = saveLoadManager.GetSoundStatus() != 0;
+            cameraButton.isOn = saveLoadManager.GetCameraStatus() != 0;
+            orientationButton.isOn = saveLoadManager.GetScreenOrientationStatus() != 0;
+        }
+
         soundManager.PlaySound( SoundEffectType.SOUND_BUTTON, false );
     }
 

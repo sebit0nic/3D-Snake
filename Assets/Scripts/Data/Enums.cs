@@ -65,6 +65,11 @@ public enum CameraStatus {
     CAMERA_NO_ROTATION
 }
 
+public enum ScreenOrientationStatus {
+    SCREEN_PORTRAIT,
+    SCREEN_LANDSCAPE
+}
+
 public enum TutorialStatus {
     TUTORIAL_OPEN,
     TUTORIAL_DONE
