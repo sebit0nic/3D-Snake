@@ -164,6 +164,11 @@ public class GameManager : MonoBehaviour {
     /// Change the scene to something else (or reset current scene).
     /// </summary>
     public void SwitchScreen( ScreenType screenType ) {
+        if( screenType == ScreenType.SHOP_MENU ) {
+            if( saveLoadManager.GetScreenOrientationStatus() == (int) ScreenOrientationStatus.SCREEN_PORTRAIT ) {
+                screenType = ScreenType.SHOP_MENU_PORTRAIT;
+            }
+        }
         guiManager.ShowScreenTransition( (int) screenType );
     }
 

@@ -11,7 +11,8 @@ public enum SnakeColliderType {
 public enum ScreenType {
     MAIN_MENU,
     GAME,
-    SHOP_MENU
+    SHOP_MENU,
+    SHOP_MENU_PORTRAIT
 }
 
 public enum ShopSection {
