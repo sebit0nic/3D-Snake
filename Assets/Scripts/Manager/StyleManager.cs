@@ -10,6 +10,7 @@ public class StyleManager : MonoBehaviour {
 
     public MeshRenderer baseMaterial;
     public Skybox planetSkybox;
+    public Skybox planetSkyboxPortrait;
     public MeshRenderer planetMaterial;
     public ParticleSystem playerParticleSystem;
     public SpriteRenderer[] flowerPrefabs;
@@ -31,6 +32,10 @@ public class StyleManager : MonoBehaviour {
         if( playerParticleSystem != null ) {
             ParticleSystem.MainModule mainModule = playerParticleSystem.main;
             mainModule.startColor = savedData.GetColorByPurchaseableColorType( PurchaseableColorType.PARTICLE );
+        }
+
+        if( planetSkyboxPortrait != null ) {
+            planetSkyboxPortrait.material = skyboxes[(int) savedData.GetSelectedColorType()];
         }
 
         uiColorManager.SetUIColor( savedData.GetColorByPurchaseableColorType( PurchaseableColorType.BASE ) );

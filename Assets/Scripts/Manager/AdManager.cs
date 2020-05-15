@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class AdManager : MonoBehaviour, IUnityAdsListener {
 
-    public Button adButton;
+    public Button adButton, adButtonPortrait;
 
     private const string gameId = "3527725";
     private const string myPlacementId = "rewardedVideo";
@@ -19,8 +19,12 @@ public class AdManager : MonoBehaviour, IUnityAdsListener {
         adAvailable = true;
 
         adButton.interactable = Advertisement.IsReady( myPlacementId );
+        adButtonPortrait.interactable = Advertisement.IsReady( myPlacementId );
         if( adButton ) {
             adButton.onClick.AddListener( ShowRewardedVideo );
+        }
+        if( adButtonPortrait ) {
+            adButtonPortrait.onClick.AddListener( ShowRewardedVideo );
         }
 
         Advertisement.AddListener( this );

@@ -249,7 +249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &25752589
 RectTransform:
   m_ObjectHideFlags: 0
@@ -715,6 +715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adButton: {fileID: 300474378}
+  adButtonPortrait: {fileID: 233265830}
 --- !u!1 &118698527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,7 +1094,7 @@ GameObject:
   - component: {fileID: 233265830}
   - component: {fileID: 233265829}
   m_Layer: 0
-  m_Name: Watch Ad Button
+  m_Name: Watch Ad Button Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2040,7 +2041,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 260, y: -720}
+  m_AnchoredPosition: {x: -1695.6204, y: -1032.279}
   m_SizeDelta: {x: 750, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &370517929
@@ -2305,7 +2306,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 330, y: -337.5}
+  m_AnchoredPosition: {x: -1625.6204, y: -441.59302}
   m_SizeDelta: {x: 610, y: 315}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &455280997
@@ -2468,7 +2469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 325, y: -100}
+  m_AnchoredPosition: {x: 315, y: -100}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &465481788
@@ -5564,7 +5565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 330, y: -1102.5}
+  m_AnchoredPosition: {x: -1625.6204, y: -1622.9651}
   m_SizeDelta: {x: 610, y: 315}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299763310
@@ -6432,7 +6433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7494bf205d5be1841a4b04102fa2b5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTouchdownTime: 1.25
+  minTouchdownTime: 0.7
   indicator: {fileID: 1427599986}
   icon: {fileID: 1363869607}
   fillLevel: {fileID: 957689994}
@@ -6526,7 +6527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7494bf205d5be1841a4b04102fa2b5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTouchdownTime: 1.25
+  minTouchdownTime: 0.7
   indicator: {fileID: 1434139700}
   icon: {fileID: 346496430}
   fillLevel: {fileID: 287772651}
@@ -15077,21 +15078,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Input Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
-        type: 3}
-      propertyPath: snakeMovement
-      value: 
-      objectReference: {fileID: 2094974985}
-    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
-        type: 3}
-      propertyPath: playStoreManager
-      value: 
-      objectReference: {fileID: 616439985}
-    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
-        type: 3}
-      propertyPath: soundManager
-      value: 
-      objectReference: {fileID: 1133678261}
     - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15147,6 +15133,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: snakeMovement
+      value: 
+      objectReference: {fileID: 2094974985}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: playStoreManager
+      value: 
+      objectReference: {fileID: 616439985}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1133678261}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c5463b25f16b0c4e938e2c0980a50af, type: 3}
 --- !u!1 &5115284158557607946

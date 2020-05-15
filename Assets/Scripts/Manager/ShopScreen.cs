@@ -57,7 +57,6 @@ public class ShopScreen : MonoBehaviour {
         achievementManager = GetComponentInChildren<AchievementManager>();
         soundManager = GetComponentInChildren<SoundManager>();
         soundManager.Init( saveLoadManager );
-        soundManager.PlaySound( SoundEffectType.SOUND_AMBIENCE, false );
         totalScoreWaitForFixedUpdate = new WaitForFixedUpdate();
 
         selectedPurchaseableIndex = 0;

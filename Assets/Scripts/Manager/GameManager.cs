@@ -60,7 +60,6 @@ public class GameManager : MonoBehaviour {
         soundManager = GetComponentInChildren<SoundManager>();
         soundManager.Init( saveLoadManager );
         soundManager.PlaySound( SoundEffectType.SOUND_SLITHER, false );
-        soundManager.PlaySound( SoundEffectType.SOUND_AMBIENCE, false );
     }
 
     /// <summary>

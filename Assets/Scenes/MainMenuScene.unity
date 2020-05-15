@@ -1215,16 +1215,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Input Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
-        type: 3}
-      propertyPath: playStoreManager
-      value: 
-      objectReference: {fileID: 895019761}
-    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
-        type: 3}
-      propertyPath: soundManager
-      value: 
-      objectReference: {fileID: 169491812}
     - target: {fileID: 4729085006769714864, guid: 3c5463b25f16b0c4e938e2c0980a50af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1280,6 +1270,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: playStoreManager
+      value: 
+      objectReference: {fileID: 895019761}
+    - target: {fileID: 4729085006769714865, guid: 3c5463b25f16b0c4e938e2c0980a50af,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 169491812}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c5463b25f16b0c4e938e2c0980a50af, type: 3}
 --- !u!1 &552401203
@@ -2833,7 +2833,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1266396375}
   - component: {fileID: 1266396379}
-  - component: {fileID: 1266396378}
   - component: {fileID: 1266396377}
   - component: {fileID: 1266396376}
   m_Layer: 0
@@ -2880,14 +2879,6 @@ Skybox:
   m_GameObject: {fileID: 1266396374}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: 855dff256dcc74149b20a5b84b29b60c, type: 2}
---- !u!81 &1266396378
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1266396374}
-  m_Enabled: 1
 --- !u!20 &1266396379
 Camera:
   m_ObjectHideFlags: 0
@@ -3378,6 +3369,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 248659783723882698, guid: cc32790abb961d44ea6e3a8a42040f59,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 248659782348332848, guid: cc32790abb961d44ea6e3a8a42040f59,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3496,11 +3492,6 @@ PrefabInstance:
     - target: {fileID: 248659782348332848, guid: cc32790abb961d44ea6e3a8a42040f59,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 248659783723882698, guid: cc32790abb961d44ea6e3a8a42040f59,
-        type: 3}
-      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 248659783723882699, guid: cc32790abb961d44ea6e3a8a42040f59,
@@ -3697,7 +3688,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1476772701}
   - component: {fileID: 1476772700}
-  - component: {fileID: 1476772699}
   - component: {fileID: 1476772702}
   - component: {fileID: 1476772703}
   m_Layer: 0
@@ -3707,14 +3697,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1476772699
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476772698}
-  m_Enabled: 1
 --- !u!20 &1476772700
 Camera:
   m_ObjectHideFlags: 0
@@ -4692,6 +4674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1864366660}
+  - component: {fileID: 1864366661}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -4718,6 +4701,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1864366661
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864366659}
+  m_Enabled: 1
 --- !u!1 &1870276748
 GameObject:
   m_ObjectHideFlags: 0
@@ -5517,6 +5508,11 @@ PrefabInstance:
       propertyPath: flowerPrefabs.Array.data[14]
       value: 
       objectReference: {fileID: 1274238741}
+    - target: {fileID: 2925195633190551018, guid: d171258e60ac3204f87af602e573d3ef,
+        type: 3}
+      propertyPath: planetSkyboxPortrait
+      value: 
+      objectReference: {fileID: 1266396377}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d171258e60ac3204f87af602e573d3ef, type: 3}
 --- !u!33 &6803919234491333701

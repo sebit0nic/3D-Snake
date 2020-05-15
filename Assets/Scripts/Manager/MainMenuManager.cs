@@ -39,7 +39,6 @@ public class MainMenuManager : MonoBehaviour {
         playStoreManager = GetComponentInChildren<PlayStoreManager>();
         soundManager = GetComponentInChildren<SoundManager>();
         soundManager.Init( saveLoadManager );
-        soundManager.PlaySound( SoundEffectType.SOUND_AMBIENCE, false );
 
         soundButton.isOn = saveLoadManager.GetSoundStatus() != 0;
         cameraButton.isOn = saveLoadManager.GetCameraStatus() != 0;
