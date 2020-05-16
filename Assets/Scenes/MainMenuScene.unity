@@ -1518,6 +1518,7 @@ MonoBehaviour:
   - {fileID: 761159852}
   screenTransitionImage: {fileID: 1213796120}
   privacyPolicyText: {fileID: 351658316}
+  privacyPolicyTextPortrait: {fileID: 1000084121}
 --- !u!23 &694516016 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4847596988877887342, guid: c7da1818f900a164e8888dcba3d15560,

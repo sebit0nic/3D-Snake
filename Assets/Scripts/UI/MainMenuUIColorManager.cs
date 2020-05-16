@@ -10,7 +10,7 @@ public class MainMenuUIColorManager : MonoBehaviour, IUIColorManager {
 
     public Image[] uiButtonImages;
     public Image screenTransitionImage;
-    public Text privacyPolicyText;
+    public Text privacyPolicyText, privacyPolicyTextPortrait;
 
     public void SetUIColor( Color color ) {
         foreach ( Image img in uiButtonImages ) {
@@ -19,5 +19,6 @@ public class MainMenuUIColorManager : MonoBehaviour, IUIColorManager {
 
         screenTransitionImage.color = color;
         privacyPolicyText.color = color;
+        privacyPolicyTextPortrait.color = color;
     }
 }

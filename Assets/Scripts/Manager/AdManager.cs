@@ -16,7 +16,7 @@ public class AdManager : MonoBehaviour, IUnityAdsListener {
     private bool adAvailable;
 
     private void Start() {
-        adAvailable = true;
+        adAvailable = Advertisement.IsReady(myPlacementId);
 
         adButton.interactable = Advertisement.IsReady( myPlacementId );
         adButtonPortrait.interactable = Advertisement.IsReady( myPlacementId );

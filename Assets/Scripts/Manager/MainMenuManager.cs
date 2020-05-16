@@ -91,7 +91,7 @@ public class MainMenuManager : MonoBehaviour {
         if( (SoundStatus) saveLoadManager.GetSoundStatus() == SoundStatus.SOUND_OFF ) {
             soundManager.StopAllSound();
         } else {
-            soundManager.PlaySound( SoundEffectType.SOUND_AMBIENCE, false );
+            soundManager.ResumeMusicLoop();
         }
     }
 

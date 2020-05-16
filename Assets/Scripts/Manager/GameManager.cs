@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour {
         guiManager.FruitCollected( scoreManager.GetCurrentScore() );
         achievementManager.NotifyCurrentScoreIncreased( scoreManager.GetCurrentScore() );
         soundManager.PlaySound( SoundEffectType.SOUND_EAT, true );
+        soundManager.CheckMusicLoopLevelIncrease( scoreManager.GetCurrentScore() );
     }
 
     /// <summary>
@@ -132,6 +133,7 @@ public class GameManager : MonoBehaviour {
 
         soundManager.StopSound( SoundEffectType.SOUND_SLITHER );
         soundManager.PlaySound( SoundEffectType.SOUND_TAIL_EAT, false );
+        soundManager.StopMusicLoop();
 
         if( scoreManager.GetCurrentScore() > scoreManager.GetMinRevivalScore() && adManager.IsAdAvailable() && saveLoadManager.GetTutorialStatus() ) {
             cameraController.Stop( true );
@@ -202,6 +204,7 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     public void GameResumedAfterAd() {
         soundManager.PlaySound( SoundEffectType.SOUND_INVINCIBILITY, false );
+        soundManager.ResumeMusicLoop();
         cameraController.Resume();
         guiManager.HideAdScreen();
         guiManager.ToggleHUD(true);
